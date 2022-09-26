@@ -2,6 +2,7 @@ package game;
 
 import java.util.Random;
 
+import game.moto.Moto;
 import game.utils.TempoSuGiro;
 
 public class Pista {
@@ -29,14 +30,10 @@ public class Pista {
 		this.nGiri = nGiri;
 		this.tempoMassimoDefault = tempoMassimo;
 		
-		if(mismatchCondizioniMinime()) throw new Exception("Match minimum conditions!");
+		if(nRettilinei < minNRettilinei || getNCurve() < minNCurveTot || nGiri < minNGiri)
+			throw new Exception("Did not match the minimum conditions!");
 		
 		progressivo++;
-	}
-	
-	private boolean mismatchCondizioniMinime() { // true = bad, false = ok
-		if(nRettilinei < minNRettilinei || getNCurve() < minNCurveTot || nGiri < minNGiri) return true;
-		return false;
 	}
 
 	public void initGara(double moltiplicatoreTempoMassimo) {
@@ -65,11 +62,11 @@ public class Pista {
 		return Math.min(nTrattiGuidati*2 + 1, 10);
 	}
 	
-	public int getCoeffCurveLente() {
+	private int getCoeffCurveLente() {
 		return Math.min(nCurveLente + 1, 10);
 	}
 	
-	public int getCoeffCurveVeloci() {
+	private int getCoeffCurveVeloci() {
 		return Math.min(nCurveVeloci + 1, 10);
 	}
 	
