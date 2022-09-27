@@ -1,4 +1,4 @@
-package game.moto;
+package game.moto.componente;
 
 public class Componente {
 	

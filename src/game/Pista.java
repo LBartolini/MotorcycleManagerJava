@@ -16,7 +16,7 @@ public class Pista {
 	private int nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente, nGiri, nSpettatori;
 	private TempoSuGiro tempoMassimo, tempoMassimoDefault;
 	
-	private int gommaturaPista, probCaduta;
+	private int gommaturaPista, probCadutaPista;
 	
 
 	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) throws Exception {
@@ -40,7 +40,7 @@ public class Pista {
 		Random random = new Random();
 		
 		this.gommaturaPista = 0;
-		this.probCaduta = random.nextInt(100) + 1;
+		this.probCadutaPista = random.nextInt(100) + 1;
 		
 		this.tempoMassimo = new TempoSuGiro((int)(this.tempoMassimoDefault.getTempoInMillisecondi() * moltiplicatoreTempoMassimo));
 	}
@@ -68,6 +68,12 @@ public class Pista {
 	
 	private int getCoeffCurveVeloci() {
 		return Math.min(nCurveVeloci + 1, 10);
+	}
+	
+	private int getProbCadutaMotoPilota(Pilota pilota, Moto moto) {
+		// TODO considerare anche lo stato di usura delle gomme
+		
+		return 0;
 	}
 	
 }
