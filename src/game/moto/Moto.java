@@ -32,23 +32,14 @@ public class Moto {
 		this.pilota = pilota;
 		this.setupGara = new Setup();
 		
-		switch(difficoltà) {
-		
-			case GameConstants.DIFF_FACILE:
-				initFacile();
-				break;
-				
-			case GameConstants.DIFF_INTERMEDIA:
-				initIntermedia();
-				break;
-				
-			case GameConstants.DIFF_DIFFICILE:
-				initDifficile();
-				break;
-				
-			case GameConstants.DIFF_IMPOSSIBILE:
-				initImpossibile();
-				break;	
+		if (difficoltà == GameConstants.difficolta.DIFF_FACILE) {
+			initFacile();
+		} else if (difficoltà == GameConstants.difficolta.DIFF_INTERMEDIA) {
+			initIntermedia();
+		} else if (difficoltà == GameConstants.difficolta.DIFF_DIFFICILE) {
+			initDifficile();
+		} else if (difficoltà == GameConstants.difficolta.DIFF_IMPOSSIBILE) {
+			initImpossibile();
 		}
 	}
 	
@@ -58,7 +49,7 @@ public class Moto {
 		ciclistica = new ComponenteFacile("Ciclistica");
 		freni = new ComponenteFacile("Freni");
 		
-		marcaGomme = GameConstants.GOMME_FACILE;
+		marcaGomme = GameConstants.difficolta.GOMME_FACILE;
 	}
 	
 	private void initIntermedia() {
@@ -67,7 +58,7 @@ public class Moto {
 		ciclistica = new ComponenteIntermedia("Ciclistica");
 		freni = new ComponenteIntermedia("Freni");
 		
-		marcaGomme = GameConstants.GOMME_INTERMEDIA;
+		marcaGomme = GameConstants.difficolta.GOMME_INTERMEDIA;
 	}
 	
 	private void initDifficile() {
@@ -76,7 +67,7 @@ public class Moto {
 		ciclistica = new ComponenteDifficile("Ciclistica");
 		freni = new ComponenteDifficile("Freni");
 		
-		marcaGomme = GameConstants.GOMME_DIFFICILE;
+		marcaGomme = GameConstants.difficolta.GOMME_DIFFICILE;
 	}
 
 	
@@ -86,7 +77,7 @@ public class Moto {
 		ciclistica = new ComponenteImpossibile("Ciclistica");
 		freni = new ComponenteImpossibile("Freni");
 		
-		marcaGomme = GameConstants.GOMME_IMPOSSIBILE;
+		marcaGomme = GameConstants.difficolta.GOMME_IMPOSSIBILE;
 	}	
 	
 	public void preGara() {

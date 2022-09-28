@@ -5,7 +5,7 @@ import game.utils.GameConstants;
 public class ComponenteIntermedia extends Componente {
 
 	public ComponenteIntermedia(String nome) {
-		super(nome, GameConstants.GRADO_COMPONENTE_INTERMEDIA, GameConstants.RESISTENZA_COMPONENTE_INTERMEDIA);
+		super(nome, GameConstants.difficolta.GRADO_COMPONENTE_INTERMEDIA, GameConstants.difficolta.RESISTENZA_COMPONENTE_INTERMEDIA);
 	}
 
 }

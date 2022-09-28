@@ -17,6 +17,7 @@ public class Pista {
 	private TempoSuGiro tempoMassimo, tempoMassimoDefault;
 	
 	private int gommaturaPista, probCadutaPista;
+	private Meteo meteo;
 	
 
 	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) throws Exception {
@@ -36,11 +37,12 @@ public class Pista {
 		progressivo++;
 	}
 
-	public void initGara(double moltiplicatoreTempoMassimo) {
+	public void initGara(double moltiplicatoreTempoMassimo, Meteo meteo) {
 		Random random = new Random();
 		
 		this.gommaturaPista = 0;
 		this.probCadutaPista = random.nextInt(100) + 1;
+		this.meteo = meteo;
 		
 		this.tempoMassimo = new TempoSuGiro((int)(this.tempoMassimoDefault.getTempoInMillisecondi() * moltiplicatoreTempoMassimo));
 	}
