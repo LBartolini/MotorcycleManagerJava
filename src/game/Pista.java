@@ -21,7 +21,9 @@ public class Pista {
 	
 
 	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) throws Exception {
-		this.idPista = progressivo;
+		// TODO bad path testing
+		
+		this.idPista = ++progressivo;
 		
 		this.nomePista = nomePista;
 		this.nRettilinei = nRettilinei;
@@ -30,11 +32,7 @@ public class Pista {
 		this.nCurveLente = nCurveLente;
 		this.nGiri = nGiri;
 		this.tempoMassimoDefault = tempoMassimo;
-		
-		if(nRettilinei < minNRettilinei || getNCurve() < minNCurveTot || nGiri < minNGiri)
-			throw new Exception("Did not match the minimum conditions!");
-		
-		progressivo++;
+
 	}
 
 	public void initGara(double moltiplicatoreTempoMassimo, Meteo meteo) {
@@ -57,7 +55,7 @@ public class Pista {
 	}
 	
 	private int getCoeffRettilinei() {
-		return Math.min(nRettilinei+1, 5);
+		return 2*Math.min(nRettilinei+1, 5);
 	}
 	
 	private int getCoeffTrattiGuidati() {

@@ -6,6 +6,8 @@ public interface Gomma {
 	
 	public void initPreGara(int giriTotali);
 	
+	public String getNome();
+	
 	public boolean daAsciutto();
 	
 	public boolean daBagnato();

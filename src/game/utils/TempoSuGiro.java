@@ -1,6 +1,6 @@
 package game.utils;
 
-public class TempoSuGiro {
+public class TempoSuGiro implements Comparable<TempoSuGiro>{
 	
 	private static final int SECONDI_IN_MINUTO = 60, MILLISECONDI_IN_SECONDO = 1000;
 	
@@ -28,5 +28,10 @@ public class TempoSuGiro {
 	@Override
 	public String toString() {
 		return minuti+":"+String.format("%02d", secondi)+":"+String.format("%03d", millisecondi);
+	}
+
+	@Override
+	public int compareTo(TempoSuGiro o) {
+		return getTempoInMillisecondi()-o.getTempoInMillisecondi();
 	}
 }

@@ -8,6 +8,7 @@ import game.moto.componente.ComponenteFacile;
 import game.moto.componente.ComponenteImpossibile;
 import game.moto.componente.ComponenteIntermedia;
 import game.moto.gomma.MarcaGomme;
+import game.utils.Difficolta;
 import game.utils.GameConstants;
 
 
@@ -23,24 +24,34 @@ public class Moto {
 	private MarcaGomme marcaGomme;
 	private Setup setupGara;
 	
-	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, int difficoltà) {
-		this.idMoto = progressivo;
-		progressivo++;
+	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
+		this.idMoto = ++progressivo;
 		
 		this.numInGara = numInGara;
 		this.scuderia = scuderia;
 		this.pilota = pilota;
 		this.setupGara = new Setup();
 		
-		if (difficoltà == GameConstants.difficolta.DIFF_FACILE) {
-			initFacile();
-		} else if (difficoltà == GameConstants.difficolta.DIFF_INTERMEDIA) {
-			initIntermedia();
-		} else if (difficoltà == GameConstants.difficolta.DIFF_DIFFICILE) {
-			initDifficile();
-		} else if (difficoltà == GameConstants.difficolta.DIFF_IMPOSSIBILE) {
-			initImpossibile();
+		switch(difficolta) {
+		
+			case DIFF_FACILE:
+				initFacile();
+				break;
+			
+			case DIFF_INTERMEDIA:
+				initIntermedia();
+				break;
+				
+			case DIFF_DIFFICILE:
+				initDifficile();
+				break;
+				
+			case DIFF_IMPOSSIBILE:
+				initImpossibile();
+				break;
+
 		}
+		
 	}
 	
 	public void initFacile() {

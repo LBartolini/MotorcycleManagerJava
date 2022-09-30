@@ -21,12 +21,6 @@ public class GommaHard implements Gomma{
 		funzAderenza = new FunzioneLineare(GameConstants.gomme.ADERENZA_INIZIALE_GOMME_HARD, GameConstants.gomme.ADERENZA_FINALE_GOMME_HARD, giriTotali);
 	}
 
-	public static void main(String[] args) throws Exception {
-		Gomma gomma = new GommaSoft();
-		gomma.initPreGara(30);
-		System.out.println(gomma.getAderenzaAttuale(30));
-	}
-
 	@Override
 	public boolean daAsciutto() {
 		return true;
@@ -35,6 +29,11 @@ public class GommaHard implements Gomma{
 	@Override
 	public boolean daBagnato() {
 		return false;
+	}
+
+	@Override
+	public String getNome() {
+		return "Gomma Hard";
 	}
 	
 }

@@ -31,4 +31,9 @@ public class GommaMedia implements Gomma{
 		return false;
 	}
 
+	@Override
+	public String getNome() {
+		return "Gomma da Media";
+	}
+
 }

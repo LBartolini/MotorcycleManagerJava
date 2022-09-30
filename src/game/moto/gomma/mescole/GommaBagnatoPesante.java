@@ -28,4 +28,9 @@ public class GommaBagnatoPesante implements Gomma{
 	public boolean daBagnato() {
 		return true;
 	}
+
+	@Override
+	public String getNome() {
+		return "Gomma da Bagnato Pesante";
+	}
 }

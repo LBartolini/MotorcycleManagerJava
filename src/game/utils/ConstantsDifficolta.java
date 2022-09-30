@@ -3,6 +3,9 @@ package game.utils;
 import game.moto.gomma.MarcaGomme;
 
 public class ConstantsDifficolta {
+
+	// TODO aggiungere moltiplicatore tempo massimo su giro per le piste
+	
 	
 	public final int DIFF_FACILE = 1;
 	public final int GRADO_COMPONENTE_FACILE = 10;

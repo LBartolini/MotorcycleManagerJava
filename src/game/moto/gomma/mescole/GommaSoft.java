@@ -31,4 +31,9 @@ public class GommaSoft implements Gomma{
 		return false;
 	}
 
+	@Override
+	public String getNome() {
+		return "Gomma da Soft";
+	}
+
 }

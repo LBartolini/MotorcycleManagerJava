@@ -29,4 +29,9 @@ public class GommaStradale implements Gomma {
 		return true;
 	}
 
+	@Override
+	public String getNome() {
+		return "Gomma da Stradale";
+	}
+
 }
