@@ -1,7 +1,5 @@
 package game.moto.gomma.funzioni_aderenza;
 
-import game.moto.gomma.FunzioneAderenza;
-
 public class FunzioneCostante implements FunzioneAderenza{
 	
 	private int aderenza;

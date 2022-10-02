@@ -1,4 +1,4 @@
-package game.moto.gomma;
+package game.moto.gomma.funzioni_aderenza;
 
 public interface FunzioneAderenza {
 

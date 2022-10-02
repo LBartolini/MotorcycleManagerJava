@@ -1,4 +1,4 @@
-package game.utils;
+package game.utils.constants.difficolta;
 
 public enum Difficolta {
 	DIFF_FACILE,

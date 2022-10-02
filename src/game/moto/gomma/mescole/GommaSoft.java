@@ -1,9 +1,9 @@
 package game.moto.gomma.mescole;
 
-import game.moto.gomma.FunzioneAderenza;
 import game.moto.gomma.Gomma;
+import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneLineare;
-import game.utils.GameConstants;
+import game.utils.constants.gomme.Soft;
 
 public class GommaSoft implements Gomma{
 	
@@ -18,7 +18,7 @@ public class GommaSoft implements Gomma{
 
 	@Override
 	public void initPreGara(int giriTotali) {
-		funzAderenza = new FunzioneLineare(GameConstants.gomme.ADERENZA_INIZIALE_GOMME_SOFT, GameConstants.gomme.ADERENZA_FINALE_GOMME_SOFT, giriTotali);
+		funzAderenza = new FunzioneLineare(Soft.ADERENZA_INIZIALE, Soft.ADERENZA_FINALE, giriTotali);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GommaSoft implements Gomma{
 
 	@Override
 	public String getNome() {
-		return "Gomma da Soft";
+		return "Gomma Soft";
 	}
 
 }

@@ -1,9 +1,9 @@
 package game.moto.gomma.mescole;
 
-import game.moto.gomma.FunzioneAderenza;
 import game.moto.gomma.Gomma;
+import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneCostante;
-import game.utils.GameConstants;
+import game.utils.constants.gomme.BagnatoLeggero;
 
 public class GommaBagnatoLeggero implements Gomma{
 
@@ -16,7 +16,7 @@ public class GommaBagnatoLeggero implements Gomma{
 
 	@Override
 	public void initPreGara(int giriTotali) {
-		this.funzAderenza = new FunzioneCostante(GameConstants.gomme.ADERENZA_GOMME_BAGNATO_LEGGERO);
+		this.funzAderenza = new FunzioneCostante(BagnatoLeggero.ADERENZA);
 	}
 
 	@Override

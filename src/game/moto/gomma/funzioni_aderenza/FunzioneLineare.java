@@ -1,7 +1,5 @@
 package game.moto.gomma.funzioni_aderenza;
 
-import game.moto.gomma.FunzioneAderenza;
-
 public class FunzioneLineare implements FunzioneAderenza {
 	
 	private int aderenzaIniziale, aderenzaFinale, nGiriTotali;

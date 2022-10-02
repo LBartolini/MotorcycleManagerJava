@@ -1,9 +1,9 @@
 package game.moto.gomma.mescole;
 
-import game.moto.gomma.FunzioneAderenza;
 import game.moto.gomma.Gomma;
+import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneCostante;
-import game.utils.GameConstants;
+import game.utils.constants.gomme.Medie;
 
 public class GommaMedia implements Gomma{
 	
@@ -18,7 +18,7 @@ public class GommaMedia implements Gomma{
 
 	@Override
 	public void initPreGara(int giriTotali) {
-		funzAderenza = new FunzioneCostante(GameConstants.gomme.ADERENZA_GOMME_MEDIE);
+		funzAderenza = new FunzioneCostante(Medie.ADERENZA);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GommaMedia implements Gomma{
 
 	@Override
 	public String getNome() {
-		return "Gomma da Media";
+		return "Gomma Media";
 	}
 
 }
