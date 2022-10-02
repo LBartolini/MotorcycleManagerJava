@@ -8,7 +8,6 @@ import game.utils.TempoSuGiro;
 public class Pista {
 	
 	private static int progressivo = 0;
-	private static final int minNRettilinei = 1, minNCurveTot = 2, minNGiri = 5;
 	
 	private int idPista;
 	private String nomePista;
@@ -20,9 +19,7 @@ public class Pista {
 	private Meteo meteo;
 	
 
-	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) throws Exception {
-		// TODO bad path testing
-		
+	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) {
 		this.idPista = ++progressivo;
 		
 		this.nomePista = nomePista;
@@ -71,9 +68,42 @@ public class Pista {
 	}
 	
 	private int getProbCadutaMotoPilota(Pilota pilota, Moto moto) {
+		
 		// TODO considerare anche lo stato di usura delle gomme
 		
-		return 0;
+		return probCadutaPista;
+	}
+
+	public int getIdPista() {
+		return idPista;
+	}
+
+	public String getNomePista() {
+		return nomePista;
+	}
+
+	public int getnGiri() {
+		return nGiri;
+	}
+
+	public int getnSpettatori() {
+		return nSpettatori;
+	}
+
+	public TempoSuGiro getTempoMassimo() {
+		return tempoMassimo;
+	}
+
+	public TempoSuGiro getTempoMassimoDefault() {
+		return tempoMassimoDefault;
+	}
+
+	public int getGommaturaPista() {
+		return gommaturaPista;
+	}
+
+	public Meteo getMeteo() {
+		return meteo;
 	}
 	
 }

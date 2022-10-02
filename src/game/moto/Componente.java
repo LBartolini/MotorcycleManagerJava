@@ -1,5 +1,7 @@
 package game.moto;
 
+import Exceptions.LivelloMassimoDelParametroException;
+import game.utils.constants.ConstComponente;
 import game.utils.constants.difficolta.Difficile;
 import game.utils.constants.difficolta.Difficolta;
 import game.utils.constants.difficolta.Facile;
@@ -11,8 +13,9 @@ public class Componente {
 	private int MIN_PROB_GUASTO, MAX_PROB_GUASTO;
 	
 	private String nome;
-	private int gradoComponente;
-	private int livelloResistenza;
+
+	private int gradoComponente; // [1, 30]
+	private int livelloResistenza; // [1, 30]
 	
 	public Componente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {
 		initComponente(nome, gradoComponente, livelloResistenza, minProbGuasto, maxProbGuasto);
@@ -22,34 +25,34 @@ public class Componente {
 		switch(diff) {
 			case DIFF_FACILE:
 				initComponente(nome, 
-						Facile.GRADO_COMPONENTE, 
-						Facile.RESISTENZA_COMPONENTE, 
-						Facile.MIN_PROB_GUASTO_COMPONENTE, 
-						Facile.MAX_PROB_GUASTO_COMPONENTE);
+						Facile.GRADO_INIZIALE, 
+						Facile.RESISTENZA_INIZIALE, 
+						Facile.MIN_PROB_GUASTO, 
+						Facile.MAX_PROB_GUASTO);
 				break;
 				
 			case DIFF_INTERMEDIA:
 				initComponente(nome, 
-						Intermedia.GRADO_COMPONENTE, 
-						Intermedia.RESISTENZA_COMPONENTE, 
-						Intermedia.MIN_PROB_GUASTO_COMPONENTE, 
-						Intermedia.MAX_PROB_GUASTO_COMPONENTE);
+						Intermedia.GRADO_INIZIALE, 
+						Intermedia.RESISTENZA_INIZIALE, 
+						Intermedia.MIN_PROB_GUASTO, 
+						Intermedia.MAX_PROB_GUASTO);
 				break;
 			
 			case DIFF_DIFFICILE:
 				initComponente(nome, 
-						Difficile.GRADO_COMPONENTE, 
-						Difficile.RESISTENZA_COMPONENTE,
-						Difficile.MIN_PROB_GUASTO_COMPONENTE, 
-						Difficile.MAX_PROB_GUASTO_COMPONENTE);
+						Difficile.GRADO_INIZIALE, 
+						Difficile.RESISTENZA_INIZIALE,
+						Difficile.MIN_PROB_GUASTO, 
+						Difficile.MAX_PROB_GUASTO);
 				break;
 			
 			case DIFF_IMPOSSIBILE:
 				initComponente(nome, 
-						Impossibile.GRADO_COMPONENTE, 
-						Impossibile.RESISTENZA_COMPONENTE,
-						Impossibile.MIN_PROB_GUASTO_COMPONENTE, 
-						Impossibile.MAX_PROB_GUASTO_COMPONENTE);
+						Impossibile.GRADO_INIZIALE, 
+						Impossibile.RESISTENZA_INIZIALE,
+						Impossibile.MIN_PROB_GUASTO, 
+						Impossibile.MAX_PROB_GUASTO);
 				break;
 		}
 	}
@@ -63,9 +66,36 @@ public class Componente {
 	}
 	
 	
-	public int getProbabilitàGuasto() {
-		// TODO
-		return 0;
+	public int getProbabilitaGuasto() {
+
+		double m = (MIN_PROB_GUASTO-MAX_PROB_GUASTO)/((double)ConstComponente.MAX_RESISTENZA-1);
+		int probabilita = (int) (m*(livelloResistenza - 1) + MAX_PROB_GUASTO);
+		
+		return probabilita;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public int getGrado() {
+		return gradoComponente;
+	}
+	
+	public int getResistenza() {
+		return livelloResistenza;
+	}
+
+	public void upgradeGrado() throws LivelloMassimoDelParametroException{
+		if(gradoComponente == ConstComponente.MAX_GRADO) throw new LivelloMassimoDelParametroException();
+
+		gradoComponente++;
+	}	
+
+	public void upgradeResistenza() throws LivelloMassimoDelParametroException{
+		if(livelloResistenza == ConstComponente.MAX_RESISTENZA) throw new LivelloMassimoDelParametroException();
+		
+		livelloResistenza++;;
 	}
 	
 }

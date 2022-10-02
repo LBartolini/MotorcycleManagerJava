@@ -62,10 +62,56 @@ public class Moto {
 		
 	}	
 	
+	public void cambiaPilota(Pilota nuovoPilota) {
+		pilota = nuovoPilota;
+	}
+	
 	public void preGara() {
 		// TODO 
 		// prepara la moto alla gara, crea setup, scegli mescola di gomme etc
 		setupGara.reset();
 	}
+
+	public int getIdMoto() {
+		return idMoto;
+	}
+
+	public int getNumInGara() {
+		return numInGara;
+	}
+
+	public Scuderia getScuderia() {
+		return scuderia;
+	}
+
+	public Pilota getPilota() {
+		return pilota;
+	}
+
+	public Componente getMotore() {
+		return motore;
+	}
+
+	public Componente getAerodinamica() {
+		return aerodinamica;
+	}
+
+	public Componente getCiclistica() {
+		return ciclistica;
+	}
+
+	public Componente getFreni() {
+		return freni;
+	}
+
+	public MarcaGomme getMarcaGomme() {
+		return marcaGomme;
+	}
+
+	public Setup getSetupGara() {
+		return setupGara;
+	}
+	
+	
 	
 }
