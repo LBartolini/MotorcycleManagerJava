@@ -1,7 +1,8 @@
 package game.utils.constants.difficolta;
 
 import game.moto.gomma.MarcaGomme;
-import game.utils.constants.gomme.Generali;
+import game.moto.gomma.marche.Dunlop;
+import game.moto.gomma.marche.Pirelli;
 
 public class Difficile {
 	public static final int GRADO_INIZIALE = 2;
@@ -10,5 +11,7 @@ public class Difficile {
 	public static final int MIN_PROB_GUASTO = 5;
 	public static final int MAX_PROB_GUASTO = 15;
 	
-	public static final MarcaGomme GOMME = Generali.dunlop;
+	public static MarcaGomme getMarcaGomme() {
+		return new Dunlop();
+	}
 }

@@ -31,7 +31,7 @@ public class GommaStradale implements Gomma {
 
 	@Override
 	public String getNome() {
-		return "Gomma da Stradale";
+		return "Gomma Stradale";
 	}
 
 }

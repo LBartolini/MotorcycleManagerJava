@@ -1,7 +1,7 @@
 package game.utils.constants.difficolta;
 
 import game.moto.gomma.MarcaGomme;
-import game.utils.constants.gomme.Generali;
+import game.moto.gomma.marche.Pirelli;
 
 public class Facile {
 	public static final int GRADO_INIZIALE = 10;
@@ -10,5 +10,7 @@ public class Facile {
 	public static final int MIN_PROB_GUASTO = 0;
 	public static final int MAX_PROB_GUASTO = 0;
 	
-	public static final MarcaGomme GOMME = Generali.pirelli;
+	public static MarcaGomme getMarcaGomme() {
+		return new Pirelli();
+	}
 }

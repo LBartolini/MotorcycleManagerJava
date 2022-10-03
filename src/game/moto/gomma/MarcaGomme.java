@@ -1,5 +1,6 @@
 package game.moto.gomma;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MarcaGomme {
@@ -9,6 +10,7 @@ public abstract class MarcaGomme {
 	
 	public MarcaGomme(String nome) {
 		this.nome = nome;
+		this.gommeDisponibili = new ArrayList<Gomma>();
 	}
 	
 	public String getNome() {

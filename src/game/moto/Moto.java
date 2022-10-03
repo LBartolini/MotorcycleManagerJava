@@ -1,7 +1,9 @@
 package game.moto;
 
+import Exceptions.GommaSceltaNotInMarcaGommeException;
 import game.Pilota;
 import game.Scuderia;
+import game.moto.gomma.Gomma;
 import game.moto.gomma.MarcaGomme;
 import game.utils.constants.difficolta.Difficile;
 import game.utils.constants.difficolta.Difficolta;
@@ -20,7 +22,8 @@ public class Moto {
 	
 	private Componente motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
-	private Setup setupGara;
+	
+	private Gomma gommaScelta;
 	
 	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
 		this.idMoto = ++progressivo;
@@ -28,7 +31,6 @@ public class Moto {
 		this.numInGara = numInGara;
 		this.scuderia = scuderia;
 		this.pilota = pilota;
-		this.setupGara = new Setup();
 		
 		initByDifficolta(difficolta);
 		
@@ -43,19 +45,19 @@ public class Moto {
 		switch(diff) {
 		
 			case DIFF_FACILE:
-				marcaGomme = Facile.GOMME;
+				marcaGomme = Facile.getMarcaGomme();
 				break;
 				
 			case DIFF_INTERMEDIA:
-				marcaGomme = Intermedia.GOMME;
+				marcaGomme = Intermedia.getMarcaGomme();
 				break;
 				
 			case DIFF_DIFFICILE:
-				marcaGomme = Difficile.GOMME;
+				marcaGomme = Difficile.getMarcaGomme();
 				break;
 				
 			case DIFF_IMPOSSIBILE:
-				marcaGomme = Impossibile.GOMME;
+				marcaGomme = Impossibile.getMarcaGomme();
 				break;
 		
 		}
@@ -66,8 +68,10 @@ public class Moto {
 		pilota = nuovoPilota;
 	}
 	
-	public void preGara(Setup setup) {
-		setupGara = setup;
+	public void preGara(Gomma gommaScelta) throws GommaSceltaNotInMarcaGommeException{
+		// TODO
+		
+		this.gommaScelta = gommaScelta;
 	}
 
 	public int getIdMoto() {
@@ -106,10 +110,8 @@ public class Moto {
 		return marcaGomme;
 	}
 
-	public Setup getSetupGara() {
-		return setupGara;
+	public Gomma getGommaScelta() {
+		return gommaScelta;
 	}
-	
-	
 	
 }
