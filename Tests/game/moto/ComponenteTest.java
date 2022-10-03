@@ -93,7 +93,7 @@ public class ComponenteTest {
 			componente.upgradeGrado();
 			fail("Should raise an Exception");
 		}catch(LivelloMassimoDelParametroException exception){
-			assertTrue(true);
+			return;
 		}
 		
 	}
@@ -117,7 +117,7 @@ public class ComponenteTest {
 			componente.upgradeResistenza();
 			fail("Should raise an Exception");
 		}catch(LivelloMassimoDelParametroException exception){
-			assertTrue(true);
+			return;
 		}
 	}
 	

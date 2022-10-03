@@ -66,10 +66,8 @@ public class Moto {
 		pilota = nuovoPilota;
 	}
 	
-	public void preGara() {
-		// TODO 
-		// prepara la moto alla gara, crea setup, scegli mescola di gomme etc
-		setupGara.reset();
+	public void preGara(Setup setup) {
+		setupGara = setup;
 	}
 
 	public int getIdMoto() {
