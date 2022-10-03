@@ -1,7 +1,6 @@
 package game.moto;
 
 import Exceptions.LivelloMassimoDelParametroException;
-import game.utils.constants.ConstComponente;
 import game.utils.constants.difficolta.Difficile;
 import game.utils.constants.difficolta.Difficolta;
 import game.utils.constants.difficolta.Facile;
@@ -9,6 +8,9 @@ import game.utils.constants.difficolta.Impossibile;
 import game.utils.constants.difficolta.Intermedia;
 
 public class Componente {
+	
+	public static final int MAX_GRADO = 30;
+	public static final int MAX_RESISTENZA = 30;
 	
 	private int MIN_PROB_GUASTO, MAX_PROB_GUASTO;
 	
@@ -68,7 +70,7 @@ public class Componente {
 	
 	public int getProbabilitaGuasto() {
 
-		double m = (MIN_PROB_GUASTO-MAX_PROB_GUASTO)/((double)ConstComponente.MAX_RESISTENZA-1);
+		double m = (MIN_PROB_GUASTO-MAX_PROB_GUASTO)/((double)MAX_RESISTENZA-1);
 		int probabilita = (int) (m*(livelloResistenza - 1) + MAX_PROB_GUASTO);
 		
 		return probabilita;
@@ -87,13 +89,13 @@ public class Componente {
 	}
 
 	public void upgradeGrado() throws LivelloMassimoDelParametroException{
-		if(gradoComponente == ConstComponente.MAX_GRADO) throw new LivelloMassimoDelParametroException();
+		if(gradoComponente == MAX_GRADO) throw new LivelloMassimoDelParametroException();
 
 		gradoComponente++;
 	}	
 
 	public void upgradeResistenza() throws LivelloMassimoDelParametroException{
-		if(livelloResistenza == ConstComponente.MAX_RESISTENZA) throw new LivelloMassimoDelParametroException();
+		if(livelloResistenza == MAX_RESISTENZA) throw new LivelloMassimoDelParametroException();
 		
 		livelloResistenza++;;
 	}

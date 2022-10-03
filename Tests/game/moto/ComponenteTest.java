@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.LivelloMassimoDelParametroException;
-import game.utils.constants.ConstComponente;
 import game.utils.constants.difficolta.Difficile;
 import game.utils.constants.difficolta.Facile;
 import game.utils.constants.difficolta.Impossibile;
@@ -23,7 +22,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaFacile() {
-		Componente componente = new Componente("Test", 1, ConstComponente.MAX_RESISTENZA, 
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
 				Facile.MIN_PROB_GUASTO, Facile.MAX_PROB_GUASTO);
 		
 		assertEquals(Facile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
@@ -39,7 +38,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaIntermedia() {
-		Componente componente = new Componente("Test", 1, ConstComponente.MAX_RESISTENZA, 
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
 				Intermedia.MIN_PROB_GUASTO, Intermedia.MAX_PROB_GUASTO);
 		
 		assertEquals(Intermedia.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
@@ -55,7 +54,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaDifficile() {
-		Componente componente = new Componente("Test", 1, ConstComponente.MAX_RESISTENZA, 
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
 				Difficile.MIN_PROB_GUASTO, Difficile.MAX_PROB_GUASTO);
 		
 		assertEquals(Difficile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
@@ -70,7 +69,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaImpossibile() {
-		Componente componente = new Componente("Test", 1, ConstComponente.MAX_RESISTENZA, Impossibile.MIN_PROB_GUASTO, Impossibile.MAX_PROB_GUASTO);
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, Impossibile.MIN_PROB_GUASTO, Impossibile.MAX_PROB_GUASTO);
 		
 		assertEquals(Impossibile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
 	}
@@ -88,7 +87,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testIncrementoGradoErroreGradoMassimo() {
-		Componente componente = new Componente("Test", ConstComponente.MAX_GRADO, 1, 1, 1);
+		Componente componente = new Componente("Test", Componente.MAX_GRADO, 1, 1, 1);
 		
 		try{
 			componente.upgradeGrado();
@@ -112,7 +111,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testIncrementoResistenzaErroreResistenzaMassima() {
-		Componente componente = new Componente("Test", 1, ConstComponente.MAX_RESISTENZA, 1, 1);
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 1, 1);
 		
 		try{
 			componente.upgradeResistenza();
