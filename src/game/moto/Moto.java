@@ -69,7 +69,7 @@ public class Moto {
 	}
 	
 	public void preGara(Gomma gommaScelta) throws GommaSceltaNotInMarcaGommeException{
-		// TODO
+		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
 		
 		this.gommaScelta = gommaScelta;
 	}

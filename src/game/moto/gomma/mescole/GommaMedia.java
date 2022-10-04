@@ -5,7 +5,7 @@ import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneCostante;
 import game.utils.constants.gomme.Medie;
 
-public class GommaMedia implements Gomma{
+public class GommaMedia extends Gomma{
 	
 	private FunzioneAderenza funzAderenza;
 

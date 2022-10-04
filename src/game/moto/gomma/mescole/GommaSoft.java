@@ -5,7 +5,7 @@ import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneLineare;
 import game.utils.constants.gomme.Soft;
 
-public class GommaSoft implements Gomma{
+public class GommaSoft extends Gomma{
 	
 	private FunzioneAderenza funzAderenza;
 

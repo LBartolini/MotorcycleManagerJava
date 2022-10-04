@@ -5,7 +5,7 @@ import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneLineare;
 import game.utils.constants.gomme.Stradale;
 
-public class GommaStradale implements Gomma {
+public class GommaStradale extends Gomma {
 	
 	private FunzioneAderenza funzAderenza;
 

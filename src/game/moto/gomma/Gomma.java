@@ -1,21 +1,30 @@
 package game.moto.gomma;
 
-public interface Gomma {
+public abstract class Gomma {
 	
 	public static final double MODIFICATORE_MESCOLA_SBAGLIATA = 0.3;
 	
-	public int getAderenzaAttuale(int giroAttuale) throws Exception;
+	public abstract int getAderenzaAttuale(int giroAttuale) throws Exception;
 	
-	public void initPreGara(int giriTotali);
+	public abstract void initPreGara(int giriTotali);
 	
-	public String getNome();
+	public abstract String getNome();
 	
-	public boolean daAsciutto();
+	public abstract boolean daAsciutto();
 	
-	public boolean daBagnato();
+	public abstract boolean daBagnato();
 	
-	public default boolean equalsTo(Gomma other) {
-		return getNome().equals(other.getNome());
+	@Override
+	public boolean equals(Object other) {
+		Gomma other_gomma;
+		
+		try {
+			other_gomma = (Gomma) other;
+		}catch(ClassCastException exc) {
+			return false;
+		}
+		
+		return getNome().equals(other_gomma.getNome());
 	}
 	
 }

@@ -1,5 +1,5 @@
 package game;
 
-public abstract class Meteo {
+public class Meteo {
 
 }

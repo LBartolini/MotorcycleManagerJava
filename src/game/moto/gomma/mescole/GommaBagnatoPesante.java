@@ -5,7 +5,7 @@ import game.moto.gomma.funzioni_aderenza.FunzioneAderenza;
 import game.moto.gomma.funzioni_aderenza.FunzioneCostante;
 import game.utils.constants.gomme.BagnatoPesante;
 
-public class GommaBagnatoPesante implements Gomma{
+public class GommaBagnatoPesante extends Gomma{
 	
 	private FunzioneAderenza funzAderenza;
 	

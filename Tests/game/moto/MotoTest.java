@@ -25,7 +25,7 @@ public class MotoTest {
 
 		Gomma gommaStradale = new GommaStradale();
 
-		assertTrue(m.getGommaScelta().equalsTo(gommaStradale));
+		assertTrue(m.getGommaScelta().equals(gommaStradale));
 		 
 	}
 	
