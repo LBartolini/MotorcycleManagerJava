@@ -7,6 +7,10 @@ import game.utils.constants.gomme.Medie;
 
 public class GommaMedia extends Gomma{
 	
+	public GommaMedia() {
+		super(3);
+	}
+
 	private FunzioneAderenza funzAderenza;
 
 	@Override

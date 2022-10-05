@@ -16,7 +16,7 @@ public class Moto {
 	
 	private static int progressivo = 0;
 	
-	private int idMoto, numInGara;
+	private int id, numInGara;
 	private Scuderia scuderia;
 	private Pilota pilota;
 	
@@ -26,7 +26,7 @@ public class Moto {
 	private Gomma gommaScelta;
 	
 	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
-		this.idMoto = ++progressivo;
+		this.id = ++progressivo;
 		
 		this.numInGara = numInGara;
 		this.scuderia = scuderia;
@@ -75,7 +75,7 @@ public class Moto {
 	}
 
 	public int getIdMoto() {
-		return idMoto;
+		return id;
 	}
 
 	public int getNumInGara() {

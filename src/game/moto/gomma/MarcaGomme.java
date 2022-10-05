@@ -1,16 +1,18 @@
 package game.moto.gomma;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class MarcaGomme {
 
 	private String nome;
-	private List<Gomma> gommeDisponibili;
+	private Set<Gomma> gommeDisponibili;
 	
 	public MarcaGomme(String nome) {
 		this.nome = nome;
-		this.gommeDisponibili = new ArrayList<Gomma>();
+		this.gommeDisponibili = new HashSet<>();
 	}
 	
 	public String getNome() {
@@ -18,7 +20,11 @@ public abstract class MarcaGomme {
 	}
 	
 	public List<Gomma> getGommeDisponibili(){
-		return gommeDisponibili;
+		return gommeDisponibili.stream().collect(Collectors.toList());
+	}
+	
+	public boolean isGommaDisponibile(Gomma gomma) {
+		return gommeDisponibili.contains(gomma);
 	}
 	
 	protected void addGomma(Gomma gomma) {

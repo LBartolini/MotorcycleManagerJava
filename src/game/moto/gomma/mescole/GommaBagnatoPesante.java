@@ -7,6 +7,10 @@ import game.utils.constants.gomme.BagnatoPesante;
 
 public class GommaBagnatoPesante extends Gomma{
 	
+	public GommaBagnatoPesante() {
+		super(6);
+	}
+
 	private FunzioneAderenza funzAderenza;
 	
 	@Override

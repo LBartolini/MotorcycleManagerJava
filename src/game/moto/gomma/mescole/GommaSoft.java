@@ -7,6 +7,10 @@ import game.utils.constants.gomme.Soft;
 
 public class GommaSoft extends Gomma{
 	
+	public GommaSoft() {
+		super(2);
+	}
+
 	private FunzioneAderenza funzAderenza;
 
 	@Override

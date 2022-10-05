@@ -8,6 +8,10 @@ import game.utils.constants.gomme.Stradale;
 public class GommaStradale extends Gomma {
 	
 	private FunzioneAderenza funzAderenza;
+	
+	public GommaStradale() {
+		super(1);
+	}
 
 	@Override
 	public int getAderenzaAttuale(int giroAttuale) throws Exception {
