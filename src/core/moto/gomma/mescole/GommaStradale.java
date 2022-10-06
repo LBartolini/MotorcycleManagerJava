@@ -1,13 +1,13 @@
 package core.moto.gomma.mescole;
 
 import core.moto.gomma.Gomma;
-import core.moto.gomma.funzioni_aderenza.FunzioneAderenza;
-import core.moto.gomma.funzioni_aderenza.FunzioneLineare;
+import core.utils.funzioni.Funzione;
+import core.utils.funzioni.FunzioneLineare;
 import core.utils.constants.gomme.Stradale;
 
 public class GommaStradale extends Gomma {
 	
-	private FunzioneAderenza funzAderenza;
+	private Funzione funzAderenza;
 	
 	public GommaStradale() {
 		super(1);

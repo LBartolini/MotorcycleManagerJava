@@ -1,5 +1,7 @@
 package core.moto;
 
+import java.util.Objects;
+
 import Exceptions.GommaSceltaNotInMarcaGommeException;
 import core.Pilota;
 import core.Scuderia;
@@ -74,7 +76,7 @@ public class Moto {
 		this.gommaScelta = gommaScelta;
 	}
 
-	public int getIdMoto() {
+	public int getId() {
 		return id;
 	}
 
@@ -112,6 +114,21 @@ public class Moto {
 
 	public Gomma getGommaScelta() {
 		return gommaScelta;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(Objects.isNull(other)) return false;
+		
+		Moto other_moto;
+		
+		try {
+			other_moto = (Moto) other;
+		}catch(ClassCastException exc) {
+			return false;
+		}
+		
+		return id == other_moto.getId();
 	}
 	
 }

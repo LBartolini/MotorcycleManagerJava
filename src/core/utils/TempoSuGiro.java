@@ -1,21 +1,26 @@
 package core.utils;
 
+import Exceptions.ValueNotInRangeException;
+
 public class TempoSuGiro implements Comparable<TempoSuGiro>{
 	
 	private static final int SECONDI_IN_MINUTO = 60, MILLISECONDI_IN_SECONDO = 1000;
 	
 	private int minuti, secondi, millisecondi;
 
-	public TempoSuGiro(int minuti, int secondi, int millisecondi) {
+	public TempoSuGiro(int minuti, int secondi, int millisecondi) throws ValueNotInRangeException {
+		if(secondi<0 || secondi >= SECONDI_IN_MINUTO) throw new ValueNotInRangeException();
+		if(millisecondi<0 || millisecondi >= MILLISECONDI_IN_SECONDO) throw new ValueNotInRangeException();
+		
 		this.minuti = minuti;
 		this.secondi = secondi;
 		this.millisecondi = millisecondi;
 	}
 	
-	public TempoSuGiro(int totaleMillisecondi) {
-		this.millisecondi = totaleMillisecondi%MILLISECONDI_IN_SECONDO;
+	public TempoSuGiro(long totaleMillisecondi) {
+		this.millisecondi = (int) (totaleMillisecondi%MILLISECONDI_IN_SECONDO);
 		
-		int totaleSecondi = totaleMillisecondi/MILLISECONDI_IN_SECONDO;
+		int totaleSecondi = (int) (totaleMillisecondi/MILLISECONDI_IN_SECONDO);
 		this.secondi = totaleSecondi%SECONDI_IN_MINUTO;
 		
 		this.minuti = totaleSecondi/SECONDI_IN_MINUTO;

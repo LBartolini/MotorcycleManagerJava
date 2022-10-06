@@ -1,8 +1,8 @@
 package core.moto.gomma.mescole;
 
 import core.moto.gomma.Gomma;
-import core.moto.gomma.funzioni_aderenza.FunzioneAderenza;
-import core.moto.gomma.funzioni_aderenza.FunzioneLineare;
+import core.utils.funzioni.Funzione;
+import core.utils.funzioni.FunzioneLineare;
 import core.utils.constants.gomme.Soft;
 
 public class GommaSoft extends Gomma{
@@ -11,7 +11,7 @@ public class GommaSoft extends Gomma{
 		super(2);
 	}
 
-	private FunzioneAderenza funzAderenza;
+	private Funzione funzAderenza;
 
 	@Override
 	public int getAderenzaAttuale(int giroAttuale) throws Exception {

@@ -43,5 +43,16 @@ public class MotoTest {
 		}
 		 
 	}
+	
+	@Test
+	public void testEquals() {
+		Moto m1 = new Moto(5, null, null, Difficolta.DIFF_IMPOSSIBILE);
+		Moto m2 = new Moto(6, null, null, Difficolta.DIFF_IMPOSSIBILE);
+		
+		assertEquals(m1, m1);
+		assertNotEquals(m1, m2);
+		assertNotEquals(m1, null);
+		assertNotEquals(m1, "test");
+	}
 
 }

@@ -27,6 +27,13 @@ public class GommaTest {
 	}
 	
 	@Test
+	public void testGommeEqualsNull() {
+		Gomma stradale = new GommaStradale();
+		
+		assertFalse(stradale.equals(null));
+	}
+	
+	@Test
 	public void testGommeEqualsDifferentObject() {
 		Gomma stradale = new GommaStradale();
 		

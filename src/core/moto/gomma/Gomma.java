@@ -1,5 +1,7 @@
 package core.moto.gomma;
 
+import java.util.Objects;
+
 public abstract class Gomma {
 	
 	public static final double MODIFICATORE_MESCOLA_SBAGLIATA = 0.3;
@@ -22,6 +24,8 @@ public abstract class Gomma {
 	
 	@Override
 	public boolean equals(Object other) {
+		if(Objects.isNull(other)) return false;
+		
 		Gomma other_gomma;
 		
 		try {

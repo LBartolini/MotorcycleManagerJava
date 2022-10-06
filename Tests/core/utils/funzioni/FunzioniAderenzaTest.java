@@ -1,11 +1,11 @@
-package core.moto.gomma.funzioni_aderenza;
+package core.utils.funzioni;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import core.moto.gomma.funzioni_aderenza.FunzioneCostante;
-import core.moto.gomma.funzioni_aderenza.FunzioneLineare;
+import core.utils.funzioni.FunzioneCostante;
+import core.utils.funzioni.FunzioneLineare;
 
 public class FunzioniAderenzaTest {
 
