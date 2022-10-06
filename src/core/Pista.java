@@ -1,5 +1,6 @@
 package core;
 
+import java.util.Objects;
 import java.util.Random;
 
 import core.moto.Moto;
@@ -7,6 +8,7 @@ import core.utils.TempoSuGiro;
 
 public class Pista {
 	
+	private static final int MAX_PROB_CADUTA = 10;
 	private static int progressivo = 0;
 	
 	private int idPista;
@@ -36,7 +38,7 @@ public class Pista {
 		Random random = new Random();
 		
 		this.gommaturaPista = 0;
-		this.probCadutaPista = random.nextInt(100) + 1;
+		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA) + 1;
 		this.meteo = meteo;
 		
 		this.tempoMassimo = new TempoSuGiro((int)(this.tempoMassimoDefault.getTempoInMillisecondi() * moltiplicatoreTempoMassimo));
@@ -67,11 +69,12 @@ public class Pista {
 		return Math.min(nCurveVeloci + 1, 10);
 	}
 	
-	private int getProbCadutaMotoPilota(Pilota pilota, Moto moto) {
+	private boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
 		
-		// TODO considerare anche lo stato di usura delle gomme
+		// TODO considerare temperatura della pista
+		// da calcolare all'inizio della gara e poi decidere un giro in cui far cadere il pilota
 		
-		return probCadutaPista;
+		return false;
 	}
 
 	public int getIdPista() {
@@ -104,6 +107,21 @@ public class Pista {
 
 	public Meteo getMeteo() {
 		return meteo;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(Objects.isNull(other)) return false;
+		
+		Pista other_pista;
+		
+		try {
+			other_pista = (Pista) other;
+		}catch(ClassCastException exc) {
+			return false;
+		}
+		
+		return idPista == other_pista.getIdPista();
 	}
 	
 }

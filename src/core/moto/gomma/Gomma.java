@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public abstract class Gomma {
 	
-	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.3;
+	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.5;
 	
 	private final int id;
 	

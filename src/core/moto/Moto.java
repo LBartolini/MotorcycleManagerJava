@@ -26,6 +26,7 @@ public class Moto {
 	private MarcaGomme marcaGomme;
 	
 	private Gomma gommaScelta;
+	private boolean guasto, incidentata;
 	
 	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
 		this.id = ++progressivo;
@@ -74,6 +75,8 @@ public class Moto {
 		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
 		
 		this.gommaScelta = gommaScelta;
+		incidentata = false;
+		guasto = false;
 	}
 
 	public int getId() {
@@ -114,6 +117,22 @@ public class Moto {
 
 	public Gomma getGommaScelta() {
 		return gommaScelta;
+	}
+	
+	public boolean isGuasta() {
+		return guasto;
+	}
+	
+	public void notifyGuasto() {
+		guasto = true;
+	}
+	
+	public boolean isIncidentata() {
+		return incidentata;
+	}
+	
+	public void notifyIncidente() {
+		incidentata = true;
 	}
 	
 	@Override
