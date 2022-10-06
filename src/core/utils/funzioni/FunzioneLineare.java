@@ -11,12 +11,22 @@ public class FunzioneLineare implements Funzione {
 	}
 	
 	@Override
-	public int getAderenza(int x) {
+	public int getValue(int x) {
 		double m = (valoreFinale-valoreIniziale)/((double)xFinale-1);
 		
-		double aderenza = m*(x - 1) + valoreIniziale;
+		double valore = m*(x - 1) + valoreIniziale;
 		
-		return (int) aderenza;
+		return (int) valore;
+	}
+
+	@Override
+	public int getValoreFinale() {
+		return valoreFinale;
+	}
+
+	@Override
+	public void setValoreFinale(int valoreFinale) {
+		this.valoreFinale = valoreFinale;
 	}
 	
 }

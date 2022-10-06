@@ -17,7 +17,7 @@ public class GommaSoft extends Gomma{
 	public int getAderenzaAttuale(int giroAttuale) throws Exception {
 		if(funzAderenza == null) throw new Exception("Call initPregara before this method!");
 		
-		return funzAderenza.getAderenza(giroAttuale);
+		return funzAderenza.getValue(giroAttuale);
 	}
 
 	@Override

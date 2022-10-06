@@ -15,7 +15,7 @@ public class GommaBagnatoLeggero extends Gomma{
 	
 	@Override
 	public int getAderenzaAttuale(int giroAttuale) throws Exception {
-		return funzAderenza.getAderenza(giroAttuale);
+		return funzAderenza.getValue(giroAttuale);
 	}
 
 	@Override

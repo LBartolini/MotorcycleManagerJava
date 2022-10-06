@@ -9,8 +9,18 @@ public class FunzioneCostante implements Funzione{
 	}
 
 	@Override
-	public int getAderenza(int x) {
+	public int getValue(int x) {
 		return valore;
+	}
+
+	@Override
+	public int getValoreFinale() {
+		return valore;
+	}
+
+	@Override
+	public void setValoreFinale(int nuovoValore) {
+		valore = nuovoValore;
 	}
 
 }

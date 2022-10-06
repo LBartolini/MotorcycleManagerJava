@@ -6,6 +6,8 @@ import core.utils.constants.difficolta.Difficolta;
 import core.utils.constants.difficolta.Facile;
 import core.utils.constants.difficolta.Impossibile;
 import core.utils.constants.difficolta.Intermedia;
+import core.utils.funzioni.Funzione;
+import core.utils.funzioni.FunzioneLineare;
 
 public class Componente {
 	
@@ -69,11 +71,9 @@ public class Componente {
 	
 	
 	public int getProbabilitaGuasto() {
-
-		double m = (MIN_PROB_GUASTO-MAX_PROB_GUASTO)/((double)MAX_RESISTENZA-1);
-		int probabilita = (int) (m*(livelloResistenza - 1) + MAX_PROB_GUASTO);
+		Funzione f = new FunzioneLineare(MAX_PROB_GUASTO, MIN_PROB_GUASTO, MAX_RESISTENZA);
 		
-		return probabilita;
+		return f.getValue(livelloResistenza);
 	}
 	
 	public String getNome() {
