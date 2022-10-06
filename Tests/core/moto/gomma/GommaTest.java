@@ -39,5 +39,12 @@ public class GommaTest {
 		
 		assertFalse(stradale.equals("Gomma Stradale"));
 	}
+	
+	@Test
+	public void testUsuraGomme() {
+		Gomma stradale = new GommaStradale();
+		
+		assertFalse(stradale.equals("Gomma Stradale"));
+	}
 
 }

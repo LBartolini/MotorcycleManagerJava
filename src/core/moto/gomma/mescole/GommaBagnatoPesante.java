@@ -3,9 +3,10 @@ package core.moto.gomma.mescole;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneCostante;
-import core.utils.constants.gomme.BagnatoPesante;
 
 public class GommaBagnatoPesante extends Gomma{
+	
+	public static final int ADERENZA = 55;
 	
 	public GommaBagnatoPesante() {
 		super(6);
@@ -20,7 +21,7 @@ public class GommaBagnatoPesante extends Gomma{
 
 	@Override
 	public void initPreGara(int giriTotali) {
-		this.funzAderenza = new FunzioneCostante(BagnatoPesante.ADERENZA);
+		this.funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
 	}
 
 	@Override
@@ -37,4 +38,12 @@ public class GommaBagnatoPesante extends Gomma{
 	public String getNome() {
 		return "Gomma da Bagnato Pesante";
 	}
+	
+	@Override
+	public void usuraGomme(int percentuale) {
+		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
+		
+		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));
+	}
+	
 }

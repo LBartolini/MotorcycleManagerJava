@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public abstract class Gomma {
 	
-	public static final double MODIFICATORE_MESCOLA_SBAGLIATA = 0.3;
+	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.3;
 	
 	private final int id;
 	
@@ -21,6 +21,8 @@ public abstract class Gomma {
 	public abstract boolean daAsciutto();
 	
 	public abstract boolean daBagnato();
+	
+	public abstract void usuraGomme(int percentuale);
 	
 	@Override
 	public boolean equals(Object other) {

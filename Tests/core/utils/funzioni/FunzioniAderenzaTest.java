@@ -11,7 +11,7 @@ public class FunzioniAderenzaTest {
 
 	@Test
 	public void testFunzioneCostante() {
-		FunzioneCostante funzioneCostante = new FunzioneCostante(50);
+		FunzioneCostante funzioneCostante = new FunzioneCostante(50, 10);
 		
 		assertEquals(50, funzioneCostante.getValue(1));
 	}

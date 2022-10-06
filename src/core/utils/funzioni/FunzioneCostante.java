@@ -1,26 +1,9 @@
 package core.utils.funzioni;
 
-public class FunzioneCostante implements Funzione{
+public class FunzioneCostante extends FunzioneLineare{
 	
-	private int valore;
-	
-	public FunzioneCostante(int valore) {
-		this.valore = valore;
-	}
-
-	@Override
-	public int getValue(int x) {
-		return valore;
-	}
-
-	@Override
-	public int getValoreFinale() {
-		return valore;
-	}
-
-	@Override
-	public void setValoreFinale(int nuovoValore) {
-		valore = nuovoValore;
+	public FunzioneCostante(int valore, int xFinale) {
+		super(valore, valore, xFinale);
 	}
 
 }
