@@ -2,19 +2,23 @@ package core.moto.gomma;
 
 import java.util.Objects;
 
+import Exceptions.ObjectNotInitializedException;
+import core.Meteo;
+
 public abstract class Gomma {
 	
 	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.5;
 	
 	private final int id;
+	protected Meteo meteo;
 	
 	public Gomma(int id) {
 		this.id = id;
 	}
 	
-	public abstract int getAderenzaAttuale(int giroAttuale) throws Exception;
+	public abstract int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException;
 	
-	public abstract void initPreGara(int giriTotali);
+	public abstract void initPreGara(int giriTotali, Meteo meteo);
 	
 	public abstract String getNome();
 	
@@ -22,7 +26,7 @@ public abstract class Gomma {
 	
 	public abstract boolean daBagnato();
 	
-	public abstract void usuraGomme(int percentuale);
+	public abstract void doUsuraGomme(int percentuale);
 	
 	@Override
 	public boolean equals(Object other) {

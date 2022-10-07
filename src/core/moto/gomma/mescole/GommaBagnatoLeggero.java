@@ -1,12 +1,17 @@
 package core.moto.gomma.mescole;
 
+import java.util.Objects;
+
+import Exceptions.ObjectNotInitializedException;
+import core.Meteo;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneCostante;
+import core.utils.funzioni.FunzioneLineare;
 
 public class GommaBagnatoLeggero extends Gomma{
 	
-	public static final int ADERENZA = 40;
+	public static final int ADERENZA_BASE = 20;
+	public static final int ADERENZA_INIZIALE = 20, ADERENZA_FINALE = 5;
 
 	public GommaBagnatoLeggero() {
 		super(5);
@@ -15,13 +20,16 @@ public class GommaBagnatoLeggero extends Gomma{
 	private Funzione funzAderenza;
 	
 	@Override
-	public int getAderenzaAttuale(int giroAttuale) throws Exception {
-		return funzAderenza.getValue(giroAttuale);
+	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
+		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");		
+
+		return ADERENZA_BASE+funzAderenza.getValue(meteo.getQuantitaPioggia());
 	}
 
 	@Override
-	public void initPreGara(int giriTotali) {
-		this.funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
+	public void initPreGara(int giriTotali, Meteo meteo) {
+		this.funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
+		this.meteo = meteo;
 	}
 
 	@Override
@@ -40,7 +48,7 @@ public class GommaBagnatoLeggero extends Gomma{
 	}
 
 	@Override
-	public void usuraGomme(int percentuale) {
+	public void doUsuraGomme(int percentuale) {
 		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
 		
 		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));

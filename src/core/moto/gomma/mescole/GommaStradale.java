@@ -1,5 +1,9 @@
 package core.moto.gomma.mescole;
 
+import java.util.Objects;
+
+import Exceptions.ObjectNotInitializedException;
+import core.Meteo;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineare;
@@ -16,13 +20,16 @@ public class GommaStradale extends Gomma {
 	}
 
 	@Override
-	public int getAderenzaAttuale(int giroAttuale) throws Exception {
+	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
+		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
+		
 		return funzAderenza.getValue(giroAttuale);
 	}
 
 	@Override
-	public void initPreGara(int giriTotali) {
+	public void initPreGara(int giriTotali, Meteo meteo) {
 		funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
+		this.meteo = meteo;
 	}
 
 	@Override
@@ -41,7 +48,7 @@ public class GommaStradale extends Gomma {
 	}
 	
 	@Override
-	public void usuraGomme(int percentuale) {
+	public void doUsuraGomme(int percentuale) {
 		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
 		
 		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));

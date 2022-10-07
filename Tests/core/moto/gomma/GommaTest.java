@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Exceptions.ValueNotInRangeException;
+import core.Meteo;
 import core.moto.gomma.Gomma;
+import core.moto.gomma.mescole.GommaBagnatoLeggero;
+import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaSoft;
 import core.moto.gomma.mescole.GommaStradale;
 
@@ -41,10 +45,53 @@ public class GommaTest {
 	}
 	
 	@Test
-	public void testUsuraGomme() {
-		Gomma stradale = new GommaStradale();
+	public void testGommaBagnatoLeggero() {
+		Gomma bagnato_leggero = new GommaBagnatoLeggero();
 		
-		assertFalse(stradale.equals("Gomma Stradale"));
+		try {
+			bagnato_leggero.initPreGara(20, new Meteo(0, 1));
+		} catch (ValueNotInRangeException e) {}
+		
+		int valore_pioggia_leggera=0;
+		try {
+			valore_pioggia_leggera = bagnato_leggero.getAderenzaAttuale(10);
+		} catch (Exception e) {}
+		
+		try {
+			bagnato_leggero.initPreGara(20, new Meteo(0, 100));
+		} catch (ValueNotInRangeException e) {}
+		
+		int valore_pioggia_pesante=0;
+		try {
+			valore_pioggia_pesante = bagnato_leggero.getAderenzaAttuale(10);
+		} catch (Exception e) {}
+		
+		assertTrue(valore_pioggia_leggera > valore_pioggia_pesante);
 	}
-
+	
+	@Test
+	public void testGommaBagnatoPesante() {
+		Gomma bagnato_pesante = new GommaBagnatoPesante();
+		
+		try {
+			bagnato_pesante.initPreGara(20, new Meteo(0, 1));
+		} catch (ValueNotInRangeException e) {}
+		
+		int valore_pioggia_leggera=0;
+		try {
+			valore_pioggia_leggera = bagnato_pesante.getAderenzaAttuale(10);
+		} catch (Exception e) {}
+		
+		try {
+			bagnato_pesante.initPreGara(20, new Meteo(0, 100));
+		} catch (ValueNotInRangeException e) {}
+		
+		int valore_pioggia_pesante=0;
+		try {
+			valore_pioggia_pesante = bagnato_pesante.getAderenzaAttuale(10);
+		} catch (Exception e) {}
+		
+		assertTrue(valore_pioggia_leggera+" "+valore_pioggia_pesante, valore_pioggia_leggera < valore_pioggia_pesante);
+	}
+	
 }
