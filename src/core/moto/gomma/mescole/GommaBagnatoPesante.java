@@ -47,11 +47,4 @@ public class GommaBagnatoPesante extends Gomma{
 		return "Gomma da Bagnato Pesante";
 	}
 	
-	@Override
-	public void doUsuraGomme(int percentuale) {
-		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
-		
-		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));
-	}
-	
 }

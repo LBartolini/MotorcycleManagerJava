@@ -11,7 +11,7 @@ import core.utils.funzioni.FunzioneLineare;
 public class GommaStradale extends Gomma {
 	
 	public static final int ADERENZA_INIZIALE = 30;
-	public static final int ADERENZA_FINALE = 20;
+	public static final int ADERENZA_FINALE = 20; // 750
 	
 	private Funzione funzAderenza;
 	
@@ -45,13 +45,6 @@ public class GommaStradale extends Gomma {
 	@Override
 	public String getNome() {
 		return "Gomma Stradale";
-	}
-	
-	@Override
-	public void doUsuraGomme(int percentuale) {
-		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
-		
-		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));
 	}
 
 }

@@ -7,28 +7,32 @@ import core.Meteo;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineare;
+import core.utils.funzioni.FunzioneParabola;
 
 public class GommaHard extends Gomma{
 	
 	public static final int ADERENZA_INIZIALE= 30;
-	public static final int ADERENZA_FINALE = 80;
+	public static final int ADERENZA_FINALE = 80; // 1650
+	
+	private Funzione funzAderenza;
+	private Funzione funzTemperaturaAsfalto;
 	
 	public GommaHard() {
 		super(4);
 	}
 
-	private Funzione funzAderenza;
-
 	@Override
 	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");		
 		
-		return funzAderenza.getValue(giroAttuale);
+		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura());
 	}
 
 	@Override
 	public void initPreGara(int giriTotali, Meteo meteo) {
 		funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
+		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA);
+		
 		this.meteo = meteo;
 	}
 
@@ -45,13 +49,6 @@ public class GommaHard extends Gomma{
 	@Override
 	public String getNome() {
 		return "Gomma Hard";
-	}
-	
-	@Override
-	public void doUsuraGomme(int percentuale) {
-		int valoreFinaleAttuale = funzAderenza.getValoreFinale();
-		
-		funzAderenza.setValoreFinale((int) (valoreFinaleAttuale * (100 - percentuale) / 100));
 	}
 	
 }

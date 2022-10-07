@@ -8,6 +8,7 @@ import core.Meteo;
 public abstract class Gomma {
 	
 	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.5;
+	public static final int RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA = 70;
 	
 	private final int id;
 	protected Meteo meteo;
@@ -25,8 +26,6 @@ public abstract class Gomma {
 	public abstract boolean daAsciutto();
 	
 	public abstract boolean daBagnato();
-	
-	public abstract void doUsuraGomme(int percentuale);
 	
 	@Override
 	public boolean equals(Object other) {
