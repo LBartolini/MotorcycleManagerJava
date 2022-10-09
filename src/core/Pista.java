@@ -15,13 +15,13 @@ public class Pista {
 	private String nomePista;
 	
 	private int nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente, nGiri, nSpettatori;
-	private TempoSuGiro tempoMassimo, tempoMassimoDefault;
+	private TempoSuGiro tempoMassimo;
 	
 	private int gommaturaPista, probCadutaPista;
 	private Meteo meteo;
 	
 
-	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimoDefault) {
+	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo) {
 		this.idPista = ++progressivo;
 		
 		this.nomePista = nomePista;
@@ -30,18 +30,16 @@ public class Pista {
 		this.nCurveVeloci = nCurveVeloci;
 		this.nCurveLente = nCurveLente;
 		this.nGiri = nGiri;
-		this.tempoMassimoDefault = tempoMassimo;
+		this.tempoMassimo = tempoMassimo;
 
 	}
 
-	public void initGara(double moltiplicatoreTempoMassimo, Meteo meteo) {
+	public void initGara(Meteo meteo) {
 		Random random = new Random();
 		
 		this.gommaturaPista = 0;
 		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA) + 1;
 		this.meteo = meteo;
-		
-		this.tempoMassimo = new TempoSuGiro((int)(this.tempoMassimoDefault.getTempoInMillisecondi() * moltiplicatoreTempoMassimo));
 	}
 	
 	public double getTempoSulGiro(Moto moto, Pilota pilota) {
@@ -71,8 +69,7 @@ public class Pista {
 	
 	private boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
 		
-		// TODO considerare temperatura della pista
-		// da calcolare all'inizio della gara e poi decidere un giro in cui far cadere il pilota
+		// TODO da calcolare all'inizio della gara e poi decidere un giro in cui far cadere il pilota
 		
 		return false;
 	}
@@ -95,10 +92,6 @@ public class Pista {
 
 	public TempoSuGiro getTempoMassimo() {
 		return tempoMassimo;
-	}
-
-	public TempoSuGiro getTempoMassimoDefault() {
-		return tempoMassimoDefault;
 	}
 
 	public int getGommaturaPista() {

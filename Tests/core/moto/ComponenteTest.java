@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Exceptions.LivelloMassimoDelParametroException;
+import Exceptions.ValueNotInRangeException;
 import core.moto.Componente;
-import core.utils.constants.difficolta.Difficile;
-import core.utils.constants.difficolta.Facile;
-import core.utils.constants.difficolta.Impossibile;
-import core.utils.constants.difficolta.Intermedia;
+import core.utils.difficolta.Difficile;
+import core.utils.difficolta.Facile;
+import core.utils.difficolta.Impossibile;
+import core.utils.difficolta.Intermedia;
 
 public class ComponenteTest {
 
@@ -93,7 +93,7 @@ public class ComponenteTest {
 		try{
 			componente.upgradeGrado();
 			fail("Should raise an Exception");
-		}catch(LivelloMassimoDelParametroException exception){
+		}catch(ValueNotInRangeException exception){
 			return;
 		}
 		
@@ -117,7 +117,7 @@ public class ComponenteTest {
 		try{
 			componente.upgradeResistenza();
 			fail("Should raise an Exception");
-		}catch(LivelloMassimoDelParametroException exception){
+		}catch(ValueNotInRangeException exception){
 			return;
 		}
 	}

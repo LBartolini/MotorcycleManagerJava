@@ -7,18 +7,18 @@ import core.Pilota;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
-import core.utils.constants.difficolta.Difficile;
-import core.utils.constants.difficolta.Difficolta;
-import core.utils.constants.difficolta.Facile;
-import core.utils.constants.difficolta.Impossibile;
-import core.utils.constants.difficolta.Intermedia;
+import core.utils.Difficolta;
+import core.utils.difficolta.Difficile;
+import core.utils.difficolta.Facile;
+import core.utils.difficolta.Impossibile;
+import core.utils.difficolta.Intermedia;
 
 
 public class Moto {
 	
 	private static int progressivo = 0;
 	
-	private int id, numInGara;
+	private int id;
 	private Scuderia scuderia;
 	private Pilota pilota;
 	
@@ -28,10 +28,9 @@ public class Moto {
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(int numInGara, Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
+	public Moto(Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
 		this.id = ++progressivo;
 		
-		this.numInGara = numInGara;
 		this.scuderia = scuderia;
 		this.pilota = pilota;
 		
@@ -47,19 +46,19 @@ public class Moto {
 		
 		switch(diff) {
 		
-			case DIFF_FACILE:
+			case FACILE:
 				marcaGomme = Facile.getMarcaGomme();
 				break;
 				
-			case DIFF_INTERMEDIA:
+			case INTERMEDIA:
 				marcaGomme = Intermedia.getMarcaGomme();
 				break;
 				
-			case DIFF_DIFFICILE:
+			case DIFFICILE:
 				marcaGomme = Difficile.getMarcaGomme();
 				break;
 				
-			case DIFF_IMPOSSIBILE:
+			case IMPOSSIBILE:
 				marcaGomme = Impossibile.getMarcaGomme();
 				break;
 		
@@ -81,10 +80,6 @@ public class Moto {
 
 	public int getId() {
 		return id;
-	}
-
-	public int getNumInGara() {
-		return numInGara;
 	}
 
 	public Scuderia getScuderia() {

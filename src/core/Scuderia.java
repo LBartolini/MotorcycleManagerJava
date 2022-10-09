@@ -3,7 +3,7 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
-import Exceptions.LivelloMassimoDelParametroException;
+import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
 
 public class Scuderia {
@@ -18,8 +18,8 @@ public class Scuderia {
 		moto = new ArrayList<>();
 	}
 	
-	public void addMoto(Moto m) throws LivelloMassimoDelParametroException {
-		if(moto.size() >= MAX_MOTO) throw new LivelloMassimoDelParametroException();
+	public void addMoto(Moto m) throws ValueNotInRangeException {
+		if(moto.size() >= MAX_MOTO) throw new ValueNotInRangeException();
 		
 		moto.add(m);
 	}

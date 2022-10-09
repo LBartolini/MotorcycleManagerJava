@@ -1,11 +1,11 @@
 package core.moto;
 
-import Exceptions.LivelloMassimoDelParametroException;
-import core.utils.constants.difficolta.Difficile;
-import core.utils.constants.difficolta.Difficolta;
-import core.utils.constants.difficolta.Facile;
-import core.utils.constants.difficolta.Impossibile;
-import core.utils.constants.difficolta.Intermedia;
+import Exceptions.ValueNotInRangeException;
+import core.utils.Difficolta;
+import core.utils.difficolta.Difficile;
+import core.utils.difficolta.Facile;
+import core.utils.difficolta.Impossibile;
+import core.utils.difficolta.Intermedia;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineare;
 
@@ -27,7 +27,7 @@ public class Componente {
 	
 	public Componente(String nome, Difficolta diff) {
 		switch(diff) {
-			case DIFF_FACILE:
+			case FACILE:
 				initComponente(nome, 
 						Facile.GRADO_INIZIALE, 
 						Facile.RESISTENZA_INIZIALE, 
@@ -35,7 +35,7 @@ public class Componente {
 						Facile.MAX_PROB_GUASTO);
 				break;
 				
-			case DIFF_INTERMEDIA:
+			case INTERMEDIA:
 				initComponente(nome, 
 						Intermedia.GRADO_INIZIALE, 
 						Intermedia.RESISTENZA_INIZIALE, 
@@ -43,7 +43,7 @@ public class Componente {
 						Intermedia.MAX_PROB_GUASTO);
 				break;
 			
-			case DIFF_DIFFICILE:
+			case DIFFICILE:
 				initComponente(nome, 
 						Difficile.GRADO_INIZIALE, 
 						Difficile.RESISTENZA_INIZIALE,
@@ -51,7 +51,7 @@ public class Componente {
 						Difficile.MAX_PROB_GUASTO);
 				break;
 			
-			case DIFF_IMPOSSIBILE:
+			case IMPOSSIBILE:
 				initComponente(nome, 
 						Impossibile.GRADO_INIZIALE, 
 						Impossibile.RESISTENZA_INIZIALE,
@@ -88,14 +88,14 @@ public class Componente {
 		return livelloResistenza;
 	}
 
-	public void upgradeGrado() throws LivelloMassimoDelParametroException{
-		if(gradoComponente == MAX_GRADO) throw new LivelloMassimoDelParametroException();
+	public void upgradeGrado() throws ValueNotInRangeException{
+		if(gradoComponente == MAX_GRADO) throw new ValueNotInRangeException("Grado massimo raggiunto!");
 
 		gradoComponente++;
 	}	
 
-	public void upgradeResistenza() throws LivelloMassimoDelParametroException{
-		if(livelloResistenza == MAX_RESISTENZA) throw new LivelloMassimoDelParametroException();
+	public void upgradeResistenza() throws ValueNotInRangeException{
+		if(livelloResistenza == MAX_RESISTENZA) throw new ValueNotInRangeException("Resistenza massima raggiunta!");
 		
 		livelloResistenza++;;
 	}

@@ -9,13 +9,13 @@ import core.moto.Moto;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaStradale;
-import core.utils.constants.difficolta.Difficolta;
+import core.utils.Difficolta;
 
 public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		Moto m = new Moto(5, null, null, Difficolta.DIFF_FACILE);
+		Moto m = new Moto(null, null, Difficolta.FACILE);
 		
 		
 		try {
@@ -32,7 +32,7 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		Moto m = new Moto(5, null, null, Difficolta.DIFF_IMPOSSIBILE);
+		Moto m = new Moto(null, null, Difficolta.IMPOSSIBILE);
 		
 		
 		try {
@@ -46,8 +46,8 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		Moto m1 = new Moto(5, null, null, Difficolta.DIFF_IMPOSSIBILE);
-		Moto m2 = new Moto(6, null, null, Difficolta.DIFF_IMPOSSIBILE);
+		Moto m1 = new Moto(null, null, Difficolta.IMPOSSIBILE);
+		Moto m2 = new Moto(null, null, Difficolta.IMPOSSIBILE);
 		
 		assertEquals(m1, m1);
 		assertNotEquals(m1, m2);

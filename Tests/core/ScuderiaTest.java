@@ -4,20 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Exceptions.LivelloMassimoDelParametroException;
+import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
-import core.utils.constants.difficolta.Difficolta;
+import core.utils.Difficolta;
 
 public class ScuderiaTest {
 
 	@Test
 	public void testAggiuntaMoto() {
 		Scuderia s = new Scuderia("test");
-		Moto m = new Moto(10, s, null, Difficolta.DIFF_FACILE);
+		Moto m = new Moto(s, null, Difficolta.FACILE);
 		
 		try {
 			s.addMoto(m);
-		} catch (LivelloMassimoDelParametroException e) {
+		} catch (ValueNotInRangeException e) {
 			fail("Exception raised!");
 		}
 		

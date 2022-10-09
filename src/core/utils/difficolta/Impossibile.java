@@ -1,4 +1,4 @@
-package core.utils.constants.difficolta;
+package core.utils.difficolta;
 
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Metzler;
