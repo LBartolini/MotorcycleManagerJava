@@ -23,7 +23,7 @@ public class GommaBagnatoPesante extends Gomma{
 	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");		
 		
-		return ADERENZA_BASE+funzAderenza.getValue(meteo.getQuantitaPioggia());
+		return ADERENZA_BASE+funzAderenza.getValue(meteo.getQuantitaPioggia(giroAttuale));
 	}
 
 	@Override

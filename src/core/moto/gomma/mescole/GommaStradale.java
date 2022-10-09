@@ -10,7 +10,7 @@ import core.utils.funzioni.FunzioneLineare;
 
 public class GommaStradale extends Gomma {
 	
-	public static final int ADERENZA_INIZIALE = 30;
+	public static final int ADERENZA_INIZIALE = 35;
 	public static final int ADERENZA_FINALE = 20; // 750
 	
 	private Funzione funzAderenza;

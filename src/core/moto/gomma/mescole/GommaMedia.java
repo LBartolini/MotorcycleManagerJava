@@ -12,6 +12,7 @@ import core.utils.funzioni.FunzioneParabola;
 public class GommaMedia extends Gomma{
 	
 	public static final int ADERENZA= 45; // 1350
+	public static final int RIDUZIONE_ADERENZA_TEMPERATURA = 70;
 	
 	private Funzione funzAderenza;
 	private Funzione funzTemperaturaAsfalto;
@@ -24,13 +25,13 @@ public class GommaMedia extends Gomma{
 	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura());
+		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale));
 	}
 
 	@Override
 	public void initPreGara(int giriTotali, Meteo meteo) {
 		funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
-		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA);
+		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		this.meteo = meteo;
 	}

@@ -49,7 +49,7 @@ public class GommaTest {
 		Gomma bagnato_leggero = new GommaBagnatoLeggero();
 		
 		try {
-			bagnato_leggero.initPreGara(20, new Meteo(0, 1));
+			bagnato_leggero.initPreGara(20, new Meteo(0, 1, 100, false));
 		} catch (ValueNotInRangeException e) {}
 		
 		int valore_pioggia_leggera=0;
@@ -58,7 +58,7 @@ public class GommaTest {
 		} catch (Exception e) {}
 		
 		try {
-			bagnato_leggero.initPreGara(20, new Meteo(0, 100));
+			bagnato_leggero.initPreGara(20, new Meteo(0, 100, 100, false));
 		} catch (ValueNotInRangeException e) {}
 		
 		int valore_pioggia_pesante=0;
@@ -74,7 +74,7 @@ public class GommaTest {
 		Gomma bagnato_pesante = new GommaBagnatoPesante();
 		
 		try {
-			bagnato_pesante.initPreGara(20, new Meteo(0, 1));
+			bagnato_pesante.initPreGara(20, new Meteo(0, 1, 100, false));
 		} catch (ValueNotInRangeException e) {}
 		
 		int valore_pioggia_leggera=0;
@@ -83,7 +83,7 @@ public class GommaTest {
 		} catch (Exception e) {}
 		
 		try {
-			bagnato_pesante.initPreGara(20, new Meteo(0, 100));
+			bagnato_pesante.initPreGara(20, new Meteo(0, 100, 100, false));
 		} catch (ValueNotInRangeException e) {}
 		
 		int valore_pioggia_pesante=0;

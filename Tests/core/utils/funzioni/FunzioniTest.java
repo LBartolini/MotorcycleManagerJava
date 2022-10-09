@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import core.Meteo;
 import core.moto.gomma.Gomma;
+import core.moto.gomma.mescole.GommaHard;
 
 public class FunzioniTest {
 
@@ -28,11 +29,11 @@ public class FunzioniTest {
 	public void testFunzioneParabola() {
 		FunzioneParabola funzioneParabola = new FunzioneParabola(
 				(Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, 
-				Meteo.MAX_TEMPERATURA, Gomma.RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA);
+				Meteo.MAX_TEMPERATURA, GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		assertEquals(100, funzioneParabola.getValue((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2));
-		assertEquals(Gomma.RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA, funzioneParabola.getValue(Meteo.MAX_TEMPERATURA));
-		assertEquals(Gomma.RIDUZIONE_ADERENZA_CAUSA_TEMPERATURA, funzioneParabola.getValue(0));
+		assertEquals(GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA, funzioneParabola.getValue(Meteo.MAX_TEMPERATURA));
+		assertEquals(GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA, funzioneParabola.getValue(0));
 	}
 
 }
