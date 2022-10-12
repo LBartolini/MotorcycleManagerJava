@@ -7,11 +7,7 @@ import core.Pilota;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
-import core.utils.Difficolta;
-import core.utils.difficolta.Difficile;
-import core.utils.difficolta.Facile;
-import core.utils.difficolta.Impossibile;
-import core.utils.difficolta.Intermedia;
+import core.utils.difficolta.Difficolta;
 
 
 public class Moto {
@@ -43,26 +39,7 @@ public class Moto {
 		aerodinamica = new Componente("Aerodinamica", diff);
 		ciclistica = new Componente("Ciclistica", diff);
 		freni = new Componente("Freni", diff);
-		
-		switch(diff) {
-		
-			case FACILE:
-				marcaGomme = Facile.getMarcaGomme();
-				break;
-				
-			case INTERMEDIA:
-				marcaGomme = Intermedia.getMarcaGomme();
-				break;
-				
-			case DIFFICILE:
-				marcaGomme = Difficile.getMarcaGomme();
-				break;
-				
-			case IMPOSSIBILE:
-				marcaGomme = Impossibile.getMarcaGomme();
-				break;
-		
-		}
+		marcaGomme = diff.getMarcaGomme();
 		
 	}	
 	

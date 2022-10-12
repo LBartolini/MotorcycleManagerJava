@@ -4,14 +4,37 @@ import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Dunlop;
 import core.moto.gomma.marche.Pirelli;
 
-public class Difficile {
-	public static final int GRADO_INIZIALE = 2;
-	public static final int RESISTENZA_INIZIALE = 5;
+public class Difficile implements Difficolta{
 	
-	public static final int MIN_PROB_GUASTO = 5;
-	public static final int MAX_PROB_GUASTO = 15;
+	private static final int GRADO_COMPONENTE_INIZIALE = 2;
+	private static final int RESISTENZA_INIZIALE = 5;
 	
-	public static MarcaGomme getMarcaGomme() {
+	private static final int MIN_PROB_GUASTO = 5;
+	private static final int MAX_PROB_GUASTO = 15;
+	
+	@Override
+	public MarcaGomme getMarcaGomme() {
 		return new Dunlop();
 	}
+
+	@Override
+	public int getGradoComponenteIniziale() {
+		return GRADO_COMPONENTE_INIZIALE;
+	}
+
+	@Override
+	public int getResistenzaComponenteIniziale() {
+		return RESISTENZA_INIZIALE;
+	}
+
+	@Override
+	public int getMinProbabiitaGuasto() {
+		return MIN_PROB_GUASTO;
+	}
+
+	@Override
+	public int getMaxProbabiitaGuasto() {
+		return MAX_PROB_GUASTO;
+	}
+
 }

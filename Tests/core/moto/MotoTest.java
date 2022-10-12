@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import core.moto.Moto;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaStradale;
-import core.utils.Difficolta;
+import core.utils.difficolta.Facile;
+import core.utils.difficolta.Impossibile;
 
 public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		Moto m = new Moto(null, null, Difficolta.FACILE);
+		Moto m = new Moto(null, null, new Facile());
 		
 		
 		try {
@@ -32,7 +32,7 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		Moto m = new Moto(null, null, Difficolta.IMPOSSIBILE);
+		Moto m = new Moto(null, null, new Impossibile());
 		
 		
 		try {
@@ -46,8 +46,8 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		Moto m1 = new Moto(null, null, Difficolta.IMPOSSIBILE);
-		Moto m2 = new Moto(null, null, Difficolta.IMPOSSIBILE);
+		Moto m1 = new Moto(null, null, new Impossibile());
+		Moto m2 = new Moto(null, null, new Impossibile());
 		
 		assertEquals(m1, m1);
 		assertNotEquals(m1, m2);

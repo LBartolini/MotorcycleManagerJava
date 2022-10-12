@@ -7,6 +7,7 @@ import org.junit.Test;
 import Exceptions.ValueNotInRangeException;
 import core.moto.Componente;
 import core.utils.difficolta.Difficile;
+import core.utils.difficolta.Difficolta;
 import core.utils.difficolta.Facile;
 import core.utils.difficolta.Impossibile;
 import core.utils.difficolta.Intermedia;
@@ -15,64 +16,74 @@ public class ComponenteTest {
 
 	@Test
 	public void testMinimaResistenzaFacile() {
+		Difficolta diff = new Facile();
 		Componente componente = new Componente("Test", 1, 1, 
-				Facile.MIN_PROB_GUASTO, Facile.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Facile.MAX_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMaxProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMassimaResistenzaFacile() {
+		Difficolta diff = new Facile();
 		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
-				Facile.MIN_PROB_GUASTO, Facile.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Facile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMinProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMinimaResistenzaIntermedia() {
+		Difficolta diff = new Intermedia();
 		Componente componente = new Componente("Test", 1, 1, 
-				Intermedia.MIN_PROB_GUASTO, Intermedia.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Intermedia.MAX_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMaxProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMassimaResistenzaIntermedia() {
+		Difficolta diff = new Intermedia();
 		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
-				Intermedia.MIN_PROB_GUASTO, Intermedia.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Intermedia.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMinProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMinimaResistenzaDifficile() {
+		Difficolta diff = new Difficile();
 		Componente componente = new Componente("Test", 1, 1, 
-				Difficile.MIN_PROB_GUASTO, Difficile.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Difficile.MAX_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMaxProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMassimaResistenzaDifficile() {
+		Difficolta diff = new Difficile();
 		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
-				Difficile.MIN_PROB_GUASTO, Difficile.MAX_PROB_GUASTO);
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Difficile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMinProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMinimaResistenzaImpossibile() {
-		Componente componente = new Componente("Test", 1, 1, Impossibile.MIN_PROB_GUASTO, Impossibile.MAX_PROB_GUASTO);
+		Difficolta diff = new Impossibile();
+		Componente componente = new Componente("Test", 1, 1, 
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Impossibile.MAX_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMaxProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test
 	public void testMassimaResistenzaImpossibile() {
-		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, Impossibile.MIN_PROB_GUASTO, Impossibile.MAX_PROB_GUASTO);
+		Difficolta diff = new Impossibile();
+		Componente componente = new Componente("Test", 1, Componente.MAX_RESISTENZA, 
+				diff.getMinProbabiitaGuasto(), diff.getMaxProbabiitaGuasto());
 		
-		assertEquals(Impossibile.MIN_PROB_GUASTO, componente.getProbabilitaGuasto());
+		assertEquals(diff.getMinProbabiitaGuasto(), componente.getProbabilitaGuasto());
 	}
 	
 	@Test

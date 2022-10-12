@@ -3,14 +3,36 @@ package core.utils.difficolta;
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Pirelli;
 
-public class Facile {
-	public static final int GRADO_INIZIALE = 10;
-	public static final int RESISTENZA_INIZIALE = 15;
+public class Facile implements Difficolta {
 	
-	public static final int MIN_PROB_GUASTO = 0;
-	public static final int MAX_PROB_GUASTO = 0;
+	private static final int GRADO_COMPONENTE_INIZIALE = 10;
+	private static final int RESISTENZA_INIZIALE = 15;
 	
-	public static MarcaGomme getMarcaGomme() {
+	private static final int MIN_PROB_GUASTO = 0;
+	private static final int MAX_PROB_GUASTO = 0;
+	
+	@Override
+	public MarcaGomme getMarcaGomme() {
 		return new Pirelli();
+	}
+	
+	@Override
+	public int getGradoComponenteIniziale() {
+		return GRADO_COMPONENTE_INIZIALE;
+	}
+
+	@Override
+	public int getResistenzaComponenteIniziale() {
+		return RESISTENZA_INIZIALE;
+	}
+
+	@Override
+	public int getMinProbabiitaGuasto() {
+		return MIN_PROB_GUASTO;
+	}
+
+	@Override
+	public int getMaxProbabiitaGuasto() {
+		return MAX_PROB_GUASTO;
 	}
 }

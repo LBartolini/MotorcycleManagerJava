@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
-import core.utils.Difficolta;
+import core.utils.difficolta.Facile;
 
 public class ScuderiaTest {
 
 	@Test
 	public void testAggiuntaMoto() {
 		Scuderia s = new Scuderia("test");
-		Moto m = new Moto(s, null, Difficolta.FACILE);
+		Moto m = new Moto(s, null, new Facile());
 		
 		try {
 			s.addMoto(m);
