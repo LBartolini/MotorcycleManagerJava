@@ -13,6 +13,8 @@ public class GommaStradale extends Gomma {
 	public static final int ADERENZA_INIZIALE = 35;
 	public static final int ADERENZA_FINALE = 20; // 750
 	
+	private Meteo meteo;
+	
 	private Funzione funzAderenza;
 	
 	public GommaStradale() {

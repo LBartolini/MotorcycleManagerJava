@@ -12,6 +12,8 @@ public interface Difficolta {
 	
 	public int getMaxProbabiitaGuasto();
 	
+	public double getMoltiplicatoreCaduta();
+	
 	public MarcaGomme getMarcaGomme();
 	
 }

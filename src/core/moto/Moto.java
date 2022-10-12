@@ -16,7 +16,6 @@ public class Moto {
 	
 	private int id;
 	private Scuderia scuderia;
-	private Pilota pilota;
 	
 	private Componente motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
@@ -24,11 +23,10 @@ public class Moto {
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(Scuderia scuderia, Pilota pilota, Difficolta difficolta) {
+	public Moto(Scuderia scuderia, Difficolta difficolta) {
 		this.id = ++progressivo;
 		
 		this.scuderia = scuderia;
-		this.pilota = pilota;
 		
 		initByDifficolta(difficolta);
 		
@@ -42,10 +40,6 @@ public class Moto {
 		marcaGomme = diff.getMarcaGomme();
 		
 	}	
-	
-	public void cambiaPilota(Pilota nuovoPilota) {
-		pilota = nuovoPilota;
-	}
 	
 	public void preGara(Gomma gommaScelta) throws GommaSceltaNotInMarcaGommeException{
 		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
@@ -61,10 +55,6 @@ public class Moto {
 
 	public Scuderia getScuderia() {
 		return scuderia;
-	}
-
-	public Pilota getPilota() {
-		return pilota;
 	}
 
 	public Componente getMotore() {

@@ -13,6 +13,8 @@ public class GommaBagnatoPesante extends Gomma{
 	public static final int ADERENZA_BASE = 30;
 	public static final int ADERENZA_INIZIALE = 5, ADERENZA_FINALE = 30;
 	
+	private Meteo meteo;
+	
 	public GommaBagnatoPesante() {
 		super(6);
 	}

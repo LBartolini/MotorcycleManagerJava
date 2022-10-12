@@ -14,6 +14,8 @@ public class GommaMedia extends Gomma{
 	public static final int ADERENZA= 45; // 1350
 	public static final int RIDUZIONE_ADERENZA_TEMPERATURA = 70;
 	
+	private Meteo meteo;
+	
 	private Funzione funzAderenza;
 	private Funzione funzTemperaturaAsfalto;
 	

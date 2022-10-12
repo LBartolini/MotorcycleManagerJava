@@ -7,10 +7,11 @@ import core.Meteo;
 
 public abstract class Gomma {
 	
-	public static final double MODIFICATORE_MESCOLA_METEO_SBAGLIATO = 0.5;
+	public static final double MODIFICATORE_ADERENZA_METEO_SBAGLIATO = 0.6;
+	
+	public static final double MODIFICATORE_CADUTA_GOMME_SBAGLIATE = 1.25;
 	
 	private final int id;
-	protected Meteo meteo;
 	
 	public Gomma(int id) {
 		this.id = id;

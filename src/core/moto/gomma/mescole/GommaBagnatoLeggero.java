@@ -12,6 +12,8 @@ public class GommaBagnatoLeggero extends Gomma{
 	
 	public static final int ADERENZA_BASE = 20;
 	public static final int ADERENZA_INIZIALE = 20, ADERENZA_FINALE = 5;
+	
+	private Meteo meteo;
 
 	public GommaBagnatoLeggero() {
 		super(5);

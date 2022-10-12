@@ -2,6 +2,8 @@ package core;
 
 import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
+import core.stile_guida.StileGuida;
+import core.stile_guida.StileNormale;
 
 public class Pilota {
 
@@ -11,6 +13,8 @@ public class Pilota {
 	private int aggressivita, forzaFisica, feelingMoto;
 	
 	private Moto moto;
+	
+	private StileGuida stileScelto;
 	
 	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica) throws ValueNotInRangeException {
 		if(aggressivita < 0 || aggressivita > MAX_AGGRESSIVITA) throw new ValueNotInRangeException("Aggressività out of range!");
@@ -22,6 +26,15 @@ public class Pilota {
 		this.forzaFisica = forzaFisica;
 		this.feelingMoto = 1;
 		this.moto = moto;
+		stileScelto = new StileNormale();
+	}
+	
+	public void preGara(StileGuida stileScelto) {
+		this.stileScelto = stileScelto;
+	}
+	
+	public StileGuida getStileGuida() {
+		return stileScelto;
 	}
 	
 	public void incrementaAggressivita() throws Exception {

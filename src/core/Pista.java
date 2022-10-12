@@ -4,11 +4,13 @@ import java.util.Objects;
 import java.util.Random;
 
 import core.moto.Moto;
+import core.moto.gomma.Gomma;
 import core.utils.TempoSuGiro;
+import core.utils.difficolta.Difficolta;
 
 public class Pista {
 	
-	private static final int MAX_PROB_CADUTA = 10;
+	private static final int MAX_PROB_CADUTA = 30;
 	private static int progressivo = 0;
 	
 	private int idPista;
@@ -17,11 +19,12 @@ public class Pista {
 	private int nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente, nGiri, nSpettatori;
 	private TempoSuGiro tempoMassimo;
 	
-	private int gommaturaPista, probCadutaPista;
+	private int probCadutaPista;
 	private Meteo meteo;
+	private Difficolta difficolta;
 	
 
-	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo) {
+	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
 		this.idPista = ++progressivo;
 		
 		this.nomePista = nomePista;
@@ -31,18 +34,18 @@ public class Pista {
 		this.nCurveLente = nCurveLente;
 		this.nGiri = nGiri;
 		this.tempoMassimo = tempoMassimo;
+		this.difficolta = difficolta;
 
 	}
 
 	public void initGara(Meteo meteo) {
 		Random random = new Random();
 		
-		this.gommaturaPista = 0;
-		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA) + 1;
+		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA/3) + 1;
 		this.meteo = meteo;
 	}
 	
-	public double getTempoSulGiro(Moto moto, Pilota pilota) {
+	public double getTempoSulGiro(int giro, Moto moto, Pilota pilota) {
 		// TODO
 		return 0;
 	}
@@ -67,11 +70,26 @@ public class Pista {
 		return Math.min(nCurveVeloci + 1, 10);
 	}
 	
-	private boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
+	public boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
+		double soglia = probCadutaPista;
 		
-		// TODO da calcolare all'inizio della gara e poi decidere un giro in cui far cadere il pilota
+		// PIOGGIA
+		if(meteo.getQuantitaPioggiaFinale() > 0) {
+			soglia *= Meteo.MODIFICATORE_PROB_CADUTA_CON_PIOGGIA;
+		}
 		
-		return false;
+		// GOMME DA ASCIUTTO SU PIOGGIA
+		if(meteo.getQuantitaPioggiaFinale() > 0 && moto.getGommaScelta().daAsciutto()) {
+			soglia *= Gomma.MODIFICATORE_CADUTA_GOMME_SBAGLIATE;
+		}
+		
+		// STILE GUIDA
+		soglia *= pilota.getStileGuida().getMoltiplicatoreCaduta();
+		
+		// DIFFICOLTA
+		soglia *= difficolta.getMoltiplicatoreCaduta();
+		
+		return new Random().nextInt(100) < Math.min((int) soglia, MAX_PROB_CADUTA);
 	}
 
 	public int getIdPista() {
@@ -82,20 +100,16 @@ public class Pista {
 		return nomePista;
 	}
 
-	public int getnGiri() {
+	public int getNGiri() {
 		return nGiri;
 	}
 
-	public int getnSpettatori() {
+	public int getNSpettatori() {
 		return nSpettatori;
 	}
 
 	public TempoSuGiro getTempoMassimo() {
 		return tempoMassimo;
-	}
-
-	public int getGommaturaPista() {
-		return gommaturaPista;
 	}
 
 	public Meteo getMeteo() {
@@ -116,5 +130,5 @@ public class Pista {
 		
 		return idPista == other_pista.getIdPista();
 	}
-	
+	 
 }

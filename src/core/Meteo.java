@@ -13,6 +13,8 @@ public class Meteo {
 	public static final int MIN_TEMPERATURA = 0, MAX_TEMPERATURA = 50;
 	public static final int MASSIMA_VARIAZIONE_METEO = 30;
 	
+	public static final double MODIFICATORE_PROB_CADUTA_CON_PIOGGIA = 1.1;
+	
 	private int temperaturaAriaFinale, quantitaPioggiaFinale;
 	
 	private Funzione variazioneTemperatura, variazionePioggia;

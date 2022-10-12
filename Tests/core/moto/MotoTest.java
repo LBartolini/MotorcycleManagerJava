@@ -15,7 +15,7 @@ public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		Moto m = new Moto(null, null, new Facile());
+		Moto m = new Moto(null, new Facile());
 		
 		
 		try {
@@ -32,7 +32,7 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		Moto m = new Moto(null, null, new Impossibile());
+		Moto m = new Moto(null, new Impossibile());
 		
 		
 		try {
@@ -46,8 +46,8 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		Moto m1 = new Moto(null, null, new Impossibile());
-		Moto m2 = new Moto(null, null, new Impossibile());
+		Moto m1 = new Moto(null, new Impossibile());
+		Moto m2 = new Moto(null, new Impossibile());
 		
 		assertEquals(m1, m1);
 		assertNotEquals(m1, m2);

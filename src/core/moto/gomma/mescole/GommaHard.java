@@ -15,6 +15,8 @@ public class GommaHard extends Gomma{
 	public static final int ADERENZA_FINALE = 80; // 1650
 	public static final int RIDUZIONE_ADERENZA_TEMPERATURA = 80;
 	
+	private Meteo meteo;
+	
 	private Funzione funzAderenza;
 	private Funzione funzTemperaturaAsfalto;
 	

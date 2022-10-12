@@ -11,6 +11,8 @@ public class Facile implements Difficolta {
 	private static final int MIN_PROB_GUASTO = 0;
 	private static final int MAX_PROB_GUASTO = 0;
 	
+	private static final Double MOLTIPLICATORE_CADUTA = 0.5;
+	
 	@Override
 	public MarcaGomme getMarcaGomme() {
 		return new Pirelli();
@@ -34,5 +36,10 @@ public class Facile implements Difficolta {
 	@Override
 	public int getMaxProbabiitaGuasto() {
 		return MAX_PROB_GUASTO;
+	}
+
+	@Override
+	public double getMoltiplicatoreCaduta() {
+		return MOLTIPLICATORE_CADUTA;
 	}
 }

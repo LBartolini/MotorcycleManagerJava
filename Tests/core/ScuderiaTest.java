@@ -13,7 +13,7 @@ public class ScuderiaTest {
 	@Test
 	public void testAggiuntaMoto() {
 		Scuderia s = new Scuderia("test");
-		Moto m = new Moto(s, null, new Facile());
+		Moto m = new Moto(s, new Facile());
 		
 		try {
 			s.addMoto(m);
