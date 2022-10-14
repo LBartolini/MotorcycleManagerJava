@@ -2,10 +2,6 @@ package core.moto;
 
 import Exceptions.ValueNotInRangeException;
 import core.utils.difficolta.Difficolta;
-import core.utils.difficolta.Difficile;
-import core.utils.difficolta.Facile;
-import core.utils.difficolta.Impossibile;
-import core.utils.difficolta.Intermedia;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineare;
 

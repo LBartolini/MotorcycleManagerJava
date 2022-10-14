@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import core.moto.gomma.Gomma;
-import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Bridgeston;
 import core.moto.gomma.marche.Continental;
 import core.moto.gomma.marche.Dunlop;

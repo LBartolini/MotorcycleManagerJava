@@ -2,7 +2,6 @@ package core.utils.difficolta;
 
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Michelin;
-import core.moto.gomma.marche.Pirelli;
 
 public class Intermedia implements Difficolta{
 	

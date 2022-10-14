@@ -2,7 +2,6 @@ package core.utils.difficolta;
 
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Metzler;
-import core.moto.gomma.marche.Pirelli;
 
 public class Impossibile implements Difficolta{
 	

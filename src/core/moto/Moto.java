@@ -3,7 +3,6 @@ package core.moto;
 import java.util.Objects;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import core.Pilota;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
 import core.Meteo;
-import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaSoft;

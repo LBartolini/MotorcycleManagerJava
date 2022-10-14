@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
-import core.moto.Componente;
 import core.utils.difficolta.Difficile;
 import core.utils.difficolta.Difficolta;
 import core.utils.difficolta.Facile;

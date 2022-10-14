@@ -4,7 +4,6 @@ import java.util.Random;
 
 import Exceptions.ValueNotInRangeException;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneCostante;
 import core.utils.funzioni.FunzioneLineare;
 
 public class Meteo {

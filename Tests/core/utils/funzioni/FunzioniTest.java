@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import core.Meteo;
-import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaHard;
 
 public class FunzioniTest {

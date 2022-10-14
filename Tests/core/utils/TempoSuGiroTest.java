@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
-import core.utils.TempoSuGiro;
 
 public class TempoSuGiroTest {
 
@@ -30,46 +29,34 @@ public class TempoSuGiroTest {
 	
 	@Test
 	public void testConstructorBadPathSecondiNegativi() {
-		TempoSuGiro tempoSuGiro = null;
 		try {
-			tempoSuGiro = new TempoSuGiro(1, -4, 59);
+			new TempoSuGiro(1, -4, 59);
 			fail();
-		} catch (ValueNotInRangeException e) {
-			assertTrue(true);
-		}
+		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
 	public void testConstructorBadPathSecondiMaggMassimo() {
-		TempoSuGiro tempoSuGiro = null;
 		try {
-			tempoSuGiro = new TempoSuGiro(1, 71, 59);
+			new TempoSuGiro(1, 71, 59);
 			fail();
-		} catch (ValueNotInRangeException e) {
-			assertTrue(true);
-		}
+		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
 	public void testConstructorBadPathMillisecondiNegativi() {
-		TempoSuGiro tempoSuGiro = null;
 		try {
-			tempoSuGiro = new TempoSuGiro(1, 5, -100);
+			new TempoSuGiro(1, 5, -100);
 			fail();
-		} catch (ValueNotInRangeException e) {
-			assertTrue(true);
-		}
+		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
 	public void testConstructorBadPathMillisecondiMaggMassimo() {
-		TempoSuGiro tempoSuGiro = null;
 		try {
-			tempoSuGiro = new TempoSuGiro(1, 5, 2000);
+			new TempoSuGiro(1, 5, 2000);
 			fail();
-		} catch (ValueNotInRangeException e) {
-			assertTrue(true);
-		}
+		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
