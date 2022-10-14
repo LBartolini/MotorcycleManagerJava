@@ -1,21 +1,19 @@
 package core.moto;
 
-import Exceptions.ValueNotInRangeException;
+import core.utils.campo.Campo;
+import core.utils.campo.CampoMoto;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineare;
 
 public class Componente {
 	
-	public static final int MAX_GRADO = 30;
-	public static final int MAX_RESISTENZA = 30;
-	
 	private int MIN_PROB_GUASTO, MAX_PROB_GUASTO;
 	
 	private String nome;
 
-	private int gradoComponente; // [1, 30]
-	private int livelloResistenza; // [1, 30]
+	private Campo gradoComponente; // [1, 30]
+	private Campo resistenzaComponente; // [1, 30]
 	
 	public Componente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {
 		initComponente(nome, gradoComponente, livelloResistenza, minProbGuasto, maxProbGuasto);
@@ -31,17 +29,17 @@ public class Componente {
 	
 	private void initComponente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {
 		this.nome = nome;
-		this.gradoComponente = gradoComponente;
-		this.livelloResistenza = livelloResistenza;
+		this.gradoComponente = new CampoMoto(gradoComponente);
+		this.resistenzaComponente = new CampoMoto(livelloResistenza);
 		this.MIN_PROB_GUASTO = minProbGuasto;
 		this.MAX_PROB_GUASTO = maxProbGuasto;
 	}
 	
 	
 	public int getProbabilitaGuasto() {
-		Funzione f = new FunzioneLineare(MAX_PROB_GUASTO, MIN_PROB_GUASTO, MAX_RESISTENZA);
+		Funzione f = new FunzioneLineare(MAX_PROB_GUASTO, MIN_PROB_GUASTO, new CampoMoto().getMax());
 		
-		return f.getValue(livelloResistenza);
+		return f.getValue(resistenzaComponente.get());
 	}
 	
 	public String getNome() {
@@ -49,23 +47,19 @@ public class Componente {
 	}
 	
 	public int getGrado() {
-		return gradoComponente;
+		return gradoComponente.get();
 	}
 	
 	public int getResistenza() {
-		return livelloResistenza;
+		return resistenzaComponente.get();
 	}
 
-	public void upgradeGrado() throws ValueNotInRangeException{
-		if(gradoComponente == MAX_GRADO) throw new ValueNotInRangeException("Grado massimo raggiunto!");
-
-		gradoComponente++;
+	public void upgradeGrado(){ 
+		gradoComponente.increment();
 	}	
 
-	public void upgradeResistenza() throws ValueNotInRangeException{
-		if(livelloResistenza == MAX_RESISTENZA) throw new ValueNotInRangeException("Resistenza massima raggiunta!");
-		
-		livelloResistenza++;;
+	public void upgradeResistenza(){
+		resistenzaComponente.increment();
 	}
 	
 }

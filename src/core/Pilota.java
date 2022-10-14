@@ -1,30 +1,26 @@
 package core;
 
-import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
 import core.stile_guida.StileGuida;
 import core.stile_guida.StileNormale;
+import core.utils.campo.Campo;
+import core.utils.campo.CampoPilota;
 
 public class Pilota {
-
-	public static final int MAX_AGGRESSIVITA = 10, MAX_FORZA_FISICA = 30, MAX_FEELING_MOTO = 30;
 	
 	private String nome, cognome;
-	private int aggressivita, forzaFisica, feelingMoto;
+	private Campo aggressivita, forzaFisica, feelingMoto;
 	
 	private Moto moto;
 	
 	private StileGuida stileScelto;
 	
-	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica) throws ValueNotInRangeException {
-		if(aggressivita < 0 || aggressivita > MAX_AGGRESSIVITA) throw new ValueNotInRangeException("Aggressività out of range!");
-		if(forzaFisica < 0 || forzaFisica > MAX_FORZA_FISICA) throw new ValueNotInRangeException("Forza fisica out of range!");
-		
+	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = aggressivita;
-		this.forzaFisica = forzaFisica;
-		this.feelingMoto = 1;
+		this.aggressivita = new CampoPilota(aggressivita);
+		this.forzaFisica = new CampoPilota(forzaFisica);
+		this.feelingMoto = new CampoPilota();
 		this.moto = moto;
 		stileScelto = new StileNormale();
 	}
@@ -38,34 +34,24 @@ public class Pilota {
 	}
 	
 	public void incrementaAggressivita() throws Exception {
-		if(aggressivita == MAX_AGGRESSIVITA) throw new Exception("Max aggressivita reached");
-		
-		aggressivita++;
+		aggressivita.increment();
 	}
 	
 	public void incrementaForzaFisica() throws Exception {
-		if(forzaFisica == MAX_FORZA_FISICA) throw new Exception("Max forza reached");
-		
-		forzaFisica++;
+		forzaFisica.increment();
 	}
 	
 	public void incrementaFeelingMoto() throws Exception {
-		if(feelingMoto == MAX_FEELING_MOTO) throw new Exception("Max feeling moto reached");
-		
-		feelingMoto++;
+		feelingMoto.increment();
 	}
 	
 	public void cambioMoto(Moto nuovaMoto) {
 		moto = nuovaMoto;
-		feelingMoto = 1;
+		feelingMoto = new CampoPilota();
 	}
 
 	public int getAggressivita() {
-		return aggressivita;
-	}
-
-	public void setAggressivita(int aggressivita) {
-		this.aggressivita = aggressivita;
+		return aggressivita.get();
 	}
 
 	public String getNome() {
@@ -77,11 +63,11 @@ public class Pilota {
 	}
 
 	public int getForzaFisica() {
-		return forzaFisica;
+		return forzaFisica.get();
 	}
 
 	public int getFeelingMoto() {
-		return feelingMoto;
+		return feelingMoto.get();
 	}
 
 	public Moto getMoto() {
