@@ -51,6 +51,8 @@ public class Pista {
 	
 	public TempoSuGiro getTempoSulGiro(int giro, Moto moto, Pilota pilota) throws ObjectNotInitializedException {
 		if(giro > nGiri) return new TempoSuGiro(0);
+		// TODO richiedere solo Moto perchè il pilota può essere ottenuta dala moto
+		
 		
 		double punteggio = 1; 
 		// TODO aggiungere punteggio base da difficolta e valori iniziali e finali per le funzioni sotto

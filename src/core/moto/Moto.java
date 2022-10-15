@@ -21,6 +21,8 @@ public class Moto {
 	private Componente motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
 	
+	// TODO aggiungere riferimento al pilota che guida la moto
+	
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
