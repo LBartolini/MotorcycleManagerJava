@@ -6,7 +6,7 @@ import Exceptions.ObjectNotInitializedException;
 import core.Meteo;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineare;
+import core.utils.funzioni.FunzioneLineareInt;
 
 public class GommaStradale extends Gomma {
 	
@@ -15,22 +15,22 @@ public class GommaStradale extends Gomma {
 	
 	private Meteo meteo;
 	
-	private Funzione funzAderenza;
+	private Funzione<Integer> funzAderenza;
 	
 	public GommaStradale() {
 		super(1);
 	}
 
 	@Override
-	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
+	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return funzAderenza.getValue(giroAttuale);
+		return funzAderenza.getValue(giroAttuale)/100.0;
 	}
 
 	@Override
 	public void initPreGara(int giriTotali, Meteo meteo) {
-		funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
+		funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
 		this.meteo = meteo;
 	}
 

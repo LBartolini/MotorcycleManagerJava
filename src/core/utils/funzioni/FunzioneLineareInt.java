@@ -1,17 +1,17 @@
 package core.utils.funzioni;
 
-public class FunzioneLineare implements Funzione {
+public class FunzioneLineareInt implements Funzione<Integer> {
 	
 	private int valoreIniziale, valoreFinale, xIniziale, xFinale;
 	
-	public FunzioneLineare(int valoreIniziale, int valoreFinale, int xFinale) {
+	public FunzioneLineareInt(int valoreIniziale, int valoreFinale, int xFinale) {
 		this.valoreIniziale = valoreIniziale;
 		this.valoreFinale = valoreFinale;
 		this.xIniziale = 1;
 		this.xFinale = xFinale;
 	}
 	
-	public FunzioneLineare(int valoreIniziale, int valoreFinale, int xIniziale, int xFinale) {
+	public FunzioneLineareInt(int valoreIniziale, int valoreFinale, int xIniziale, int xFinale) {
 		this.valoreIniziale = valoreIniziale;
 		this.valoreFinale = valoreFinale;
 		this.xIniziale = xIniziale;
@@ -19,7 +19,7 @@ public class FunzioneLineare implements Funzione {
 	}
 	
 	@Override
-	public int getValue(int x) {
+	public Integer getValue(Integer x) {
 		double m = (valoreFinale-valoreIniziale)/((double)xFinale-xIniziale);
 		
 		double valore = m*(x-xIniziale)+valoreIniziale;

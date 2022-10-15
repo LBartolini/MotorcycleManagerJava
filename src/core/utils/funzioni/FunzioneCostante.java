@@ -1,6 +1,6 @@
 package core.utils.funzioni;
 
-public class FunzioneCostante extends FunzioneLineare{
+public class FunzioneCostante extends FunzioneLineareInt{
 	
 	public FunzioneCostante(int valore, int xFinale) {
 		super(valore, valore, xFinale);

@@ -4,23 +4,27 @@ import core.moto.Moto;
 import core.stile_guida.StileGuida;
 import core.stile_guida.StileNormale;
 import core.utils.campo.Campo;
+import core.utils.campo.CampoInterface;
 import core.utils.campo.CampoPilota;
 
 public class Pilota {
 	
 	private String nome, cognome;
-	private Campo aggressivita, forzaFisica, feelingMoto;
+	private Campo aggressivita, forzaFisica, agilita, feelingMoto;
 	
 	private Moto moto;
 	
 	private StileGuida stileScelto;
 	
-	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica) {
+	// TODO costruttore per difficolta che setti i vari campi
+	
+	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica, int agilita) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.aggressivita = new CampoPilota(aggressivita);
 		this.forzaFisica = new CampoPilota(forzaFisica);
 		this.feelingMoto = new CampoPilota();
+		this.agilita = new CampoPilota(agilita);
 		this.moto = moto;
 		stileScelto = new StileNormale();
 	}
@@ -33,25 +37,25 @@ public class Pilota {
 		return stileScelto;
 	}
 	
-	public void incrementaAggressivita() throws Exception {
+	public void incrementaAggressivita() {
 		aggressivita.increment();
 	}
 	
-	public void incrementaForzaFisica() throws Exception {
+	public void incrementaForzaFisica() {
 		forzaFisica.increment();
 	}
 	
-	public void incrementaFeelingMoto() throws Exception {
+	public void incrementaFeelingMoto() {
 		feelingMoto.increment();
+	}
+	
+	public void incrementaAgilita() {
+		agilita.increment();
 	}
 	
 	public void cambioMoto(Moto nuovaMoto) {
 		moto = nuovaMoto;
 		feelingMoto = new CampoPilota();
-	}
-
-	public int getAggressivita() {
-		return aggressivita.get();
 	}
 
 	public String getNome() {
@@ -62,12 +66,20 @@ public class Pilota {
 		return cognome;
 	}
 
-	public int getForzaFisica() {
-		return forzaFisica.get();
+	public CampoInterface getAggressivita() {
+		return aggressivita;
+	}
+	
+	public CampoInterface getForzaFisica() {
+		return forzaFisica;
 	}
 
-	public int getFeelingMoto() {
-		return feelingMoto.get();
+	public CampoInterface getFeelingMoto() {
+		return feelingMoto;
+	}
+	
+	public CampoInterface getAgilita() {
+		return agilita;
 	}
 
 	public Moto getMoto() {

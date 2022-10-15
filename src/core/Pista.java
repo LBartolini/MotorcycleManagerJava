@@ -2,11 +2,15 @@ package core;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.DoubleStream;
 
+import Exceptions.ObjectNotInitializedException;
 import core.moto.Moto;
 import core.moto.gomma.Gomma;
 import core.utils.TempoSuGiro;
+import core.utils.campo.CampoInterface;
 import core.utils.difficolta.Difficolta;
+import core.utils.funzioni.FunzioneLineareDouble;
 
 public class Pista {
 	
@@ -45,21 +49,71 @@ public class Pista {
 		this.meteo = meteo;
 	}
 	
-	public double getTempoSulGiro(int giro, Moto moto, Pilota pilota) {
-		// TODO
-		return 0;
-	}
-	
-	public int getNCurve() {
-		return nCurveLente + nCurveVeloci;
+	public TempoSuGiro getTempoSulGiro(int giro, Moto moto, Pilota pilota) throws ObjectNotInitializedException {
+		if(giro > nGiri) return new TempoSuGiro(0);
+		
+		double punteggio = 1; 
+		// TODO aggiungere punteggio base da difficolta e valori iniziali e finali per le funzioni sotto
+		
+		CampoInterface feelingMoto = pilota.getFeelingMoto();
+		CampoInterface aggressivita = pilota.getAggressivita();
+		CampoInterface forzaFisica = pilota.getForzaFisica();
+		CampoInterface agilita = pilota.getAgilita();
+		
+		CampoInterface motore = moto.getMotore().getGrado();
+		CampoInterface freni = moto.getFreni().getGrado();
+		CampoInterface aerodinamica = moto.getAerodinamica().getGrado();
+		CampoInterface ciclistica = moto.getCiclistica().getGrado();
+		
+		// RETTILINEI
+		punteggio += getCoeffRettilinei() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+				.getValue(DoubleStream.of(
+						motore.getInPercentuale(), 
+						aerodinamica.getInPercentuale()).average().orElse(0)); 
+		
+		// TRATTI GUIDATI
+		punteggio += getCoeffTrattiGuidati() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+				.getValue(DoubleStream.of(
+						agilita.getInPercentuale(), 
+						aerodinamica.getInPercentuale(), 
+						ciclistica.getInPercentuale(), 
+						forzaFisica.getInPercentuale()).average().orElse(0));
+		
+		// CURVE LENTE
+		punteggio += getCoeffCurveLente() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+				.getValue(DoubleStream.of(
+						agilita.getInPercentuale(), 
+						freni.getInPercentuale(), 
+						aggressivita.getInPercentuale(), 
+						forzaFisica.getInPercentuale()).average().orElse(0));
+		
+		// CURVE VELOCI
+		punteggio += getCoeffCurveVeloci() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+				.getValue(DoubleStream.of(
+						aerodinamica.getInPercentuale(), 
+						ciclistica.getInPercentuale(), 
+						motore.getInPercentuale()).average().orElse(0));
+		
+		// STILE DI GUIDA
+		punteggio *= pilota.getStileGuida().getMoltiplicatorePrestazione();
+		
+		// FEELING MOTO
+		punteggio *= new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+				.getValue(feelingMoto.getInPercentuale()); 
+		
+		// ADERENZA GOMME
+		punteggio *= moto.getGommaScelta().getAderenzaAttuale(giro);
+		
+		return new TempoSuGiro(tempoMassimo.getTempoInMillisecondi() * 
+				(100 - Math.min((int) punteggio, 100)) / 100);
 	}
 	
 	private int getCoeffRettilinei() {
-		return 2*Math.min(nRettilinei+1, 5);
+		return Math.min(2*nRettilinei+1, 10);
 	}
 	
 	private int getCoeffTrattiGuidati() {
-		return Math.min(nTrattiGuidati*2 + 1, 10);
+		return Math.min(2*nTrattiGuidati + 1, 10);
 	}
 	
 	private int getCoeffCurveLente() {

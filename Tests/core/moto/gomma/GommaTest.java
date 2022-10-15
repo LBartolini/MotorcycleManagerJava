@@ -49,21 +49,21 @@ public class GommaTest {
 		
 		try {
 			bagnato_leggero.initPreGara(20, new Meteo(0, 1, 100, false));
-		} catch (ValueNotInRangeException e) {}
+		} catch (ValueNotInRangeException e) {fail();}
 		
-		int valore_pioggia_leggera=0;
+		double valore_pioggia_leggera=0;
 		try {
 			valore_pioggia_leggera = bagnato_leggero.getAderenzaAttuale(10);
-		} catch (Exception e) {}
+		} catch (Exception e) {fail();}
 		
 		try {
 			bagnato_leggero.initPreGara(20, new Meteo(0, 100, 100, false));
-		} catch (ValueNotInRangeException e) {}
+		} catch (ValueNotInRangeException e) {fail();}
 		
-		int valore_pioggia_pesante=0;
+		double valore_pioggia_pesante=0;
 		try {
 			valore_pioggia_pesante = bagnato_leggero.getAderenzaAttuale(10);
-		} catch (Exception e) {}
+		} catch (Exception e) {fail();}
 		
 		assertTrue(valore_pioggia_leggera > valore_pioggia_pesante);
 	}
@@ -74,21 +74,21 @@ public class GommaTest {
 		
 		try {
 			bagnato_pesante.initPreGara(20, new Meteo(0, 1, 100, false));
-		} catch (ValueNotInRangeException e) {}
+		} catch (ValueNotInRangeException e) {fail();}
 		
-		int valore_pioggia_leggera=0;
+		double valore_pioggia_leggera=0;
 		try {
 			valore_pioggia_leggera = bagnato_pesante.getAderenzaAttuale(10);
-		} catch (Exception e) {}
+		} catch (Exception e) {fail();}
 		
 		try {
 			bagnato_pesante.initPreGara(20, new Meteo(0, 100, 100, false));
-		} catch (ValueNotInRangeException e) {}
+		} catch (ValueNotInRangeException e) {fail();}
 		
-		int valore_pioggia_pesante=0;
+		double valore_pioggia_pesante=0;
 		try {
 			valore_pioggia_pesante = bagnato_pesante.getAderenzaAttuale(10);
-		} catch (Exception e) {}
+		} catch (Exception e) {fail();}
 		
 		assertTrue(valore_pioggia_leggera+" "+valore_pioggia_pesante, valore_pioggia_leggera < valore_pioggia_pesante);
 	}

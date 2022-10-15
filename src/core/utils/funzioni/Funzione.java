@@ -1,7 +1,7 @@
 package core.utils.funzioni;
 
-public interface Funzione {
+public interface Funzione<T> {
 
-	public abstract int getValue(int x);
+	public abstract T getValue(T x);
 	
 }

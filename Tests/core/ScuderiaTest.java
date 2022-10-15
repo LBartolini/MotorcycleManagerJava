@@ -13,11 +13,16 @@ public class ScuderiaTest {
 	@Test
 	public void testAggiuntaMoto() {
 		Scuderia s = new Scuderia("test");
-		Moto m = new Moto(s, new Facile());
+		Moto m = null;
+		try {
+			m = new Moto(s, new Facile());
+		} catch (ValueNotInRangeException e1) {
+			fail();
+		}
 		
 		try {
 			s.addMoto(m);
-		} catch (ValueNotInRangeException e) {
+		} catch (Exception e) {
 			fail("Exception raised!");
 		}
 		

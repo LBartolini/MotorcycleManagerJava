@@ -3,6 +3,8 @@ package core.moto;
 import java.util.Objects;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
+import Exceptions.ValueNotInRangeException;
+import core.Meteo;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
@@ -22,10 +24,11 @@ public class Moto {
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(Scuderia scuderia, Difficolta difficolta) {
+	public Moto(Scuderia scuderia, Difficolta difficolta) throws ValueNotInRangeException {
 		this.id = ++progressivo;
 		
 		this.scuderia = scuderia;
+		scuderia.addMoto(this);
 		
 		initByDifficolta(difficolta);
 		
@@ -40,10 +43,11 @@ public class Moto {
 		
 	}	
 	
-	public void preGara(Gomma gommaScelta) throws GommaSceltaNotInMarcaGommeException{
+	public void preGara(Gomma gommaScelta, Meteo meteo, int nGiri) throws GommaSceltaNotInMarcaGommeException{
 		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
 		
 		this.gommaScelta = gommaScelta;
+		gommaScelta.initPreGara(nGiri, meteo);
 		incidentata = false;
 		guasto = false;
 	}

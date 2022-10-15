@@ -16,18 +16,18 @@ public class GommaMedia extends Gomma{
 	
 	private Meteo meteo;
 	
-	private Funzione funzAderenza;
-	private Funzione funzTemperaturaAsfalto;
+	private Funzione<Integer> funzAderenza;
+	private Funzione<Integer> funzTemperaturaAsfalto;
 	
 	public GommaMedia() {
 		super(3);
 	}
 
 	@Override
-	public int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
+	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale));
+		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale))/100*getModificatoreMeteoCorretto(meteo)/100.0;
 	}
 
 	@Override

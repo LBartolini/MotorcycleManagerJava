@@ -4,7 +4,7 @@ import java.util.Random;
 
 import Exceptions.ValueNotInRangeException;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineare;
+import core.utils.funzioni.FunzioneLineareInt;
 
 public class Meteo {
 	
@@ -16,7 +16,7 @@ public class Meteo {
 	
 	private int temperaturaAriaFinale, quantitaPioggiaFinale;
 	
-	private Funzione variazioneTemperatura, variazionePioggia;
+	private Funzione<Integer> variazioneTemperatura, variazionePioggia;
 	
 	public Meteo(int temperaturaAriaIniziale, int quantitaPioggiaIniziale, int nGiri, boolean meteoVariabile) throws ValueNotInRangeException {
 		if(temperaturaAriaIniziale < MIN_TEMPERATURA || temperaturaAriaIniziale > MAX_TEMPERATURA) throw new ValueNotInRangeException("tempAria not in range");
@@ -32,8 +32,8 @@ public class Meteo {
 			this.quantitaPioggiaFinale = quantitaPioggiaIniziale;
 		}
 		
-		variazioneTemperatura = new FunzioneLineare(temperaturaAriaIniziale, temperaturaAriaFinale, nGiri);
-		variazionePioggia = new FunzioneLineare(quantitaPioggiaIniziale, quantitaPioggiaFinale, nGiri);
+		variazioneTemperatura = new FunzioneLineareInt(temperaturaAriaIniziale, temperaturaAriaFinale, nGiri);
+		variazionePioggia = new FunzioneLineareInt(quantitaPioggiaIniziale, quantitaPioggiaFinale, nGiri);
 		
 	}
 

@@ -93,7 +93,7 @@ public class ComponenteTest {
 			componente.upgradeGrado();
 		}catch(Exception e) {}
 		
-		assertEquals(4, componente.getGrado());
+		assertEquals(4, componente.getGrado().get());
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ public class ComponenteTest {
 			componente.upgradeResistenza();
 		}catch(Exception e) {}
 		
-		assertEquals(4, componente.getResistenza());
+		assertEquals(4, componente.getResistenza().get());
 	}
 	
 

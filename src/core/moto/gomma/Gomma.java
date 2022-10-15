@@ -7,7 +7,7 @@ import core.Meteo;
 
 public abstract class Gomma {
 	
-	public static final double MODIFICATORE_ADERENZA_METEO_SBAGLIATO = 0.6;
+	public static final double MODIFICATORE_ADERENZA_METEO_SBAGLIATO = 0.3;
 	
 	public static final double MODIFICATORE_CADUTA_GOMME_SBAGLIATE = 1.25;
 	
@@ -17,9 +17,19 @@ public abstract class Gomma {
 		this.id = id;
 	}
 	
-	public abstract int getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException;
+	public abstract double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException;
 	
 	public abstract void initPreGara(int giriTotali, Meteo meteo);
+	
+	protected double getModificatoreMeteoCorretto(Meteo meteo) {
+		if((meteo.getQuantitaPioggiaFinale() > 0 && daAsciutto()) 
+				|| 
+				(meteo.getQuantitaPioggiaFinale() == 0 && daBagnato())) {
+			return MODIFICATORE_ADERENZA_METEO_SBAGLIATO;
+		}
+		
+		return 1;
+	}
 	
 	public abstract String getNome();
 	

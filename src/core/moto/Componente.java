@@ -1,10 +1,11 @@
 package core.moto;
 
 import core.utils.campo.Campo;
+import core.utils.campo.CampoInterface;
 import core.utils.campo.CampoMoto;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineare;
+import core.utils.funzioni.FunzioneLineareInt;
 
 public class Componente {
 	
@@ -37,7 +38,7 @@ public class Componente {
 	
 	
 	public int getProbabilitaGuasto() {
-		Funzione f = new FunzioneLineare(MAX_PROB_GUASTO, MIN_PROB_GUASTO, new CampoMoto().getMax());
+		Funzione<Integer> f = new FunzioneLineareInt(MAX_PROB_GUASTO, MIN_PROB_GUASTO, new CampoMoto().getMax());
 		
 		return f.getValue(resistenzaComponente.get());
 	}
@@ -46,12 +47,12 @@ public class Componente {
 		return nome;
 	}
 	
-	public int getGrado() {
-		return gradoComponente.get();
+	public CampoInterface getGrado() {
+		return gradoComponente;
 	}
 	
-	public int getResistenza() {
-		return resistenzaComponente.get();
+	public CampoInterface getResistenza() {
+		return resistenzaComponente;
 	}
 
 	public void upgradeGrado(){ 

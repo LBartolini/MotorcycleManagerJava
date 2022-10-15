@@ -1,6 +1,6 @@
 package core.utils.funzioni;
 
-public class FunzioneParabola implements Funzione{
+public class FunzioneParabola implements Funzione<Integer>{
 	
 	private double a, b, c;
 	
@@ -19,7 +19,7 @@ public class FunzioneParabola implements Funzione{
 	}
 
 	@Override
-	public int getValue(int x) {
+	public Integer getValue(Integer x) {
 		return (int) (a*Math.pow(x, 2) + b*x + c);
 	}
 
