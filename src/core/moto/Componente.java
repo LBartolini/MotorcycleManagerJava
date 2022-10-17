@@ -24,8 +24,8 @@ public class Componente {
 		initComponente(nome, 
 				diff.getGradoComponenteIniziale(), 
 				diff.getResistenzaComponenteIniziale(), 
-				diff.getMinProbabiitaGuasto(), 
-				diff.getMaxProbabiitaGuasto());
+				diff.getMinProbabilitaGuasto(), 
+				diff.getMaxProbabilitaGuasto());
 	}
 	
 	private void initComponente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {

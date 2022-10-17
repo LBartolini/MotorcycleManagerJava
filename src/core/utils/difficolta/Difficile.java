@@ -29,12 +29,12 @@ public class Difficile implements Difficolta{
 	}
 
 	@Override
-	public int getMinProbabiitaGuasto() {
+	public int getMinProbabilitaGuasto() {
 		return MIN_PROB_GUASTO;
 	}
 
 	@Override
-	public int getMaxProbabiitaGuasto() {
+	public int getMaxProbabilitaGuasto() {
 		return MAX_PROB_GUASTO;
 	}
 

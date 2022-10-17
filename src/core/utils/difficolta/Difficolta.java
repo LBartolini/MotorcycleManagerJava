@@ -8,9 +8,9 @@ public interface Difficolta {
 	
 	public int getResistenzaComponenteIniziale();
 	
-	public int getMinProbabiitaGuasto();
+	public int getMinProbabilitaGuasto();
 	
-	public int getMaxProbabiitaGuasto();
+	public int getMaxProbabilitaGuasto();
 	
 	public double getMoltiplicatoreCaduta();
 	
