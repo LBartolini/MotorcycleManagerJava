@@ -1,5 +1,5 @@
 package core;
 
-public class Contratto {
+public interface Contratto {
 
 }

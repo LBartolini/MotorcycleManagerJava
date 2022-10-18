@@ -14,7 +14,7 @@ public class Meteo {
 	
 	public static final double MODIFICATORE_PROB_CADUTA_CON_PIOGGIA = 1.1;
 	
-	private int temperaturaAriaFinale, quantitaPioggiaFinale;
+	private int temperaturaFinale, pioggiaFinale;
 	
 	private Funzione<Integer> variazioneTemperatura, variazionePioggia;
 	
@@ -25,15 +25,15 @@ public class Meteo {
 		Random r = new Random();
 		
 		if(meteoVariabile) {
-			this.temperaturaAriaFinale = temperaturaAriaIniziale*(100 - r.nextInt(MASSIMA_VARIAZIONE_METEO)+1)/100;
-			this.quantitaPioggiaFinale = quantitaPioggiaIniziale*(100 - r.nextInt(MASSIMA_VARIAZIONE_METEO)+1)/100;
+			this.temperaturaFinale = temperaturaAriaIniziale*(100 - r.nextInt(MASSIMA_VARIAZIONE_METEO)+1)/100;
+			this.pioggiaFinale = quantitaPioggiaIniziale*(100 - r.nextInt(MASSIMA_VARIAZIONE_METEO)+1)/100;
 		}else {
-			this.temperaturaAriaFinale = temperaturaAriaIniziale;
-			this.quantitaPioggiaFinale = quantitaPioggiaIniziale;
+			this.temperaturaFinale = temperaturaAriaIniziale;
+			this.pioggiaFinale = quantitaPioggiaIniziale;
 		}
 		
-		variazioneTemperatura = new FunzioneLineareInt(temperaturaAriaIniziale, temperaturaAriaFinale, nGiri);
-		variazionePioggia = new FunzioneLineareInt(quantitaPioggiaIniziale, quantitaPioggiaFinale, nGiri);
+		variazioneTemperatura = new FunzioneLineareInt(temperaturaAriaIniziale, temperaturaFinale, nGiri);
+		variazionePioggia = new FunzioneLineareInt(quantitaPioggiaIniziale, pioggiaFinale, nGiri);
 		
 	}
 
@@ -41,16 +41,16 @@ public class Meteo {
 		return variazioneTemperatura.getValue(giro);
 	}
 
-	public int getQuantitaPioggia(int giro) {
+	public int getPioggia(int giro) {
 		return variazionePioggia.getValue(giro);
 	}
 	
 	public int getTemperaturaFinale() {
-		return temperaturaAriaFinale;
+		return temperaturaFinale;
 	}
 	
-	public int getQuantitaPioggiaFinale() {
-		return quantitaPioggiaFinale;
+	public int getPioggiaFinale() {
+		return pioggiaFinale;
 	}
 	
 }

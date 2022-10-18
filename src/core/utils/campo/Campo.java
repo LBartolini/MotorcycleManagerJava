@@ -1,6 +1,6 @@
 package core.utils.campo;
 
-public class Campo implements CampoInterface {
+public class Campo implements CampoInterfaceModifiable {
 	
 	private int value;
 	private final int MIN, MAX;
@@ -27,6 +27,7 @@ public class Campo implements CampoInterface {
 		return (double) value / getMax();
 	}
 	
+	@Override
 	public final void set(int newValue){
 		if(newValue < getMin()) {
 			value = getMin();
@@ -39,6 +40,7 @@ public class Campo implements CampoInterface {
 		value = newValue;
 	}
 	
+	@Override
 	public final void increment() {
 		set(value+1);
 	}

@@ -5,13 +5,14 @@ import core.stile_guida.StileGuida;
 import core.stile_guida.StileNormale;
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
+import core.utils.campo.CampoInterfaceModifiable;
 
 public class Pilota {
 	
 	private static int MIN_CAMPO=1, MAX_CAMPO=30;
 	
 	private String nome, cognome;
-	private Campo aggressivita, forzaFisica, agilita, feelingMoto;
+	private CampoInterfaceModifiable aggressivita, forzaFisica, agilita, feelingMoto;
 	
 	private Moto moto;
 	

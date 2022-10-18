@@ -6,8 +6,8 @@ import Exceptions.ObjectNotInitializedException;
 import core.Meteo;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneCostante;
-import core.utils.funzioni.FunzioneParabola;
+import core.utils.funzioni.FunzioneCostanteInt;
+import core.utils.funzioni.FunzioneParabolaInt;
 
 public class GommaMedia extends Gomma{
 	
@@ -32,8 +32,8 @@ public class GommaMedia extends Gomma{
 
 	@Override
 	public void preGara(int giriTotali, Meteo meteo) {
-		funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
-		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
+		funzAderenza = new FunzioneCostanteInt(ADERENZA, giriTotali);
+		funzTemperaturaAsfalto = new FunzioneParabolaInt((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		this.meteo = meteo;
 	}

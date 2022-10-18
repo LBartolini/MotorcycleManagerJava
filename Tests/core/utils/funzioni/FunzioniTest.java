@@ -11,7 +11,7 @@ public class FunzioniTest {
 
 	@Test
 	public void testFunzioneCostante() {
-		Funzione<Integer> funzioneCostante = new FunzioneCostante(50, 10);
+		Funzione<Integer> funzioneCostante = new FunzioneCostanteInt(50, 10);
 		
 		assertEquals(50, (int) funzioneCostante.getValue(1));
 	}
@@ -26,7 +26,7 @@ public class FunzioniTest {
 	
 	@Test
 	public void testFunzioneParabola() {
-		FunzioneParabola funzioneParabola = new FunzioneParabola(
+		FunzioneParabolaInt funzioneParabola = new FunzioneParabolaInt(
 				(Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, 
 				Meteo.MAX_TEMPERATURA, GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA);
 		

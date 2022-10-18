@@ -22,9 +22,9 @@ public abstract class Gomma {
 	public abstract void preGara(int giriTotali, Meteo meteo);
 	
 	protected double getModificatoreMeteoCorretto(Meteo meteo) {
-		if((meteo.getQuantitaPioggiaFinale() > 0 && daAsciutto()) 
+		if((meteo.getPioggiaFinale() > 0 && daAsciutto()) 
 				|| 
-				(meteo.getQuantitaPioggiaFinale() == 0 && daBagnato())) {
+				(meteo.getPioggiaFinale() == 0 && daBagnato())) {
 			return MODIFICATORE_ADERENZA_METEO_SBAGLIATO;
 		}
 		

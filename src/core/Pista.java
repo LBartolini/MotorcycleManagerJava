@@ -130,12 +130,12 @@ public class Pista {
 		double soglia = probCadutaPista;
 		
 		// PIOGGIA
-		if(meteo.getQuantitaPioggiaFinale() > 0) {
+		if(meteo.getPioggiaFinale() > 0) {
 			soglia *= Meteo.MODIFICATORE_PROB_CADUTA_CON_PIOGGIA;
 		}
 		
 		// GOMME DA ASCIUTTO SU PIOGGIA
-		if(meteo.getQuantitaPioggiaFinale() > 0 && moto.getGommaScelta().daAsciutto()) {
+		if(meteo.getPioggiaFinale() > 0 && moto.getGommaScelta().daAsciutto()) {
 			soglia *= Gomma.MODIFICATORE_CADUTA_GOMME_SBAGLIATE;
 		}
 		
