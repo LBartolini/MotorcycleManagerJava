@@ -42,7 +42,7 @@ public class Pista {
 
 	}
 
-	public void initGara(Meteo meteo) {
+	public void preGara(Meteo meteo) {
 		Random random = new Random();
 		
 		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA/3) + 1;

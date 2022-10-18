@@ -31,7 +31,7 @@ public class GommaMedia extends Gomma{
 	}
 
 	@Override
-	public void initPreGara(int giriTotali, Meteo meteo) {
+	public void preGara(int giriTotali, Meteo meteo) {
 		funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
 		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
 		

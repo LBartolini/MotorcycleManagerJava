@@ -32,7 +32,7 @@ public class GommaSoft extends Gomma{
 	}
 
 	@Override
-	public void initPreGara(int giriTotali, Meteo meteo) {
+	public void preGara(int giriTotali, Meteo meteo) {
 		funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
 		funzTemperaturaAsfalto = new FunzioneParabola((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
 		

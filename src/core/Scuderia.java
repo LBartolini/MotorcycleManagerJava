@@ -1,10 +1,11 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
+import core.utils.difficolta.Difficolta;
 
 public class Scuderia {
 
@@ -13,22 +14,23 @@ public class Scuderia {
 	private String nome;
 	private List<Moto> moto;
 	
-	public Scuderia(String nome) {
+	public Scuderia(String nome, Difficolta diff) {
 		this.nome = nome;
-		moto = new ArrayList<>();
+		moto = IntStream.range(1, MAX_MOTO+1)
+				.mapToObj((n) -> new Moto(this, diff))
+				.collect(Collectors.toList());
 	}
 	
-	public void addMoto(Moto m) throws ValueNotInRangeException {
-		if(moto.size() >= MAX_MOTO) throw new ValueNotInRangeException();
-		
-		moto.add(m);
-	}
-	
-	public String getNome() {
+	public final String getNome() {
 		return nome;
 	}
-	public List<Moto> getMoto() {
-		return moto;
+	
+	public final boolean isMotoIn(Moto moto) {
+		return this.moto.contains(moto);
+	}
+	
+	public final Moto getMoto(int index) {
+		return moto.get(index);
 	}
 	
 }

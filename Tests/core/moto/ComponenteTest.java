@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import core.utils.campo.CampoMoto;
 import core.utils.difficolta.Difficile;
 import core.utils.difficolta.Difficolta;
 import core.utils.difficolta.Facile;
@@ -25,7 +24,7 @@ public class ComponenteTest {
 	@Test
 	public void testMassimaResistenzaFacile() {
 		Difficolta diff = new Facile();
-		Componente componente = new Componente("Test", 1, new CampoMoto().getMax(), 
+		Componente componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
 		assertEquals(diff.getMinProbabilitaGuasto(), componente.getProbabilitaGuasto());
@@ -43,7 +42,7 @@ public class ComponenteTest {
 	@Test
 	public void testMassimaResistenzaIntermedia() {
 		Difficolta diff = new Intermedia();
-		Componente componente = new Componente("Test", 1, new CampoMoto().getMax(), 
+		Componente componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
 		assertEquals(diff.getMinProbabilitaGuasto(), componente.getProbabilitaGuasto());
@@ -61,7 +60,7 @@ public class ComponenteTest {
 	@Test
 	public void testMassimaResistenzaDifficile() {
 		Difficolta diff = new Difficile();
-		Componente componente = new Componente("Test", 1, new CampoMoto().getMax(), 
+		Componente componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
 		assertEquals(diff.getMinProbabilitaGuasto(), componente.getProbabilitaGuasto());
@@ -79,7 +78,7 @@ public class ComponenteTest {
 	@Test
 	public void testMassimaResistenzaImpossibile() {
 		Difficolta diff = new Impossibile();
-		Componente componente = new Componente("Test", 1, new CampoMoto().getMax(), 
+		Componente componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
 		assertEquals(diff.getMinProbabilitaGuasto(), componente.getProbabilitaGuasto());

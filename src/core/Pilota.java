@@ -5,9 +5,10 @@ import core.stile_guida.StileGuida;
 import core.stile_guida.StileNormale;
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
-import core.utils.campo.CampoPilota;
 
 public class Pilota {
+	
+	private static int MIN_CAMPO=1, MAX_CAMPO=30;
 	
 	private String nome, cognome;
 	private Campo aggressivita, forzaFisica, agilita, feelingMoto;
@@ -21,10 +22,10 @@ public class Pilota {
 	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica, int agilita) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = new CampoPilota(aggressivita);
-		this.forzaFisica = new CampoPilota(forzaFisica);
-		this.feelingMoto = new CampoPilota();
-		this.agilita = new CampoPilota(agilita);
+		this.aggressivita = new Campo(aggressivita, MIN_CAMPO, MAX_CAMPO);
+		this.forzaFisica = new Campo(forzaFisica, MIN_CAMPO, MAX_CAMPO);
+		this.feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
+		this.agilita = new Campo(agilita, MIN_CAMPO, MAX_CAMPO);
 		this.moto = moto;
 		stileScelto = new StileNormale();
 	}
@@ -33,56 +34,56 @@ public class Pilota {
 		this.stileScelto = stileScelto;
 	}
 	
-	public StileGuida getStileGuida() {
+	public final StileGuida getStileGuida() {
 		return stileScelto;
 	}
 	
-	public void incrementaAggressivita() {
+	public final void incrementaAggressivita() {
 		aggressivita.increment();
 	}
 	
-	public void incrementaForzaFisica() {
+	public final void incrementaForzaFisica() {
 		forzaFisica.increment();
 	}
 	
-	public void incrementaFeelingMoto() {
+	public final void incrementaFeelingMoto() {
 		feelingMoto.increment();
 	}
 	
-	public void incrementaAgilita() {
+	public final void incrementaAgilita() {
 		agilita.increment();
 	}
 	
-	public void cambioMoto(Moto nuovaMoto) {
+	public final void cambioMoto(Moto nuovaMoto) {
 		moto = nuovaMoto;
-		feelingMoto = new CampoPilota();
+		feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
 	}
 
-	public String getNome() {
+	public final String getNome() {
 		return nome;
 	}
 
-	public String getCognome() {
+	public final String getCognome() {
 		return cognome;
 	}
 
-	public CampoInterface getAggressivita() {
+	public final CampoInterface getAggressivita() {
 		return aggressivita;
 	}
 	
-	public CampoInterface getForzaFisica() {
+	public final CampoInterface getForzaFisica() {
 		return forzaFisica;
 	}
 
-	public CampoInterface getFeelingMoto() {
+	public final CampoInterface getFeelingMoto() {
 		return feelingMoto;
 	}
 	
-	public CampoInterface getAgilita() {
+	public final CampoInterface getAgilita() {
 		return agilita;
 	}
 
-	public Moto getMoto() {
+	public final Moto getMoto() {
 		return moto;
 	}
 	

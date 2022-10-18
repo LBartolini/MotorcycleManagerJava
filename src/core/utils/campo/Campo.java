@@ -1,14 +1,19 @@
 package core.utils.campo;
 
-public abstract class Campo implements CampoInterface {
+public class Campo implements CampoInterface {
 	
 	private int value;
+	private final int MIN, MAX;
 	
-	public Campo() {
-		value = getMin();
+	public Campo(int MIN, int MAX) {
+		this.MIN = MIN;
+		this.MAX = MAX;
+		set(MIN);
 	}
 	
-	public Campo(int value) {
+	public Campo(int value, int MIN, int MAX) {
+		this.MIN = MIN;
+		this.MAX = MAX;
 		set(value);
 	}
 	
@@ -49,9 +54,13 @@ public abstract class Campo implements CampoInterface {
 	}
 	
 	@Override
-	public abstract int getMin();
+	public final int getMin() {
+		return MIN;
+	}
 	
 	@Override
-	public abstract int getMax();
+	public final int getMax() {
+		return MAX;
+	}
 
 }

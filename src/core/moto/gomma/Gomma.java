@@ -19,7 +19,7 @@ public abstract class Gomma {
 	
 	public abstract double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException;
 	
-	public abstract void initPreGara(int giriTotali, Meteo meteo);
+	public abstract void preGara(int giriTotali, Meteo meteo);
 	
 	protected double getModificatoreMeteoCorretto(Meteo meteo) {
 		if((meteo.getQuantitaPioggiaFinale() > 0 && daAsciutto()) 

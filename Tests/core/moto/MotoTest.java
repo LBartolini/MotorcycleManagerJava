@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import Exceptions.ValueNotInRangeException;
 import core.Meteo;
+import core.Pilota;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
@@ -18,17 +18,13 @@ public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		Moto m = null;
-		try {
-			m = new Moto(new Scuderia("Pippo"), new Facile());
-		} catch (ValueNotInRangeException e1) {
-			fail();
-		}
-		
+		Scuderia s = new Scuderia("Pippo", new Facile());
+		Moto m = s.getMoto(0);
+		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
 		try {
 			m.preGara(new GommaStradale(), new Meteo(15, 0, 20, false), 20);
-		} catch (GommaSceltaNotInMarcaGommeException | ValueNotInRangeException e) {
+		} catch (Exception e) {
 			fail();
 		}
 
@@ -40,30 +36,27 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		Moto m = null;
-		try {
-			m = new Moto(new Scuderia("Pippo"), new Impossibile());
-		} catch (ValueNotInRangeException e1) {
-			fail();
-		}
-		
+		Scuderia s = new Scuderia("Pippo", new Impossibile());
+		Moto m = s.getMoto(0);
+		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
 		try {
 			m.preGara(new GommaBagnatoPesante(), new Meteo(15, 0, 20, false), 20);
 			fail();
-		} catch (GommaSceltaNotInMarcaGommeException | ValueNotInRangeException e) {}
+		} catch (GommaSceltaNotInMarcaGommeException e) {
+			
+		} catch (Exception e) {
+			fail();
+		}
 		 
 	}
 	
 	@Test
 	public void testEquals() {
+		Scuderia s = new Scuderia("Pippo", new Impossibile());
 		Moto m1 = null, m2 = null;
-		try {
-			m1 = new Moto(new Scuderia("Pippo"), new Impossibile());
-			m2 = new Moto(new Scuderia("Pippo2"), new Impossibile());		
-		}catch(ValueNotInRangeException e) {
-			fail();
-		}
+		m1 = s.getMoto(0);
+		m2 = s.getMoto(1);
 		
 		assertEquals(m1, m1);
 		assertNotEquals(m1, m2);

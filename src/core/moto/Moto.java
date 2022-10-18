@@ -3,53 +3,49 @@ package core.moto;
 import java.util.Objects;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import Exceptions.ValueNotInRangeException;
+import Exceptions.ObjectNotInitializedException;
 import core.Meteo;
+import core.Pilota;
 import core.Scuderia;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
 import core.utils.difficolta.Difficolta;
 
 
-public class Moto {
+public final class Moto {
 	
 	private static int progressivo = 0;
 	
 	private int id;
 	private Scuderia scuderia;
-	
+	private Pilota pilota;
+
 	private Componente motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
-	
-	// TODO aggiungere riferimento al pilota che guida la moto
 	
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(Scuderia scuderia, Difficolta difficolta) throws ValueNotInRangeException {
+	public Moto(Scuderia scuderia, Difficolta difficolta) {
 		this.id = ++progressivo;
 		
 		this.scuderia = scuderia;
-		scuderia.addMoto(this);
+		this.pilota = null;
 		
-		initByDifficolta(difficolta);
-		
-	}
-	
-	public void initByDifficolta(Difficolta diff) {
-		motore = new Componente("Motore", diff);
-		aerodinamica = new Componente("Aerodinamica", diff);
-		ciclistica = new Componente("Ciclistica", diff);
-		freni = new Componente("Freni", diff);
-		marcaGomme = diff.getMarcaGomme();
-		
+		motore = new Componente("Motore", difficolta);
+		aerodinamica = new Componente("Aerodinamica", difficolta);
+		ciclistica = new Componente("Ciclistica", difficolta);
+		freni = new Componente("Freni", difficolta);
+		marcaGomme = difficolta.getMarcaGomme();
 	}	
 	
-	public void preGara(Gomma gommaScelta, Meteo meteo, int nGiri) throws GommaSceltaNotInMarcaGommeException{
+	public void preGara(Gomma gommaScelta, Meteo meteo, int nGiri) throws Exception{
+		if(Objects.isNull(pilota)) throw new ObjectNotInitializedException("Pilota has to be initialized");
+		if(!scuderia.isMotoIn(this)) throw new Exception("This object should not exist");
 		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
 		
 		this.gommaScelta = gommaScelta;
-		gommaScelta.initPreGara(nGiri, meteo);
+		gommaScelta.preGara(nGiri, meteo);
 		incidentata = false;
 		guasto = false;
 	}
@@ -84,6 +80,14 @@ public class Moto {
 
 	public Gomma getGommaScelta() {
 		return gommaScelta;
+	}
+	
+	public Pilota getPilota() {
+		return pilota;
+	}
+
+	public void setPilota(Pilota pilota) {
+		this.pilota = pilota;
 	}
 	
 	public boolean isGuasta() {

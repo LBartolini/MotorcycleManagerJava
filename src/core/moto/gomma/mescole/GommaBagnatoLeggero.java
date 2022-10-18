@@ -29,7 +29,7 @@ public class GommaBagnatoLeggero extends Gomma{
 	}
 
 	@Override
-	public void initPreGara(int giriTotali, Meteo meteo) {
+	public void preGara(int giriTotali, Meteo meteo) {
 		this.funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
 		this.meteo = meteo;
 	}

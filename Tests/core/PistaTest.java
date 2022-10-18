@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Exceptions.GommaSceltaNotInMarcaGommeException;
 import Exceptions.ObjectNotInitializedException;
 import Exceptions.ValueNotInRangeException;
 import core.moto.Moto;
@@ -28,13 +27,12 @@ public class PistaTest {
 		} catch (ValueNotInRangeException e2) {
 			fail("Errore init Pista");
 		}
-		Moto moto = null;
-		try {
-			moto = new Moto(new Scuderia("Pippo Scuderia"), new Facile());
-		} catch (ValueNotInRangeException e1) {
-			fail("Errore init Moto");
-		}
+		
+		Scuderia s = new Scuderia("Scuderia", new Facile());
+		Moto moto = s.getMoto(0);
 		Pilota pilota = new Pilota("Lorenzo", "Bartolini", moto, 5, 5, 5);
+		moto.setPilota(pilota);
+		
 		Meteo meteo = null;
 		try {
 			meteo = new Meteo(10, 0, nGiri, false);
@@ -42,11 +40,11 @@ public class PistaTest {
 			fail("Errore init Meteo");
 		}
 		
-		pista.initGara(meteo);
+		pista.preGara(meteo);
 		pilota.preGara(new StileNormale());
 		try {
 			moto.preGara(new GommaMedia(), meteo, nGiri);
-		} catch (GommaSceltaNotInMarcaGommeException e) {
+		} catch (Exception e) {
 			fail("Errore pregara Moto");
 		}
 		
@@ -73,23 +71,17 @@ public class PistaTest {
 			fail("Errore init Pista");
 		}
 		
+		Scuderia scuderiaDifficile = new Scuderia("Pippo Scuderia", new Difficile());
+		Scuderia scuderiaFacile = new Scuderia("Pluto Scuderia", new Facile());
 		
-		Moto moto1 = null;
-		try {
-			moto1 = new Moto(new Scuderia("Pippo Scuderia"), new Difficile());
-		} catch (ValueNotInRangeException e1) {
-			fail("Errore init Moto");
-		}
+		Moto moto1 = scuderiaDifficile.getMoto(0);
 		Pilota pilota1 = new Pilota("Lorenzo", "Bartolini", moto1, 5, 5, 5);
+		moto1.setPilota(pilota1);
 		
 		
-		Moto moto2 = null;
-		try {
-			moto2 = new Moto(new Scuderia("Pluto Scuderia"), new Facile());
-		} catch (ValueNotInRangeException e1) {
-			fail("Errore init Moto");
-		}
+		Moto moto2 = scuderiaFacile.getMoto(0);
 		Pilota pilota2 = new Pilota("Pippo", "Pluto", moto2, 10, 10, 10);
+		moto2.setPilota(pilota2);
 		
 		Meteo meteo = null;
 		try {
@@ -98,13 +90,13 @@ public class PistaTest {
 			fail("Errore init Meteo");
 		}
 		
-		pista.initGara(meteo);
+		pista.preGara(meteo);
 		pilota1.preGara(new StileNormale());
 		pilota2.preGara(new StileAggressivo());
 		try {
 			moto1.preGara(new GommaBagnatoLeggero(), meteo, nGiri);
 			moto2.preGara(new GommaMedia(), meteo, nGiri);
-		} catch (GommaSceltaNotInMarcaGommeException e) {
+		} catch (Exception e) {
 			fail("Errore pregara Moto");
 		}
 		
@@ -116,9 +108,6 @@ public class PistaTest {
 		} catch (ObjectNotInitializedException e) {
 			fail("Errore getTempoSulGiro");
 		}
-		
-		System.out.println(t1);
-		System.out.println(t2);
 		
 		assertTrue(0 < t1.getTempoInMillisecondi());
 		assertTrue(0 < t2.getTempoInMillisecondi());
