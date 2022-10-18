@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
+import core.meteo.Meteo;
+import core.meteo.MeteoInterface;
 
 public class MeteoTest {
 
 	@Test
 	public void testMeteoNonVariabile() {
-		Meteo meteo = null;
+		MeteoInterface meteo = null;
 		try {
 			meteo = new Meteo(25, 0, 20, false);
 		} catch (ValueNotInRangeException e) {fail();}
@@ -21,7 +23,7 @@ public class MeteoTest {
 	
 	@Test
 	public void testMeteoVariabile() {
-		Meteo meteo = null;
+		MeteoInterface meteo = null;
 		try {
 			meteo = new Meteo(25, 0, 20, true);
 		} catch (ValueNotInRangeException e) {fail();}

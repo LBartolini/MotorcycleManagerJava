@@ -4,11 +4,11 @@ import java.util.Objects;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
 import Exceptions.ObjectNotInitializedException;
-import core.Meteo;
 import core.Pilota;
-import core.Scuderia;
+import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
+import core.scuderia.ScuderiaInterface;
 import core.utils.difficolta.Difficolta;
 
 
@@ -17,7 +17,7 @@ public final class Moto {
 	private static int progressivo = 0;
 	
 	private int id;
-	private Scuderia scuderia;
+	private ScuderiaInterface scuderia;
 	private Pilota pilota;
 
 	private Componente motore, aerodinamica, ciclistica, freni;
@@ -26,7 +26,7 @@ public final class Moto {
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(Scuderia scuderia, Difficolta difficolta) {
+	public Moto(ScuderiaInterface scuderia, Difficolta difficolta) {
 		this.id = ++progressivo;
 		
 		this.scuderia = scuderia;
@@ -39,7 +39,7 @@ public final class Moto {
 		marcaGomme = difficolta.getMarcaGomme();
 	}	
 	
-	public void preGara(Gomma gommaScelta, Meteo meteo, int nGiri) throws Exception{
+	public void preGara(Gomma gommaScelta, MeteoInterface meteo, int nGiri) throws Exception{
 		if(Objects.isNull(pilota)) throw new ObjectNotInitializedException("Pilota has to be initialized");
 		if(!scuderia.isMotoIn(this)) throw new Exception("This object should not exist");
 		if(!marcaGomme.getGommeDisponibili().contains(gommaScelta)) throw new GommaSceltaNotInMarcaGommeException("Gomma selezionata: "+gommaScelta);
@@ -54,7 +54,7 @@ public final class Moto {
 		return id;
 	}
 
-	public Scuderia getScuderia() {
+	public ScuderiaInterface getScuderia() {
 		return scuderia;
 	}
 

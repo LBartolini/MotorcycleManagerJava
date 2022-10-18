@@ -8,6 +8,12 @@ public interface Difficolta {
 	
 	public int getResistenzaComponenteIniziale();
 	
+	public int getAggressivitaIniziale();
+	
+	public int getForzaFisicaIniziale();
+	
+	public int getAgilitaIniziale();
+	
 	public int getMinProbabilitaGuasto();
 	
 	public int getMaxProbabilitaGuasto();

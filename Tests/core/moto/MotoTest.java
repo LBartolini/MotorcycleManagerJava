@@ -5,12 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import core.Meteo;
 import core.Pilota;
-import core.Scuderia;
+import core.meteo.Meteo;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaStradale;
+import core.scuderia.Scuderia;
+import core.scuderia.ScuderiaInterface;
 import core.utils.difficolta.Facile;
 import core.utils.difficolta.Impossibile;
 
@@ -18,7 +19,7 @@ public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		Scuderia s = new Scuderia("Pippo", new Facile());
+		ScuderiaInterface s = new Scuderia("Pippo", new Facile());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
@@ -36,7 +37,7 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		Scuderia s = new Scuderia("Pippo", new Impossibile());
+		ScuderiaInterface s = new Scuderia("Pippo", new Impossibile());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
@@ -53,7 +54,7 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		Scuderia s = new Scuderia("Pippo", new Impossibile());
+		ScuderiaInterface s = new Scuderia("Pippo", new Impossibile());
 		Moto m1 = null, m2 = null;
 		m1 = s.getMoto(0);
 		m2 = s.getMoto(1);

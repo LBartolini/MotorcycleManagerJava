@@ -6,9 +6,13 @@ import org.junit.Test;
 
 import Exceptions.ObjectNotInitializedException;
 import Exceptions.ValueNotInRangeException;
+import core.meteo.Meteo;
+import core.meteo.MeteoInterface;
 import core.moto.Moto;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaMedia;
+import core.scuderia.Scuderia;
+import core.scuderia.ScuderiaInterface;
 import core.stile_guida.StileAggressivo;
 import core.stile_guida.StileNormale;
 import core.utils.TempoSuGiro;
@@ -28,12 +32,12 @@ public class PistaTest {
 			fail("Errore init Pista");
 		}
 		
-		Scuderia s = new Scuderia("Scuderia", new Facile());
+		ScuderiaInterface s = new Scuderia("Scuderia", new Facile());
 		Moto moto = s.getMoto(0);
 		Pilota pilota = new Pilota("Lorenzo", "Bartolini", moto, 5, 5, 5);
 		moto.setPilota(pilota);
 		
-		Meteo meteo = null;
+		MeteoInterface meteo = null;
 		try {
 			meteo = new Meteo(10, 0, nGiri, false);
 		} catch (ValueNotInRangeException e1) {
@@ -71,8 +75,8 @@ public class PistaTest {
 			fail("Errore init Pista");
 		}
 		
-		Scuderia scuderiaDifficile = new Scuderia("Pippo Scuderia", new Difficile());
-		Scuderia scuderiaFacile = new Scuderia("Pluto Scuderia", new Facile());
+		ScuderiaInterface scuderiaDifficile = new Scuderia("Pippo Scuderia", new Difficile());
+		ScuderiaInterface scuderiaFacile = new Scuderia("Pluto Scuderia", new Facile());
 		
 		Moto moto1 = scuderiaDifficile.getMoto(0);
 		Pilota pilota1 = new Pilota("Lorenzo", "Bartolini", moto1, 5, 5, 5);
@@ -83,7 +87,7 @@ public class PistaTest {
 		Pilota pilota2 = new Pilota("Pippo", "Pluto", moto2, 10, 10, 10);
 		moto2.setPilota(pilota2);
 		
-		Meteo meteo = null;
+		MeteoInterface meteo = null;
 		try {
 			meteo = new Meteo(10, 0, nGiri, false);
 		} catch (ValueNotInRangeException e1) {

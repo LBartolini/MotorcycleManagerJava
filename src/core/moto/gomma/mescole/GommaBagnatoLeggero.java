@@ -3,7 +3,8 @@ package core.moto.gomma.mescole;
 import java.util.Objects;
 
 import Exceptions.ObjectNotInitializedException;
-import core.Meteo;
+import core.meteo.Meteo;
+import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineareInt;
@@ -13,7 +14,7 @@ public class GommaBagnatoLeggero extends Gomma{
 	public static final int ADERENZA_BASE = 20;
 	public static final int ADERENZA_INIZIALE = 20, ADERENZA_FINALE = 5;
 	
-	private Meteo meteo;
+	private MeteoInterface meteo;
 
 	public GommaBagnatoLeggero() {
 		super(5);
@@ -29,7 +30,7 @@ public class GommaBagnatoLeggero extends Gomma{
 	}
 
 	@Override
-	public void preGara(int giriTotali, Meteo meteo) {
+	public void preGara(int giriTotali, MeteoInterface meteo) {
 		this.funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
 		this.meteo = meteo;
 	}

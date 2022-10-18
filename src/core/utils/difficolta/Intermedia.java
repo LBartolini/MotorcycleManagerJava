@@ -8,6 +8,10 @@ public class Intermedia implements Difficolta{
 	private static final int GRADO_COMPONENTE_INIZIALE = 5;
 	private static final int RESISTENZA_INIZIALE = 10;
 	
+	private static final int AGGRESSIVITA_INIZIALE = 12;
+	private static final int FORZAFISICA_INIZIALE = 12;
+	private static final int AGILITA_INIZIALE = 12;
+	
 	private static final int MIN_PROB_GUASTO = 0;
 	private static final int MAX_PROB_GUASTO = 10;
 	
@@ -41,6 +45,21 @@ public class Intermedia implements Difficolta{
 	@Override
 	public double getMoltiplicatoreCaduta() {
 		return MOLTIPLICATORE_CADUTA;
+	}
+	
+	@Override
+	public int getAggressivitaIniziale() {
+		return AGGRESSIVITA_INIZIALE;
+	}
+
+	@Override
+	public int getForzaFisicaIniziale() {
+		return FORZAFISICA_INIZIALE;
+	}
+
+	@Override
+	public int getAgilitaIniziale() {
+		return AGILITA_INIZIALE;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package core;
+package core.scuderia;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import core.moto.Moto;
 import core.utils.difficolta.Difficolta;
 
-public class Scuderia {
+public class Scuderia implements ScuderiaInterface {
 
 	private static final int MAX_MOTO = 2;
 	
@@ -21,14 +21,17 @@ public class Scuderia {
 				.collect(Collectors.toList());
 	}
 	
+	@Override
 	public final String getNome() {
 		return nome;
 	}
 	
+	@Override
 	public final boolean isMotoIn(Moto moto) {
 		return this.moto.contains(moto);
 	}
 	
+	@Override
 	public final Moto getMoto(int index) {
 		return moto.get(index);
 	}

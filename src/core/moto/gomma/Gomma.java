@@ -3,7 +3,7 @@ package core.moto.gomma;
 import java.util.Objects;
 
 import Exceptions.ObjectNotInitializedException;
-import core.Meteo;
+import core.meteo.MeteoInterface;
 
 public abstract class Gomma {
 	
@@ -19,9 +19,9 @@ public abstract class Gomma {
 	
 	public abstract double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException;
 	
-	public abstract void preGara(int giriTotali, Meteo meteo);
+	public abstract void preGara(int giriTotali, MeteoInterface meteo);
 	
-	protected double getModificatoreMeteoCorretto(Meteo meteo) {
+	protected double getModificatoreMeteoCorretto(MeteoInterface meteo) {
 		if((meteo.getPioggiaFinale() > 0 && daAsciutto()) 
 				|| 
 				(meteo.getPioggiaFinale() == 0 && daBagnato())) {

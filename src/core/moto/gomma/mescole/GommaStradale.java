@@ -3,7 +3,7 @@ package core.moto.gomma.mescole;
 import java.util.Objects;
 
 import Exceptions.ObjectNotInitializedException;
-import core.Meteo;
+import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineareInt;
@@ -13,7 +13,7 @@ public class GommaStradale extends Gomma {
 	public static final int ADERENZA_INIZIALE = 35;
 	public static final int ADERENZA_FINALE = 20; // 750
 	
-	private Meteo meteo;
+	private MeteoInterface meteo;
 	
 	private Funzione<Integer> funzAderenza;
 	
@@ -29,7 +29,7 @@ public class GommaStradale extends Gomma {
 	}
 
 	@Override
-	public void preGara(int giriTotali, Meteo meteo) {
+	public void preGara(int giriTotali, MeteoInterface meteo) {
 		funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
 		this.meteo = meteo;
 	}

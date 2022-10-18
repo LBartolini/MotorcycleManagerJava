@@ -8,6 +8,10 @@ public class Impossibile implements Difficolta{
 	private static final int GRADO_COMPONENTE_INIZIALE = 1;
 	private static final int RESISTENZA_INIZIALE = 1;
 	
+	private static final int AGGRESSIVITA_INIZIALE = 5;
+	private static final int FORZAFISICA_INIZIALE = 5;
+	private static final int AGILITA_INIZIALE = 5;
+	
 	private static final int MIN_PROB_GUASTO = 5;
 	private static final int MAX_PROB_GUASTO = 25;
 	
@@ -42,4 +46,20 @@ public class Impossibile implements Difficolta{
 	public double getMoltiplicatoreCaduta() {
 		return MOLTIPLICATORE_CADUTA;
 	}
+	
+	@Override
+	public int getAggressivitaIniziale() {
+		return AGGRESSIVITA_INIZIALE;
+	}
+
+	@Override
+	public int getForzaFisicaIniziale() {
+		return FORZAFISICA_INIZIALE;
+	}
+
+	@Override
+	public int getAgilitaIniziale() {
+		return AGILITA_INIZIALE;
+	}
+	
 }

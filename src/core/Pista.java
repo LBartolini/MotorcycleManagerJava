@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.stream.DoubleStream;
 
 import Exceptions.ObjectNotInitializedException;
+import core.meteo.Meteo;
+import core.meteo.MeteoInterface;
 import core.moto.Moto;
 import core.moto.gomma.Gomma;
 import core.utils.TempoSuGiro;
@@ -13,6 +15,11 @@ import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.FunzioneLineareDouble;
 
 public class Pista {
+	
+	private static final int MAX_RETTILINEI=5, 
+			MAX_CURVE_VELOCI=10, 
+			MAX_CURVE_LENTE=10, 
+			MAX_TRATTI_GUIDATI=5;
 	
 	private static final int MAX_PROB_CADUTA = 30;
 	private static int progressivo = 0;
@@ -24,7 +31,7 @@ public class Pista {
 	private TempoSuGiro tempoMassimo;
 	
 	private int probCadutaPista;
-	private Meteo meteo;
+	private MeteoInterface meteo;
 	private Difficolta difficolta;
 	
 
@@ -41,8 +48,21 @@ public class Pista {
 		this.difficolta = difficolta;
 
 	}
+	
+	public Pista(String nomePista, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
+		Random random = new Random();
+		
+		this.nomePista = nomePista;
+		this.nRettilinei = random.nextInt(MAX_RETTILINEI);
+		this.nTrattiGuidati = random.nextInt(MAX_TRATTI_GUIDATI);
+		this.nCurveVeloci = random.nextInt(MAX_CURVE_VELOCI);
+		this.nCurveLente = random.nextInt(MAX_CURVE_LENTE);
+		this.nGiri = nGiri;
+		this.tempoMassimo = tempoMassimo;
+		this.difficolta = difficolta;
+	}
 
-	public void preGara(Meteo meteo) {
+	public void preGara(MeteoInterface meteo) {
 		Random random = new Random();
 		
 		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA/3) + 1;
@@ -168,7 +188,7 @@ public class Pista {
 		return tempoMassimo;
 	}
 
-	public Meteo getMeteo() {
+	public MeteoInterface getMeteo() {
 		return meteo;
 	}
 	
