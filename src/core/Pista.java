@@ -10,6 +10,7 @@ import core.meteo.MeteoInterface;
 import core.moto.Moto;
 import core.moto.gomma.Gomma;
 import core.utils.TempoSuGiro;
+import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.FunzioneLineareDouble;
@@ -21,16 +22,23 @@ public class Pista {
 			MAX_CURVE_LENTE=10, 
 			MAX_TRATTI_GUIDATI=5;
 	
-	private static final int MAX_PROB_CADUTA = 30;
+	private static final int MIN_RETTILINEI=1, 
+			MIN_CURVE_VELOCI=1, 
+			MIN_CURVE_LENTE=1, 
+			MIN_TRATTI_GUIDATI=1;
+	
+	private static final int MAX_PROB_CADUTA = 30,
+			MIN_PROB_CADUTA = 0;
 	private static int progressivo = 0;
 	
 	private int idPista;
 	private String nomePista;
 	
-	private int nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente, nGiri, nSpettatori;
+	private CampoInterface nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente;
+	private int nGiri, nSpettatori;
 	private TempoSuGiro tempoMassimo;
 	
-	private int probCadutaPista;
+	private CampoInterface probCadutaPista;
 	private MeteoInterface meteo;
 	private Difficolta difficolta;
 	
@@ -38,11 +46,8 @@ public class Pista {
 	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
 		this.idPista = ++progressivo;
 		
+		initCampiPista(nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente);
 		this.nomePista = nomePista;
-		this.nRettilinei = nRettilinei;
-		this.nTrattiGuidati = nTrattiGuidati;
-		this.nCurveVeloci = nCurveVeloci;
-		this.nCurveLente = nCurveLente;
 		this.nGiri = nGiri;
 		this.tempoMassimo = tempoMassimo;
 		this.difficolta = difficolta;
@@ -52,26 +57,33 @@ public class Pista {
 	public Pista(String nomePista, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
 		Random random = new Random();
 		
+		initCampiPista(random.nextInt(MAX_RETTILINEI), 
+				random.nextInt(MAX_TRATTI_GUIDATI), 
+				random.nextInt(MAX_CURVE_VELOCI), 
+				random.nextInt(MAX_CURVE_LENTE));
 		this.nomePista = nomePista;
-		this.nRettilinei = random.nextInt(MAX_RETTILINEI);
-		this.nTrattiGuidati = random.nextInt(MAX_TRATTI_GUIDATI);
-		this.nCurveVeloci = random.nextInt(MAX_CURVE_VELOCI);
-		this.nCurveLente = random.nextInt(MAX_CURVE_LENTE);
 		this.nGiri = nGiri;
 		this.tempoMassimo = tempoMassimo;
 		this.difficolta = difficolta;
+	}
+	
+	private void initCampiPista(int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente) {
+		this.nRettilinei = new Campo(nRettilinei, MIN_RETTILINEI, MAX_RETTILINEI);
+		this.nTrattiGuidati = new Campo(nTrattiGuidati, MIN_TRATTI_GUIDATI, MAX_TRATTI_GUIDATI);
+		this.nCurveVeloci = new Campo(nCurveVeloci, MIN_CURVE_VELOCI, MAX_CURVE_VELOCI);
+		this.nCurveLente = new Campo(nCurveLente, MIN_CURVE_LENTE, MAX_CURVE_LENTE);
 	}
 
 	public void preGara(MeteoInterface meteo) {
 		Random random = new Random();
 		
-		this.probCadutaPista = random.nextInt(MAX_PROB_CADUTA/3) + 1;
+		this.probCadutaPista = new Campo(random.nextInt(MAX_PROB_CADUTA/3) + 1, MIN_PROB_CADUTA, MAX_PROB_CADUTA);
 		this.meteo = meteo;
 	}
 	
-	public TempoSuGiro getTempoSulGiro(int giro, Moto moto, Pilota pilota) throws ObjectNotInitializedException {
+	public TempoSuGiro getTempoSulGiro(int giro, Moto moto) throws ObjectNotInitializedException {
 		if(giro > nGiri) return new TempoSuGiro(0);
-		// TODO richiedere solo Moto perchè il pilota può essere ottenuta dala moto
+		Pilota pilota = moto.getPilota();
 		
 		
 		double punteggio = 1; 
@@ -131,23 +143,23 @@ public class Pista {
 	}
 	
 	private int getCoeffRettilinei() {
-		return Math.min(2*nRettilinei+1, 10);
+		return Math.min(2*nRettilinei.get()+1, 10);
 	}
 	
 	private int getCoeffTrattiGuidati() {
-		return Math.min(2*nTrattiGuidati + 1, 10);
+		return Math.min(2*nTrattiGuidati.get() + 1, 10);
 	}
 	
 	private int getCoeffCurveLente() {
-		return Math.min(nCurveLente + 1, 10);
+		return Math.min(nCurveLente.get() + 1, 10);
 	}
 	
 	private int getCoeffCurveVeloci() {
-		return Math.min(nCurveVeloci + 1, 10);
+		return Math.min(nCurveVeloci.get() + 1, 10);
 	}
 	
 	public boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
-		double soglia = probCadutaPista;
+		double soglia = probCadutaPista.get();
 		
 		// PIOGGIA
 		if(meteo.getPioggiaFinale() > 0) {

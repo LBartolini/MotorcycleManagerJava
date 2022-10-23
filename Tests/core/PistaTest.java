@@ -55,7 +55,7 @@ public class PistaTest {
 		
 		TempoSuGiro t = null;
 		try {
-			t = pista.getTempoSulGiro(1, moto, pilota);
+			t = pista.getTempoSulGiro(1, moto);
 		} catch (ObjectNotInitializedException e) {
 			fail("Errore getTempoSulGiro");
 		}
@@ -107,8 +107,8 @@ public class PistaTest {
 		
 		TempoSuGiro t1 = null, t2 = null;
 		try {
-			t1 = pista.getTempoSulGiro(1, moto1, pilota1);
-			t2 = pista.getTempoSulGiro(1, moto2, pilota2);
+			t1 = pista.getTempoSulGiro(1, moto1);
+			t2 = pista.getTempoSulGiro(1, moto2);
 		} catch (ObjectNotInitializedException e) {
 			fail("Errore getTempoSulGiro");
 		}
