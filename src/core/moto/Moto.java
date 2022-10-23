@@ -5,6 +5,9 @@ import java.util.Objects;
 import Exceptions.GommaSceltaNotInMarcaGommeException;
 import Exceptions.ObjectNotInitializedException;
 import core.meteo.MeteoInterface;
+import core.moto.componente.Componente;
+import core.moto.componente.ComponenteInterface;
+import core.moto.componente.ComponenteModifiableInterface;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
 import core.pilota.PilotaInterface;
@@ -12,7 +15,7 @@ import core.scuderia.ScuderiaInterface;
 import core.utils.difficolta.Difficolta;
 
 
-public final class Moto {
+public final class Moto implements MotoModifiableInterface {
 	
 	private static int progressivo = 0;
 	
@@ -20,7 +23,7 @@ public final class Moto {
 	private ScuderiaInterface scuderia;
 	private PilotaInterface pilota;
 
-	private Componente motore, aerodinamica, ciclistica, freni;
+	private ComponenteModifiableInterface motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
 	
 	private Gomma gommaScelta;
@@ -39,6 +42,7 @@ public final class Moto {
 		marcaGomme = difficolta.getMarcaGomme();
 	}	
 	
+	@Override
 	public void preGara(Gomma gommaScelta, MeteoInterface meteo, int nGiri) throws Exception{
 		if(Objects.isNull(pilota)) throw new ObjectNotInitializedException("Pilota has to be initialized");
 		if(!scuderia.isMotoIn(this)) throw new Exception("This object should not exist");
@@ -50,58 +54,72 @@ public final class Moto {
 		guasto = false;
 	}
 
+	@Override
 	public int getId() {
 		return id;
 	}
 
+	@Override
 	public ScuderiaInterface getScuderia() {
 		return scuderia;
 	}
 
-	public Componente getMotore() {
+	@Override
+	public ComponenteInterface getMotore() {
 		return motore;
 	}
 
-	public Componente getAerodinamica() {
+	@Override
+	public ComponenteInterface getAerodinamica() {
 		return aerodinamica;
 	}
 
-	public Componente getCiclistica() {
+	@Override
+	public ComponenteInterface getCiclistica() {
 		return ciclistica;
 	}
 
-	public Componente getFreni() {
+	@Override
+	public ComponenteInterface getFreni() {
 		return freni;
 	}
 
+	@Override
 	public MarcaGomme getMarcaGomme() {
 		return marcaGomme;
 	}
 
+	@Override
 	public Gomma getGommaScelta() {
 		return gommaScelta;
 	}
 	
+	@Override
 	public PilotaInterface getPilota() {
 		return pilota;
 	}
 
+	@Override
 	public void setPilota(PilotaInterface pilota) {
 		this.pilota = pilota;
 	}
 	
+	@Override
 	public boolean isGuasta() {
 		return guasto;
 	}
 	
+	@Override
 	public void notifyGuasto() {
 		guasto = true;
 	}
 	
+	@Override
 	public boolean isIncidentata() {
 		return incidentata;
 	}
 	
+	@Override
 	public void notifyIncidente() {
 		incidentata = true;
 	}
@@ -110,15 +128,60 @@ public final class Moto {
 	public boolean equals(Object other) {
 		if(Objects.isNull(other)) return false;
 		
-		Moto other_moto;
+		MotoInterface other_moto;
 		
 		try {
-			other_moto = (Moto) other;
+			other_moto = (MotoInterface) other;
 		}catch(ClassCastException exc) {
 			return false;
 		}
 		
 		return id == other_moto.getId();
+	}
+
+	@Override
+	public void upgradeMotoreGrado() {
+		motore.upgradeGrado();
+	}
+
+	@Override
+	public void upgradeMotoreResistenza() {
+		motore.upgradeResistenza();
+	}
+
+	@Override
+	public void upgradeAeroidinamicaGrado() {
+		aerodinamica.upgradeGrado();
+	}
+
+	@Override
+	public void upgradeAeroidinamicaResistenza() {
+		aerodinamica.upgradeResistenza();
+	}
+
+	@Override
+	public void upgradeCiclisticaGrado() {
+		ciclistica.upgradeGrado();
+	}
+
+	@Override
+	public void upgradeCiclisticaResistenza() {
+		ciclistica.upgradeResistenza();
+	}
+
+	@Override
+	public void upgradeFreniGrado() {
+		freni.upgradeGrado();
+	}
+
+	@Override
+	public void upgradeFreniResistenza() {
+		freni.upgradeResistenza();
+	}
+
+	@Override
+	public void setMarcaGomme(MarcaGomme nuovaMarcaGomme) {
+		marcaGomme = nuovaMarcaGomme;
 	}
 	
 }

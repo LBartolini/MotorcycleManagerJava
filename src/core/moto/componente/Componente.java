@@ -1,4 +1,4 @@
-package core.moto;
+package core.moto.componente;
 
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
@@ -7,7 +7,7 @@ import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineareInt;
 
-public class Componente {
+public class Componente implements ComponenteModifiableInterface {
 	
 	protected static int MIN_CAMPO = 1, MAX_CAMPO = 30;
 	private int MIN_PROB_GUASTO, MAX_PROB_GUASTO;
@@ -37,28 +37,34 @@ public class Componente {
 	}
 	
 	
+	@Override
 	public int getProbabilitaGuasto() {
 		Funzione<Integer> f = new FunzioneLineareInt(MAX_PROB_GUASTO, MIN_PROB_GUASTO, resistenzaComponente.getMax());
 		
 		return f.getValue(resistenzaComponente.get());
 	}
 	
+	@Override
 	public String getNome() {
 		return nome;
 	}
 	
+	@Override
 	public CampoInterface getGrado() {
 		return gradoComponente;
 	}
 	
+	@Override
 	public CampoInterface getResistenza() {
 		return resistenzaComponente;
 	}
 
+	@Override
 	public void upgradeGrado(){ 
 		gradoComponente.increment();
 	}	
 
+	@Override
 	public void upgradeResistenza(){
 		resistenzaComponente.increment();
 	}

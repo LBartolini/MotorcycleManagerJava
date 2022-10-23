@@ -1,6 +1,6 @@
 package core.pilota;
 
-import core.moto.Moto;
+import core.moto.MotoInterface;
 import core.stile_guida.StileGuida;
 import core.stile_guida.StileNormale;
 import core.utils.campo.Campo;
@@ -15,10 +15,10 @@ public class Pilota implements PilotaModifiableInterface {
 	private String nome, cognome;
 	private CampoModifiableInterface aggressivita, forzaFisica, agilita, feelingMoto;
 	
-	private Moto moto;
+	private MotoInterface moto;
 	private StileGuida stileScelto;
 	
-	public Pilota(String nome, String cognome, Moto moto, Difficolta difficolta) {
+	public Pilota(String nome, String cognome, MotoInterface moto, Difficolta difficolta) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.aggressivita = new Campo(difficolta.getAggressivitaIniziale(), MIN_CAMPO, MAX_CAMPO);
@@ -29,7 +29,7 @@ public class Pilota implements PilotaModifiableInterface {
 		stileScelto = new StileNormale();
 	}
 	
-	public Pilota(String nome, String cognome, Moto moto, int aggressivita, int forzaFisica, int agilita) {
+	public Pilota(String nome, String cognome, MotoInterface moto, int aggressivita, int forzaFisica, int agilita) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.aggressivita = new Campo(aggressivita, MIN_CAMPO, MAX_CAMPO);
@@ -71,7 +71,7 @@ public class Pilota implements PilotaModifiableInterface {
 	}
 	
 	@Override
-	public final void cambioMoto(Moto nuovaMoto) {
+	public final void cambioMoto(MotoInterface nuovaMoto) {
 		moto = nuovaMoto;
 		feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
 	}
@@ -107,7 +107,7 @@ public class Pilota implements PilotaModifiableInterface {
 	}
 
 	@Override
-	public final Moto getMoto() {
+	public final MotoInterface getMoto() {
 		return moto;
 	}
 	

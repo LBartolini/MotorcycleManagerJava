@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import core.moto.Moto;
+import core.moto.MotoInterface;
 import core.utils.difficolta.Difficolta;
 
 public class Scuderia implements ScuderiaInterface {
@@ -27,7 +28,7 @@ public class Scuderia implements ScuderiaInterface {
 	}
 	
 	@Override
-	public final boolean isMotoIn(Moto moto) {
+	public final boolean isMotoIn(MotoInterface moto) {
 		return this.moto.contains(moto);
 	}
 	

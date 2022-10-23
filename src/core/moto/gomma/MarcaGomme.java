@@ -1,15 +1,13 @@
 package core.moto.gomma;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public abstract class MarcaGomme {
 
 	private String nome;
-	private Set<Gomma> gommeDisponibili;
+	private Collection<Gomma> gommeDisponibili;
 	
 	public MarcaGomme(String nome) {
 		this.nome = nome;
@@ -20,8 +18,8 @@ public abstract class MarcaGomme {
 		return nome;
 	}
 	
-	public List<Gomma> getGommeDisponibili(){
-		return new ArrayList<Gomma>(gommeDisponibili);
+	public Collection<Gomma> getGommeDisponibili(){
+		return gommeDisponibili;
 	}
 	
 	public boolean isGommaDisponibile(Gomma gomma) {

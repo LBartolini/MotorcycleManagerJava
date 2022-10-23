@@ -1,6 +1,6 @@
 package core.pilota;
 
-import core.moto.Moto;
+import core.moto.MotoInterface;
 import core.stile_guida.StileGuida;
 
 public interface PilotaModifiableInterface extends PilotaInterface{
@@ -15,6 +15,6 @@ public interface PilotaModifiableInterface extends PilotaInterface{
 
 	void incrementaAgilita();
 
-	void cambioMoto(Moto nuovaMoto);
+	void cambioMoto(MotoInterface nuovaMoto);
 
 }

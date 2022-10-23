@@ -55,7 +55,7 @@ public class MotoTest {
 	@Test
 	public void testEquals() {
 		ScuderiaInterface s = new Scuderia("Pippo", new Impossibile());
-		Moto m1 = null, m2 = null;
+		MotoInterface m1 = null, m2 = null;
 		m1 = s.getMoto(0);
 		m2 = s.getMoto(1);
 		

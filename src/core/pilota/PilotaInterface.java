@@ -1,6 +1,6 @@
 package core.pilota;
 
-import core.moto.Moto;
+import core.moto.MotoInterface;
 import core.stile_guida.StileGuida;
 import core.utils.campo.CampoInterface;
 
@@ -20,6 +20,6 @@ public interface PilotaInterface {
 
 	CampoInterface getAgilita();
 
-	Moto getMoto();
+	MotoInterface getMoto();
 
 }

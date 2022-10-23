@@ -7,7 +7,7 @@ import java.util.stream.DoubleStream;
 import Exceptions.ObjectNotInitializedException;
 import core.meteo.Meteo;
 import core.meteo.MeteoInterface;
-import core.moto.Moto;
+import core.moto.MotoInterface;
 import core.moto.gomma.Gomma;
 import core.pilota.PilotaInterface;
 import core.utils.campo.Campo;
@@ -83,7 +83,7 @@ public class Pista {
 		this.meteo = meteo;
 	}
 	
-	public Tempo getTempoSulGiro(int giro, Moto moto) throws ObjectNotInitializedException {
+	public Tempo getTempoSulGiro(int giro, MotoInterface moto) throws ObjectNotInitializedException {
 		if(giro > nGiri) return new Tempo(0);
 		PilotaInterface pilota = moto.getPilota();
 		
@@ -160,7 +160,7 @@ public class Pista {
 		return Math.min(nCurveVeloci.get() + 1, 10);
 	}
 	
-	public boolean getCadutaMotoPilota(PilotaInterface pilota, Moto moto) {
+	public boolean getCadutaMotoPilota(PilotaInterface pilota, MotoInterface moto) {
 		double soglia = probCadutaPista.get();
 		
 		// PIOGGIA
