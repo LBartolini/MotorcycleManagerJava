@@ -9,11 +9,13 @@ import core.meteo.Meteo;
 import core.meteo.MeteoInterface;
 import core.moto.Moto;
 import core.moto.gomma.Gomma;
-import core.utils.TempoSuGiro;
+import core.pilota.PilotaInterface;
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.FunzioneLineareDouble;
+import core.utils.tempo.Tempo;
+import core.utils.tempo.TempoInterface;
 
 public class Pista {
 	
@@ -36,14 +38,14 @@ public class Pista {
 	
 	private CampoInterface nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente;
 	private int nGiri, nSpettatori;
-	private TempoSuGiro tempoMassimo;
+	private TempoInterface tempoMassimo;
 	
 	private CampoInterface probCadutaPista;
 	private MeteoInterface meteo;
 	private Difficolta difficolta;
 	
 
-	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
+	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
 		this.idPista = ++progressivo;
 		
 		initCampiPista(nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente);
@@ -54,7 +56,7 @@ public class Pista {
 
 	}
 	
-	public Pista(String nomePista, int nGiri, int nSpettatori, TempoSuGiro tempoMassimo, Difficolta difficolta) {
+	public Pista(String nomePista, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
 		Random random = new Random();
 		
 		initCampiPista(random.nextInt(MAX_RETTILINEI), 
@@ -81,9 +83,9 @@ public class Pista {
 		this.meteo = meteo;
 	}
 	
-	public TempoSuGiro getTempoSulGiro(int giro, Moto moto) throws ObjectNotInitializedException {
-		if(giro > nGiri) return new TempoSuGiro(0);
-		Pilota pilota = moto.getPilota();
+	public Tempo getTempoSulGiro(int giro, Moto moto) throws ObjectNotInitializedException {
+		if(giro > nGiri) return new Tempo(0);
+		PilotaInterface pilota = moto.getPilota();
 		
 		
 		double punteggio = 1; 
@@ -138,7 +140,7 @@ public class Pista {
 		// ADERENZA GOMME
 		punteggio *= moto.getGommaScelta().getAderenzaAttuale(giro);
 		
-		return new TempoSuGiro(tempoMassimo.getTempoInMillisecondi() * 
+		return new Tempo(tempoMassimo.getMillisecondi() * 
 				(100 - Math.min((int) punteggio, 100)) / 100);
 	}
 	
@@ -158,7 +160,7 @@ public class Pista {
 		return Math.min(nCurveVeloci.get() + 1, 10);
 	}
 	
-	public boolean getCadutaMotoPilota(Pilota pilota, Moto moto) {
+	public boolean getCadutaMotoPilota(PilotaInterface pilota, Moto moto) {
 		double soglia = probCadutaPista.get();
 		
 		// PIOGGIA
@@ -196,7 +198,7 @@ public class Pista {
 		return nSpettatori;
 	}
 
-	public TempoSuGiro getTempoMassimo() {
+	public TempoInterface getTempoMassimo() {
 		return tempoMassimo;
 	}
 

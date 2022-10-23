@@ -11,13 +11,14 @@ import core.meteo.MeteoInterface;
 import core.moto.Moto;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaMedia;
+import core.pilota.Pilota;
 import core.scuderia.Scuderia;
 import core.scuderia.ScuderiaInterface;
 import core.stile_guida.StileAggressivo;
 import core.stile_guida.StileNormale;
-import core.utils.TempoSuGiro;
 import core.utils.difficolta.Difficile;
 import core.utils.difficolta.Facile;
+import core.utils.tempo.Tempo;
 
 public class PistaTest {
 
@@ -27,7 +28,7 @@ public class PistaTest {
 		
 		Pista pista = null;
 		try {
-			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new TempoSuGiro(1, 30, 0), new Facile());
+			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new Tempo(1, 30, 0), new Facile());
 		} catch (ValueNotInRangeException e2) {
 			fail("Errore init Pista");
 		}
@@ -53,14 +54,14 @@ public class PistaTest {
 		}
 		
 		
-		TempoSuGiro t = null;
+		Tempo t = null;
 		try {
 			t = pista.getTempoSulGiro(1, moto);
 		} catch (ObjectNotInitializedException e) {
 			fail("Errore getTempoSulGiro");
 		}
 		
-		assertTrue(0 < t.getTempoInMillisecondi());
+		assertTrue(0 < t.getMillisecondi());
 		assertTrue(pista.getTempoMassimo().compareTo(t) > 0);
 	}
 	
@@ -70,7 +71,7 @@ public class PistaTest {
 		
 		Pista pista = null;
 		try {
-			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new TempoSuGiro(1, 30, 0), new Facile());
+			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new Tempo(1, 30, 0), new Facile());
 		} catch (ValueNotInRangeException e2) {
 			fail("Errore init Pista");
 		}
@@ -105,7 +106,7 @@ public class PistaTest {
 		}
 		
 		
-		TempoSuGiro t1 = null, t2 = null;
+		Tempo t1 = null, t2 = null;
 		try {
 			t1 = pista.getTempoSulGiro(1, moto1);
 			t2 = pista.getTempoSulGiro(1, moto2);
@@ -113,8 +114,8 @@ public class PistaTest {
 			fail("Errore getTempoSulGiro");
 		}
 		
-		assertTrue(0 < t1.getTempoInMillisecondi());
-		assertTrue(0 < t2.getTempoInMillisecondi());
+		assertTrue(0 < t1.getMillisecondi());
+		assertTrue(0 < t2.getMillisecondi());
 		assertTrue(t1.compareTo(t2) > 0);
 	}
 

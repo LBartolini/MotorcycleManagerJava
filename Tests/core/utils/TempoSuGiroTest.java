@@ -5,21 +5,23 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.ValueNotInRangeException;
+import core.utils.tempo.Tempo;
+import core.utils.tempo.TempoInterface;
 
 public class TempoSuGiroTest {
 
 	@Test
 	public void testTempoInMillisecondi() {
-		TempoSuGiro tempoSuGiro = new TempoSuGiro(5603);
+		TempoInterface tempoSuGiro = new Tempo(5603);
 		
-		assertEquals(5603, tempoSuGiro.getTempoInMillisecondi());
+		assertEquals(5603, tempoSuGiro.getMillisecondi());
 	}
 	
 	@Test
 	public void testToString() {
-		TempoSuGiro tempoSuGiro = null;
+		TempoInterface tempoSuGiro = null;
 		try {
-			tempoSuGiro = new TempoSuGiro(1, 4, 59);
+			tempoSuGiro = new Tempo(1, 4, 59);
 		} catch (ValueNotInRangeException e) {
 			fail();
 		}
@@ -30,7 +32,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathSecondiNegativi() {
 		try {
-			new TempoSuGiro(1, -4, 59);
+			new Tempo(1, -4, 59);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -38,7 +40,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathSecondiMaggMassimo() {
 		try {
-			new TempoSuGiro(1, 71, 59);
+			new Tempo(1, 71, 59);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -46,7 +48,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathMillisecondiNegativi() {
 		try {
-			new TempoSuGiro(1, 5, -100);
+			new Tempo(1, 5, -100);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -54,16 +56,16 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathMillisecondiMaggMassimo() {
 		try {
-			new TempoSuGiro(1, 5, 2000);
+			new Tempo(1, 5, 2000);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
 	public void testCompareTo() {
-		TempoSuGiro t1 = new TempoSuGiro(10100);
-		TempoSuGiro t2 = new TempoSuGiro(10100);
-		TempoSuGiro t3 = new TempoSuGiro(100);
+		Tempo t1 = new Tempo(10100);
+		Tempo t2 = new Tempo(10100);
+		Tempo t3 = new Tempo(100);
 		
 		assertTrue(t1.compareTo(t2) == 0);
 		assertTrue(t1.compareTo(t3) >= 0);

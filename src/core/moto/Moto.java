@@ -4,10 +4,10 @@ import java.util.Objects;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
 import Exceptions.ObjectNotInitializedException;
-import core.Pilota;
 import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.MarcaGomme;
+import core.pilota.PilotaInterface;
 import core.scuderia.ScuderiaInterface;
 import core.utils.difficolta.Difficolta;
 
@@ -18,7 +18,7 @@ public final class Moto {
 	
 	private int id;
 	private ScuderiaInterface scuderia;
-	private Pilota pilota;
+	private PilotaInterface pilota;
 
 	private Componente motore, aerodinamica, ciclistica, freni;
 	private MarcaGomme marcaGomme;
@@ -82,11 +82,11 @@ public final class Moto {
 		return gommaScelta;
 	}
 	
-	public Pilota getPilota() {
+	public PilotaInterface getPilota() {
 		return pilota;
 	}
 
-	public void setPilota(Pilota pilota) {
+	public void setPilota(PilotaInterface pilota) {
 		this.pilota = pilota;
 	}
 	

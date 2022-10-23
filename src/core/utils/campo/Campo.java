@@ -1,6 +1,6 @@
 package core.utils.campo;
 
-public class Campo implements CampoInterfaceModifiable {
+public class Campo implements CampoModifiableInterface {
 	
 	private int value;
 	private final int MIN, MAX;

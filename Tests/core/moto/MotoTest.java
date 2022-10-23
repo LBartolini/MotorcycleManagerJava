@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Exceptions.GommaSceltaNotInMarcaGommeException;
-import core.Pilota;
 import core.meteo.Meteo;
 import core.moto.gomma.Gomma;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
 import core.moto.gomma.mescole.GommaStradale;
+import core.pilota.Pilota;
 import core.scuderia.Scuderia;
 import core.scuderia.ScuderiaInterface;
 import core.utils.difficolta.Facile;

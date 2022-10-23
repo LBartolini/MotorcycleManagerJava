@@ -2,7 +2,7 @@ package core.moto;
 
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
-import core.utils.campo.CampoInterfaceModifiable;
+import core.utils.campo.CampoModifiableInterface;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.Funzione;
 import core.utils.funzioni.FunzioneLineareInt;
@@ -14,7 +14,7 @@ public class Componente {
 	
 	private String nome;
 
-	private CampoInterfaceModifiable gradoComponente, resistenzaComponente; // [1, 30]
+	private CampoModifiableInterface gradoComponente, resistenzaComponente; // [1, 30]
 	
 	public Componente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {
 		initComponente(nome, gradoComponente, livelloResistenza, minProbGuasto, maxProbGuasto);
