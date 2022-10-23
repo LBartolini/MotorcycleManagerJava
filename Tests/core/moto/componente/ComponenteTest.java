@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import core.moto.componente.Componente;
-import core.moto.componente.ComponenteInterface;
-import core.moto.componente.ComponenteModifiableInterface;
 import core.utils.difficolta.Difficile;
 import core.utils.difficolta.Difficolta;
 import core.utils.difficolta.Facile;

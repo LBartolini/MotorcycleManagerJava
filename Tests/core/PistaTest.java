@@ -12,6 +12,8 @@ import core.moto.Moto;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaMedia;
 import core.pilota.Pilota;
+import core.pista.Pista;
+import core.pista.PistaModifiableInterface;
 import core.scuderia.Scuderia;
 import core.scuderia.ScuderiaInterface;
 import core.stile_guida.StileAggressivo;
@@ -19,6 +21,7 @@ import core.stile_guida.StileNormale;
 import core.utils.difficolta.Difficile;
 import core.utils.difficolta.Facile;
 import core.utils.tempo.Tempo;
+import core.utils.tempo.TempoInterface;
 
 public class PistaTest {
 
@@ -26,7 +29,7 @@ public class PistaTest {
 	public void testTempoSulGiro() {
 		int nGiri = 20;
 		
-		Pista pista = null;
+		PistaModifiableInterface pista = null;
 		try {
 			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new Tempo(1, 30, 0), new Facile());
 		} catch (ValueNotInRangeException e2) {
@@ -54,7 +57,7 @@ public class PistaTest {
 		}
 		
 		
-		Tempo t = null;
+		TempoInterface t = null;
 		try {
 			t = pista.getTempoSulGiro(1, moto);
 		} catch (ObjectNotInitializedException e) {
@@ -69,7 +72,7 @@ public class PistaTest {
 	public void testTempoSulGiroBetweenTwo() {
 		int nGiri = 20;
 		
-		Pista pista = null;
+		PistaModifiableInterface pista = null;
 		try {
 			pista = new Pista("Test", 5, 5, 5, 5, nGiri, 100, new Tempo(1, 30, 0), new Facile());
 		} catch (ValueNotInRangeException e2) {
@@ -106,7 +109,7 @@ public class PistaTest {
 		}
 		
 		
-		Tempo t1 = null, t2 = null;
+		TempoInterface t1 = null, t2 = null;
 		try {
 			t1 = pista.getTempoSulGiro(1, moto1);
 			t2 = pista.getTempoSulGiro(1, moto2);

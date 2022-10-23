@@ -1,4 +1,4 @@
-package core;
+package core.pista;
 
 import java.util.Objects;
 import java.util.Random;
@@ -17,7 +17,7 @@ import core.utils.funzioni.FunzioneLineareDouble;
 import core.utils.tempo.Tempo;
 import core.utils.tempo.TempoInterface;
 
-public class Pista {
+public class Pista implements PistaModifiableInterface {
 	
 	private static final int MAX_RETTILINEI=5, 
 			MAX_CURVE_VELOCI=10, 
@@ -76,6 +76,7 @@ public class Pista {
 		this.nCurveLente = new Campo(nCurveLente, MIN_CURVE_LENTE, MAX_CURVE_LENTE);
 	}
 
+	@Override
 	public void preGara(MeteoInterface meteo) {
 		Random random = new Random();
 		
@@ -83,7 +84,8 @@ public class Pista {
 		this.meteo = meteo;
 	}
 	
-	public Tempo getTempoSulGiro(int giro, MotoInterface moto) throws ObjectNotInitializedException {
+	@Override
+	public TempoInterface getTempoSulGiro(int giro, MotoInterface moto) throws ObjectNotInitializedException {
 		if(giro > nGiri) return new Tempo(0);
 		PilotaInterface pilota = moto.getPilota();
 		
@@ -160,6 +162,7 @@ public class Pista {
 		return Math.min(nCurveVeloci.get() + 1, 10);
 	}
 	
+	@Override
 	public boolean getCadutaMotoPilota(PilotaInterface pilota, MotoInterface moto) {
 		double soglia = probCadutaPista.get();
 		
@@ -182,26 +185,32 @@ public class Pista {
 		return new Random().nextInt(100) < Math.min((int) soglia, MAX_PROB_CADUTA);
 	}
 
+	@Override
 	public int getIdPista() {
 		return idPista;
 	}
 
+	@Override
 	public String getNomePista() {
 		return nomePista;
 	}
 
+	@Override
 	public int getNGiri() {
 		return nGiri;
 	}
 
+	@Override
 	public int getNSpettatori() {
 		return nSpettatori;
 	}
 
+	@Override
 	public TempoInterface getTempoMassimo() {
 		return tempoMassimo;
 	}
 
+	@Override
 	public MeteoInterface getMeteo() {
 		return meteo;
 	}
@@ -210,10 +219,10 @@ public class Pista {
 	public boolean equals(Object other) {
 		if(Objects.isNull(other)) return false;
 		
-		Pista other_pista;
+		PistaInterface other_pista;
 		
 		try {
-			other_pista = (Pista) other;
+			other_pista = (PistaInterface) other;
 		}catch(ClassCastException exc) {
 			return false;
 		}
