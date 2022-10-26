@@ -28,13 +28,21 @@ public class GommaMedia extends Gomma{
 	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return funzAderenza.getValue(giroAttuale)*funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale))/100*getModificatoreMeteoCorretto(meteo)/100.0;
+		return (funzAderenza.getValue(giroAttuale) / 100.0) 
+				* 
+				(funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale))/100.0)
+				*
+				getModificatoreMeteoCorretto(meteo);
 	}
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
 		funzAderenza = new FunzioneCostanteInt(ADERENZA, giriTotali);
-		funzTemperaturaAsfalto = new FunzioneParabolaInt((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
+		funzTemperaturaAsfalto = new FunzioneParabolaInt(
+				(Meteo.MAX_TEMPERATURA+Meteo.MIN_TEMPERATURA)/2, 
+				100, 
+				Meteo.MAX_TEMPERATURA, 
+				RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		this.meteo = meteo;
 	}

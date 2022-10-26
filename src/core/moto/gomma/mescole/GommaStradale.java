@@ -11,7 +11,7 @@ import core.utils.funzioni.FunzioneLineareInt;
 public class GommaStradale extends Gomma {
 	
 	public static final int ADERENZA_INIZIALE = 35;
-	public static final int ADERENZA_FINALE = 20; // 750
+	public static final int ADERENZA_FINALE = 20;
 	
 	private MeteoInterface meteo;
 	
@@ -25,7 +25,7 @@ public class GommaStradale extends Gomma {
 	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return funzAderenza.getValue(giroAttuale)/100.0;
+		return funzAderenza.getValue(giroAttuale) / 100.0;
 	}
 
 	@Override
