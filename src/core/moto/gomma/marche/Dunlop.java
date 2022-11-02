@@ -1,5 +1,7 @@
 package core.moto.gomma.marche;
 
+import java.util.Set;
+
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaMedia;
@@ -7,12 +9,20 @@ import core.moto.gomma.mescole.GommaStradale;
 
 public class Dunlop extends MarcaGomme{
 
-	public Dunlop() {
-		super("Dunlop");
+	private static Dunlop obj;
+
+	public static Dunlop create() {
+		if(obj == null) {
+			obj = new Dunlop();
+		}
 		
-		this.addGomma(new GommaStradale());
-		this.addGomma(new GommaBagnatoLeggero());
-		this.addGomma(new GommaMedia());
+		return obj;
+	}
+
+	private Dunlop() {
+		super("Dunlop", Set.of(new GommaStradale(),
+				new GommaBagnatoLeggero(),
+				new GommaMedia()));
 	}
 	
 }

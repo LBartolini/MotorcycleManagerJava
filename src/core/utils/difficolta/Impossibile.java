@@ -19,7 +19,7 @@ public class Impossibile implements Difficolta{
 	
 	@Override
 	public MarcaGomme getMarcaGomme() {
-		return new Metzler();
+		return Metzler.create();
 	}
 	
 	@Override

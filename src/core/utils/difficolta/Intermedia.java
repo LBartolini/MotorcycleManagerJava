@@ -19,7 +19,7 @@ public class Intermedia implements Difficolta{
 	
 	@Override
 	public MarcaGomme getMarcaGomme() {
-		return new Michelin();
+		return Michelin.create();
 	}
 	
 	@Override

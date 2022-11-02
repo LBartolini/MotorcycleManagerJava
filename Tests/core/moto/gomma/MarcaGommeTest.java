@@ -23,7 +23,7 @@ public class MarcaGommeTest {
 
 	@Test
 	public void testGetGommeDisponibiliContainsGomme() {
-		MarcaGomme marca = new Dunlop();
+		MarcaGomme marca = Dunlop.create();
 		
 		List<Gomma> lista = new ArrayList<>();
 		lista.add(new GommaStradale());
@@ -38,7 +38,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testGommaDisponibile() {
-		MarcaGomme marca = new Dunlop();
+		MarcaGomme marca = Dunlop.create();
 		
 		assertTrue(marca.isGommaDisponibile(new GommaStradale()));
 		
@@ -47,7 +47,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testBridgestonContainsGomme() {
-		MarcaGomme marca = new Bridgeston();
+		MarcaGomme marca = Bridgeston.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -61,7 +61,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testContinentalContainsGomme() {
-		MarcaGomme marca = new Continental();
+		MarcaGomme marca = Continental.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -73,7 +73,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testPirelliContainsGomme() {
-		MarcaGomme marca = new Pirelli();
+		MarcaGomme marca = Pirelli.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -89,7 +89,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testDunlopContainsGomme() {
-		MarcaGomme marca = new Dunlop();
+		MarcaGomme marca = Dunlop.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -102,7 +102,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testMetzlerContainsGomme() {
-		MarcaGomme marca = new Pirelli();
+		MarcaGomme marca = Pirelli.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -113,7 +113,7 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testMichelinContainsGomme() {
-		MarcaGomme marca = new Michelin();
+		MarcaGomme marca = Michelin.create();
 		
 		List<Gomma> gomme = new ArrayList<>();
 		gomme.add(new GommaStradale());
@@ -128,12 +128,12 @@ public class MarcaGommeTest {
 	
 	@Test
 	public void testEquals() {
-		MarcaGomme pirelli = new Pirelli();
-		MarcaGomme dunlop = new Dunlop();
+		MarcaGomme pirelli = Pirelli.create();
+		MarcaGomme dunlop = Dunlop.create();
 		
 		assertTrue(pirelli.equals(pirelli));
 		assertFalse(pirelli.equals(dunlop));
-		assertTrue(pirelli.equals(new Pirelli()));
+		assertTrue(pirelli.equals(Pirelli.create()));
 		assertFalse(pirelli.equals(null));
 		assertFalse(pirelli.equals("Test"));
 				

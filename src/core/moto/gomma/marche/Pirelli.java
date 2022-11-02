@@ -1,5 +1,7 @@
 package core.moto.gomma.marche;
 
+import java.util.Set;
+
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.mescole.GommaBagnatoLeggero;
 import core.moto.gomma.mescole.GommaBagnatoPesante;
@@ -10,15 +12,23 @@ import core.moto.gomma.mescole.GommaStradale;
 
 public class Pirelli extends MarcaGomme{
 
-	public Pirelli() {
-		super("Pirelli");
+	private static Pirelli obj;
+
+	public static Pirelli create() {
+		if(obj == null) {
+			obj = new Pirelli();
+		}
 		
-		this.addGomma(new GommaStradale());
-		this.addGomma(new GommaBagnatoLeggero());
-		this.addGomma(new GommaMedia());
-		this.addGomma(new GommaHard());
-		this.addGomma(new GommaBagnatoPesante());
-		this.addGomma(new GommaSoft());
+		return obj;
+	}
+
+	private Pirelli() {
+		super("Pirelli", Set.of(new GommaStradale(),
+				new GommaBagnatoLeggero(),
+				new GommaMedia(),
+				new GommaHard(),
+				new GommaBagnatoPesante(),
+				new GommaSoft()));
 	}
 
 }

@@ -19,7 +19,7 @@ public class Difficile implements Difficolta{
 	
 	@Override
 	public MarcaGomme getMarcaGomme() {
-		return new Dunlop();
+		return Dunlop.create();
 	}
 
 	@Override
