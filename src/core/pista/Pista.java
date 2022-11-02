@@ -13,7 +13,7 @@ import core.pilota.PilotaInterface;
 import core.utils.campo.Campo;
 import core.utils.campo.CampoInterface;
 import core.utils.difficolta.Difficolta;
-import core.utils.funzioni.FunzioneLineareDouble;
+import core.utils.funzioni.FunzioneLineare;
 import core.utils.tempo.Tempo;
 import core.utils.tempo.TempoInterface;
 
@@ -104,40 +104,40 @@ public class Pista implements PistaModifiableInterface {
 		CampoInterface ciclistica = moto.getCiclistica().getGrado();
 		
 		// RETTILINEI
-		punteggio += getCoeffRettilinei() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+		punteggio += getCoeffRettilinei() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						motore.getInPercentuale(), 
-						aerodinamica.getInPercentuale()).average().orElse(0)); 
+						aerodinamica.getInPercentuale()).average().orElse(0)).doubleValue(); 
 		
 		// TRATTI GUIDATI
-		punteggio += getCoeffTrattiGuidati() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+		punteggio += getCoeffTrattiGuidati() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						agilita.getInPercentuale(), 
 						aerodinamica.getInPercentuale(), 
 						ciclistica.getInPercentuale(), 
-						forzaFisica.getInPercentuale()).average().orElse(0));
+						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE LENTE
-		punteggio += getCoeffCurveLente() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+		punteggio += getCoeffCurveLente() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						agilita.getInPercentuale(), 
 						freni.getInPercentuale(), 
 						aggressivita.getInPercentuale(), 
-						forzaFisica.getInPercentuale()).average().orElse(0));
+						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE VELOCI
-		punteggio += getCoeffCurveVeloci() * new FunzioneLineareDouble(0.75, 1.5, 0, 1)
+		punteggio += getCoeffCurveVeloci() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						aerodinamica.getInPercentuale(), 
 						ciclistica.getInPercentuale(), 
-						motore.getInPercentuale()).average().orElse(0));
+						motore.getInPercentuale()).average().orElse(0)).doubleValue();
 		
 		// STILE DI GUIDA
 		punteggio *= pilota.getStileGuida().getMoltiplicatorePrestazione();
 		
 		// FEELING MOTO
-		punteggio *= new FunzioneLineareDouble(0.75, 1.5, 0, 1)
-				.getValue(feelingMoto.getInPercentuale()); 
+		punteggio *= new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+				.getValue(feelingMoto.getInPercentuale()).doubleValue(); 
 		
 		// ADERENZA GOMME
 		punteggio *= moto.getGommaScelta().getAderenzaAttuale(giro);

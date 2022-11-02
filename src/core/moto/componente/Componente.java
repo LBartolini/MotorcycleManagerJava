@@ -5,7 +5,7 @@ import core.utils.campo.CampoInterface;
 import core.utils.campo.CampoModifiableInterface;
 import core.utils.difficolta.Difficolta;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineareInt;
+import core.utils.funzioni.FunzioneLineare;
 
 public class Componente implements ComponenteModifiableInterface {
 	
@@ -39,9 +39,9 @@ public class Componente implements ComponenteModifiableInterface {
 	
 	@Override
 	public int getProbabilitaGuasto() {
-		Funzione<Integer> f = new FunzioneLineareInt(MAX_PROB_GUASTO, MIN_PROB_GUASTO, resistenzaComponente.getMax());
+		Funzione<Integer> f = new FunzioneLineare<>(MAX_PROB_GUASTO, MIN_PROB_GUASTO, resistenzaComponente.getMax());
 		
-		return f.getValue(resistenzaComponente.get());
+		return f.getValue(resistenzaComponente.get()).intValue();
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import core.meteo.Meteo;
 import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineareInt;
+import core.utils.funzioni.FunzioneLineare;
 
 public class GommaBagnatoPesante extends Gomma{
 	
@@ -26,12 +26,12 @@ public class GommaBagnatoPesante extends Gomma{
 	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");
 		
-		return (ADERENZA_BASE+funzAderenza.getValue(meteo.getPioggia(giroAttuale))*getModificatoreMeteoCorretto(meteo))/100.0;
+		return (ADERENZA_BASE+funzAderenza.getValue(meteo.getPioggia(giroAttuale)).doubleValue()*getModificatoreMeteoCorretto(meteo))/100.0;
 	}
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
-		this.funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
+		this.funzAderenza = new FunzioneLineare<>(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
 		this.meteo = meteo;
 	}
 

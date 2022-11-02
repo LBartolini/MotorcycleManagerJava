@@ -7,8 +7,8 @@ import core.meteo.Meteo;
 import core.meteo.MeteoInterface;
 import core.moto.gomma.Gomma;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineareInt;
-import core.utils.funzioni.FunzioneParabolaInt;
+import core.utils.funzioni.FunzioneLineare;
+import core.utils.funzioni.FunzioneParabola;
 
 public class GommaHard extends Gomma{
 	
@@ -29,17 +29,17 @@ public class GommaHard extends Gomma{
 	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
 		if(Objects.isNull(funzAderenza) || Objects.isNull(meteo)) throw new ObjectNotInitializedException("Call initPregara before this method!");		
 		
-		return (funzAderenza.getValue(giroAttuale) / 100.0) 
+		return (funzAderenza.getValue(giroAttuale).doubleValue() / 100.0)
 				* 
-				(funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale))/100.0)
+				(funzTemperaturaAsfalto.getValue(meteo.getTemperatura(giroAttuale)).doubleValue()/100.0)
 				*
 				getModificatoreMeteoCorretto(meteo);
 	}
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
-		funzAderenza = new FunzioneLineareInt(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
-		funzTemperaturaAsfalto = new FunzioneParabolaInt(
+		funzAderenza = new FunzioneLineare<>(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
+		funzTemperaturaAsfalto = new FunzioneParabola<Integer>(
 				(Meteo.MAX_TEMPERATURA+Meteo.MIN_TEMPERATURA)/2, 
 				100, 
 				Meteo.MAX_TEMPERATURA, 

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import Exceptions.ValueNotInRangeException;
 import core.utils.funzioni.Funzione;
-import core.utils.funzioni.FunzioneLineareInt;
+import core.utils.funzioni.FunzioneLineare;
 
 public class Meteo implements MeteoInterface {
 	
@@ -32,19 +32,19 @@ public class Meteo implements MeteoInterface {
 			this.pioggiaFinale = pioggiaIniziale;
 		}
 		
-		variazioneTemperatura = new FunzioneLineareInt(temperaturaIniziale, temperaturaFinale, nGiri);
-		variazionePioggia = new FunzioneLineareInt(pioggiaIniziale, pioggiaFinale, nGiri);
+		variazioneTemperatura = new FunzioneLineare<>(temperaturaIniziale, temperaturaFinale, nGiri);
+		variazionePioggia = new FunzioneLineare<>(pioggiaIniziale, pioggiaFinale, nGiri);
 		
 	}
 
 	@Override
 	public int getTemperatura(int giro) {
-		return variazioneTemperatura.getValue(giro);
+		return variazioneTemperatura.getValue(giro).intValue();
 	}
 
 	@Override
 	public int getPioggia(int giro) {
-		return variazionePioggia.getValue(giro);
+		return variazionePioggia.getValue(giro).intValue();
 	}
 	
 	@Override

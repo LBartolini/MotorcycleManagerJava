@@ -1,7 +1,7 @@
 package core.utils.funzioni;
 
-public interface Funzione<T> {
+public interface Funzione<T extends Number> {
 
-	public abstract T getValue(T x);
+	public abstract Number getValue(T x);
 	
 }
