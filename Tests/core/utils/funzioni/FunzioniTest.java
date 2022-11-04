@@ -11,14 +11,14 @@ public class FunzioniTest {
 
 	@Test
 	public void testFunzioneCostante() {
-		Funzione<Integer> funzioneCostante = new FunzioneCostante<>(50, 10);
+		Funzione funzioneCostante = new FunzioneCostante(50, 10);
 		
 		assertEquals(50, funzioneCostante.getValue(1).intValue());
 	}
 	
 	@Test
 	public void testFunzioneLineare() {
-		Funzione<Integer> funzioneLineare = new FunzioneLineare<>(100, 30, 40);
+		Funzione funzioneLineare = new FunzioneLineare(100, 30, 40);
 		
 		assertEquals(100, funzioneLineare.getValue(1).intValue());
 		assertEquals(30, funzioneLineare.getValue(40).intValue());
@@ -26,9 +26,7 @@ public class FunzioniTest {
 	
 	@Test
 	public void testFunzioneParabola() {
-		FunzioneParabola<Integer> funzioneParabola = new FunzioneParabola<>(
-				(Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, 
-				Meteo.MAX_TEMPERATURA, GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA);
+		FunzioneParabola funzioneParabola = FunzioneParabola.createFunzioneFromVertexAndPoint((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		assertEquals(100, funzioneParabola.getValue((Meteo.MAX_TEMPERATURA-Meteo.MIN_TEMPERATURA)/2).intValue());
 		assertEquals(GommaHard.RIDUZIONE_ADERENZA_TEMPERATURA, funzioneParabola.getValue(Meteo.MAX_TEMPERATURA).intValue());

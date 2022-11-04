@@ -15,7 +15,7 @@ public class GommaStradale extends Gomma {
 	
 	private MeteoInterface meteo;
 	
-	private Funzione<Integer> funzAderenza;
+	private Funzione funzAderenza;
 	
 	public GommaStradale() {
 		super(1);
@@ -30,7 +30,7 @@ public class GommaStradale extends Gomma {
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
-		funzAderenza = new FunzioneLineare<>(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
+		funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, giriTotali);
 		this.meteo = meteo;
 	}
 

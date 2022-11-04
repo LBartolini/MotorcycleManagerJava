@@ -33,6 +33,17 @@ public class Pista implements PistaModifiableInterface {
 			MIN_PROB_CADUTA = 0;
 	private static int progressivo = 0;
 	
+	public static Pista createPista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci,
+			int nCurveLente, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
+		return new Pista(nomePista, nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente, nGiri, nSpettatori,
+				tempoMassimo, difficolta);
+	}
+
+	public static Pista createPistaRandom(String nomePista, int nGiri, int nSpettatori, Tempo tempoMassimo,
+			Difficolta difficolta) {
+		return new Pista(nomePista, nGiri, nSpettatori, tempoMassimo, difficolta);
+	}
+
 	private int idPista;
 	private String nomePista;
 	
@@ -45,7 +56,7 @@ public class Pista implements PistaModifiableInterface {
 	private Difficolta difficolta;
 	
 
-	public Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
+	private Pista(String nomePista, int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
 		this.idPista = ++progressivo;
 		
 		initCampiPista(nRettilinei, nTrattiGuidati, nCurveVeloci, nCurveLente);
@@ -56,7 +67,7 @@ public class Pista implements PistaModifiableInterface {
 
 	}
 	
-	public Pista(String nomePista, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
+	private Pista(String nomePista, int nGiri, int nSpettatori, Tempo tempoMassimo, Difficolta difficolta) {
 		Random random = new Random();
 		
 		initCampiPista(random.nextInt(MAX_RETTILINEI), 
@@ -70,23 +81,23 @@ public class Pista implements PistaModifiableInterface {
 	}
 	
 	private void initCampiPista(int nRettilinei, int nTrattiGuidati, int nCurveVeloci, int nCurveLente) {
-		this.nRettilinei = new Campo(nRettilinei, MIN_RETTILINEI, MAX_RETTILINEI);
-		this.nTrattiGuidati = new Campo(nTrattiGuidati, MIN_TRATTI_GUIDATI, MAX_TRATTI_GUIDATI);
-		this.nCurveVeloci = new Campo(nCurveVeloci, MIN_CURVE_VELOCI, MAX_CURVE_VELOCI);
-		this.nCurveLente = new Campo(nCurveLente, MIN_CURVE_LENTE, MAX_CURVE_LENTE);
+		this.nRettilinei = Campo.createCampo(nRettilinei, MIN_RETTILINEI, MAX_RETTILINEI);
+		this.nTrattiGuidati = Campo.createCampo(nTrattiGuidati, MIN_TRATTI_GUIDATI, MAX_TRATTI_GUIDATI);
+		this.nCurveVeloci = Campo.createCampo(nCurveVeloci, MIN_CURVE_VELOCI, MAX_CURVE_VELOCI);
+		this.nCurveLente = Campo.createCampo(nCurveLente, MIN_CURVE_LENTE, MAX_CURVE_LENTE);
 	}
 
 	@Override
 	public void preGara(MeteoInterface meteo) {
 		Random random = new Random();
 		
-		this.probCadutaPista = new Campo(random.nextInt(MAX_PROB_CADUTA/3) + 1, MIN_PROB_CADUTA, MAX_PROB_CADUTA);
+		this.probCadutaPista = Campo.createCampo(random.nextInt(MAX_PROB_CADUTA/3) + 1, MIN_PROB_CADUTA, MAX_PROB_CADUTA);
 		this.meteo = meteo;
 	}
 	
 	@Override
 	public TempoInterface getTempoSulGiro(int giro, MotoInterface moto) throws ObjectNotInitializedException {
-		if(giro > nGiri) return new Tempo(0);
+		if(giro > nGiri) return Tempo.createTempoFromMillisecondi(0);
 		PilotaInterface pilota = moto.getPilota();
 		
 		
@@ -104,13 +115,13 @@ public class Pista implements PistaModifiableInterface {
 		CampoInterface ciclistica = moto.getCiclistica().getGrado();
 		
 		// RETTILINEI
-		punteggio += getCoeffRettilinei() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+		punteggio += getCoeffRettilinei() * new FunzioneLineare(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						motore.getInPercentuale(), 
 						aerodinamica.getInPercentuale()).average().orElse(0)).doubleValue(); 
 		
 		// TRATTI GUIDATI
-		punteggio += getCoeffTrattiGuidati() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+		punteggio += getCoeffTrattiGuidati() * new FunzioneLineare(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						agilita.getInPercentuale(), 
 						aerodinamica.getInPercentuale(), 
@@ -118,7 +129,7 @@ public class Pista implements PistaModifiableInterface {
 						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE LENTE
-		punteggio += getCoeffCurveLente() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+		punteggio += getCoeffCurveLente() * new FunzioneLineare(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						agilita.getInPercentuale(), 
 						freni.getInPercentuale(), 
@@ -126,7 +137,7 @@ public class Pista implements PistaModifiableInterface {
 						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE VELOCI
-		punteggio += getCoeffCurveVeloci() * new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+		punteggio += getCoeffCurveVeloci() * new FunzioneLineare(0.75, 1.5, 0.0, 1.0)
 				.getValue(DoubleStream.of(
 						aerodinamica.getInPercentuale(), 
 						ciclistica.getInPercentuale(), 
@@ -136,13 +147,13 @@ public class Pista implements PistaModifiableInterface {
 		punteggio *= pilota.getStileGuida().getMoltiplicatorePrestazione();
 		
 		// FEELING MOTO
-		punteggio *= new FunzioneLineare<Double>(0.75, 1.5, 0.0, 1.0)
+		punteggio *= new FunzioneLineare(0.75, 1.5, 0.0, 1.0)
 				.getValue(feelingMoto.getInPercentuale()).doubleValue(); 
 		
 		// ADERENZA GOMME
 		punteggio *= moto.getGommaScelta().getAderenzaAttuale(giro);
 		
-		return new Tempo(tempoMassimo.getMillisecondi() * 
+		return Tempo.createTempoFromMillisecondi(tempoMassimo.getMillisecondi() * 
 				(100 - Math.min((int) punteggio, 100)) / 100);
 	}
 	

@@ -12,13 +12,17 @@ public class Scuderia implements ScuderiaInterface {
 
 	private static final int MAX_MOTO = 2;
 	
+	public static Scuderia create(String nome, Difficolta diff) {
+		return new Scuderia(nome, diff);
+	}
+
 	private String nome;
 	private List<Moto> moto;
 	
-	public Scuderia(String nome, Difficolta diff) {
+	private Scuderia(String nome, Difficolta diff) {
 		this.nome = nome;
 		moto = IntStream.range(1, MAX_MOTO+1)
-				.mapToObj((n) -> new Moto(this, diff))
+				.mapToObj((n) -> Moto.createMoto(this, diff))
 				.collect(Collectors.toList());
 	}
 	

@@ -6,9 +6,17 @@ public class Tempo implements TempoModifiableInterface{
 	
 	private static final int SECONDI_IN_MINUTO = 60, MILLISECONDI_IN_SECONDO = 1000;
 	
+	public static Tempo createTempo(int minuti, int secondi, int millisecondi) throws ValueNotInRangeException {
+		return new Tempo(minuti, secondi, millisecondi);
+	}
+
+	public static Tempo createTempoFromMillisecondi(long totaleMillisecondi) {
+		return new Tempo(totaleMillisecondi);
+	}
+
 	private long millisecondi;
 
-	public Tempo(int minuti, int secondi, int millisecondi) throws ValueNotInRangeException {
+	private Tempo(int minuti, int secondi, int millisecondi) throws ValueNotInRangeException {
 		if(secondi<0 || secondi >= SECONDI_IN_MINUTO) throw new ValueNotInRangeException();
 		if(millisecondi<0 || millisecondi >= MILLISECONDI_IN_SECONDO) throw new ValueNotInRangeException();
 		
@@ -18,7 +26,7 @@ public class Tempo implements TempoModifiableInterface{
 				+ millisecondi;
 	}
 	
-	public Tempo(long totaleMillisecondi) {
+	private Tempo(long totaleMillisecondi) {
 		this.millisecondi = totaleMillisecondi;
 	}
 	

@@ -1,12 +1,12 @@
 package core.utils.funzioni;
 
-public class FunzioneCostante<T extends Number> extends FunzioneLineare<T>{
+public class FunzioneCostante extends FunzioneLineare{
 	
-	public FunzioneCostante(T valore, T xFinale) {
+	public FunzioneCostante(Number valore, Number xFinale) {
 		super(valore, valore, xFinale);
 	}
 	
-	public FunzioneCostante(T valore, T xIniziale, T xFinale) {
+	public FunzioneCostante(Number valore, Number xIniziale, Number xFinale) {
 		super(valore, valore, xIniziale, xFinale);
 	}
 

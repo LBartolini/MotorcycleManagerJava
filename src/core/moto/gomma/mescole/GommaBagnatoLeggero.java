@@ -20,7 +20,7 @@ public class GommaBagnatoLeggero extends Gomma{
 		super(5);
 	}
 
-	private Funzione<Integer> funzAderenza;
+	private Funzione funzAderenza;
 	
 	@Override
 	public double getAderenzaAttuale(int giroAttuale) throws ObjectNotInitializedException {
@@ -32,7 +32,7 @@ public class GommaBagnatoLeggero extends Gomma{
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
-		this.funzAderenza = new FunzioneLineare<>(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
+		this.funzAderenza = new FunzioneLineare(ADERENZA_INIZIALE, ADERENZA_FINALE, Meteo.MAX_PIOGGIA);
 		this.meteo = meteo;
 	}
 

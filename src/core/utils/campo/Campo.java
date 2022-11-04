@@ -2,16 +2,24 @@ package core.utils.campo;
 
 public class Campo implements CampoModifiableInterface {
 	
+	public static Campo createCampoMinDefault(int MIN, int MAX) {
+		return new Campo(MIN, MAX);
+	}
+
+	public static Campo createCampo(int value, int MIN, int MAX) {
+		return new Campo(value, MIN, MAX);
+	}
+
 	private int value;
 	private final int MIN, MAX;
 	
-	public Campo(int MIN, int MAX) {
+	private Campo(int MIN, int MAX) {
 		this.MIN = MIN;
 		this.MAX = MAX;
 		set(MIN);
 	}
 	
-	public Campo(int value, int MIN, int MAX) {
+	private Campo(int value, int MIN, int MAX) {
 		this.MIN = MIN;
 		this.MAX = MAX;
 		set(value);

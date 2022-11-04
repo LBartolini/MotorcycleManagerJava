@@ -19,12 +19,12 @@ public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		ScuderiaInterface s = new Scuderia("Pippo", new Facile());
+		ScuderiaInterface s = Scuderia.create("Pippo", new Facile());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
 		try {
-			m.preGara(new GommaStradale(), new Meteo(15, 0, 20, false), 20);
+			m.preGara(new GommaStradale(), Meteo.create(15, 0, 20, false), 20);
 		} catch (Exception e) {
 			fail();
 		}
@@ -37,12 +37,12 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		ScuderiaInterface s = new Scuderia("Pippo", new Impossibile());
+		ScuderiaInterface s = Scuderia.create("Pippo", new Impossibile());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
 		try {
-			m.preGara(new GommaBagnatoPesante(), new Meteo(15, 0, 20, false), 20);
+			m.preGara(new GommaBagnatoPesante(), Meteo.create(15, 0, 20, false), 20);
 			fail();
 		} catch (GommaSceltaNotInMarcaGommeException e) {
 			
@@ -54,7 +54,7 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		ScuderiaInterface s = new Scuderia("Pippo", new Impossibile());
+		ScuderiaInterface s = Scuderia.create("Pippo", new Impossibile());
 		MotoInterface m1 = null, m2 = null;
 		m1 = s.getMoto(0);
 		m2 = s.getMoto(1);

@@ -52,7 +52,7 @@ public class GommaTest {
 		Gomma bagnato_leggero = new GommaBagnatoLeggero();
 		
 		try {
-			bagnato_leggero.preGara(20, new Meteo(0, 1, 100, false));
+			bagnato_leggero.preGara(20, Meteo.create(0, 1, 100, false));
 		} catch (ValueNotInRangeException e) {fail();}
 		
 		double valore_pioggia_leggera=0;
@@ -61,7 +61,7 @@ public class GommaTest {
 		} catch (Exception e) {fail();}
 		
 		try {
-			bagnato_leggero.preGara(20, new Meteo(0, 100, 100, false));
+			bagnato_leggero.preGara(20, Meteo.create(0, 100, 100, false));
 		} catch (ValueNotInRangeException e) {fail();}
 		
 		double valore_pioggia_pesante=0;
@@ -77,7 +77,7 @@ public class GommaTest {
 		Gomma bagnato_pesante = new GommaBagnatoPesante();
 		
 		try {
-			bagnato_pesante.preGara(20, new Meteo(0, 1, 100, false));
+			bagnato_pesante.preGara(20, Meteo.create(0, 1, 100, false));
 		} catch (ValueNotInRangeException e) {fail();}
 		
 		double valore_pioggia_leggera=0;
@@ -86,7 +86,7 @@ public class GommaTest {
 		} catch (Exception e) {fail();}
 		
 		try {
-			bagnato_pesante.preGara(20, new Meteo(0, 100, 100, false));
+			bagnato_pesante.preGara(20, Meteo.create(0, 100, 100, false));
 		} catch (ValueNotInRangeException e) {fail();}
 		
 		double valore_pioggia_pesante=0;
@@ -99,11 +99,11 @@ public class GommaTest {
 	
 	@Test
 	public void testTemperaturaGommaSoft() throws ValueNotInRangeException, ObjectNotInitializedException {
-		MeteoInterface meteo_temp_minima = new Meteo(Meteo.MIN_TEMPERATURA, 0, 20, false);
+		MeteoInterface meteo_temp_minima = Meteo.create(Meteo.MIN_TEMPERATURA, 0, 20, false);
 		Gomma gomme_temp_minima = new GommaSoft();
 		gomme_temp_minima.preGara(20, meteo_temp_minima);
 		
-		MeteoInterface meteo_temp_media = new Meteo((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
+		MeteoInterface meteo_temp_media = Meteo.create((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
 		Gomma gomme_temp_media = new GommaSoft();
 		gomme_temp_media.preGara(20, meteo_temp_media);
 		
@@ -112,11 +112,11 @@ public class GommaTest {
 	
 	@Test
 	public void testTemperaturaGommaHard() throws ValueNotInRangeException, ObjectNotInitializedException {
-		MeteoInterface meteo_temp_minima = new Meteo(Meteo.MIN_TEMPERATURA, 0, 20, false);
+		MeteoInterface meteo_temp_minima = Meteo.create(Meteo.MIN_TEMPERATURA, 0, 20, false);
 		Gomma gomme_temp_minima = new GommaHard();
 		gomme_temp_minima.preGara(20, meteo_temp_minima);
 		
-		MeteoInterface meteo_temp_media = new Meteo((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
+		MeteoInterface meteo_temp_media = Meteo.create((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
 		Gomma gomme_temp_media = new GommaHard();
 		gomme_temp_media.preGara(20, meteo_temp_media);
 		
@@ -125,11 +125,11 @@ public class GommaTest {
 	
 	@Test
 	public void testTemperaturaGommaMedia() throws ValueNotInRangeException, ObjectNotInitializedException {
-		MeteoInterface meteo_temp_minima = new Meteo(Meteo.MIN_TEMPERATURA, 0, 20, false);
+		MeteoInterface meteo_temp_minima = Meteo.create(Meteo.MIN_TEMPERATURA, 0, 20, false);
 		Gomma gomme_temp_minima = new GommaMedia();
 		gomme_temp_minima.preGara(20, meteo_temp_minima);
 		
-		MeteoInterface meteo_temp_media = new Meteo((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
+		MeteoInterface meteo_temp_media = Meteo.create((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
 		Gomma gomme_temp_media = new GommaMedia();
 		gomme_temp_media.preGara(20, meteo_temp_media);
 		
@@ -138,11 +138,11 @@ public class GommaTest {
 	
 	@Test
 	public void testTemperaturaGommaStradale() throws ValueNotInRangeException, ObjectNotInitializedException {
-		MeteoInterface meteo_temp_minima = new Meteo(Meteo.MIN_TEMPERATURA, 0, 20, false);
+		MeteoInterface meteo_temp_minima = Meteo.create(Meteo.MIN_TEMPERATURA, 0, 20, false);
 		Gomma gomme_temp_minima = new GommaStradale();
 		gomme_temp_minima.preGara(20, meteo_temp_minima);
 		
-		MeteoInterface meteo_temp_media = new Meteo((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
+		MeteoInterface meteo_temp_media = Meteo.create((Meteo.MIN_TEMPERATURA+Meteo.MAX_TEMPERATURA)/2, 0, 20, false);
 		Gomma gomme_temp_media = new GommaStradale();
 		gomme_temp_media.preGara(20, meteo_temp_media);
 		

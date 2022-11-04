@@ -12,7 +12,7 @@ public class TempoSuGiroTest {
 
 	@Test
 	public void testTempoInMillisecondi() {
-		TempoInterface tempoSuGiro = new Tempo(5603);
+		TempoInterface tempoSuGiro = Tempo.createTempoFromMillisecondi(5603);
 		
 		assertEquals(5603, tempoSuGiro.getMillisecondi());
 	}
@@ -21,7 +21,7 @@ public class TempoSuGiroTest {
 	public void testToString() {
 		TempoInterface tempoSuGiro = null;
 		try {
-			tempoSuGiro = new Tempo(1, 4, 59);
+			tempoSuGiro = Tempo.createTempo(1, 4, 59);
 		} catch (ValueNotInRangeException e) {
 			fail();
 		}
@@ -32,7 +32,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathSecondiNegativi() {
 		try {
-			new Tempo(1, -4, 59);
+			Tempo.createTempo(1, -4, 59);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -40,7 +40,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathSecondiMaggMassimo() {
 		try {
-			new Tempo(1, 71, 59);
+			Tempo.createTempo(1, 71, 59);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -48,7 +48,7 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathMillisecondiNegativi() {
 		try {
-			new Tempo(1, 5, -100);
+			Tempo.createTempo(1, 5, -100);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
@@ -56,16 +56,16 @@ public class TempoSuGiroTest {
 	@Test
 	public void testConstructorBadPathMillisecondiMaggMassimo() {
 		try {
-			new Tempo(1, 5, 2000);
+			Tempo.createTempo(1, 5, 2000);
 			fail();
 		} catch (ValueNotInRangeException e) {}
 	}
 	
 	@Test
 	public void testCompareTo() {
-		Tempo t1 = new Tempo(10100);
-		Tempo t2 = new Tempo(10100);
-		Tempo t3 = new Tempo(100);
+		Tempo t1 = Tempo.createTempoFromMillisecondi(10100);
+		Tempo t2 = Tempo.createTempoFromMillisecondi(10100);
+		Tempo t3 = Tempo.createTempoFromMillisecondi(100);
 		
 		assertTrue(t1.compareTo(t2) == 0);
 		assertTrue(t1.compareTo(t3) >= 0);

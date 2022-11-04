@@ -14,11 +14,16 @@ public class Meteo implements MeteoInterface {
 	
 	public static final double MODIFICATORE_PROB_CADUTA_CON_PIOGGIA = 1.1;
 	
+	public static Meteo create(int temperaturaIniziale, int pioggiaIniziale, int nGiri, boolean meteoVariabile)
+			throws ValueNotInRangeException {
+		return new Meteo(temperaturaIniziale, pioggiaIniziale, nGiri, meteoVariabile);
+	}
+
 	private int temperaturaFinale, pioggiaFinale;
 	
-	private Funzione<Integer> variazioneTemperatura, variazionePioggia;
+	private Funzione variazioneTemperatura, variazionePioggia;
 	
-	public Meteo(int temperaturaIniziale, int pioggiaIniziale, int nGiri, boolean meteoVariabile) throws ValueNotInRangeException {
+	private Meteo(int temperaturaIniziale, int pioggiaIniziale, int nGiri, boolean meteoVariabile) throws ValueNotInRangeException {
 		if(temperaturaIniziale < MIN_TEMPERATURA || temperaturaIniziale > MAX_TEMPERATURA) throw new ValueNotInRangeException("tempAria not in range");
 		if(pioggiaIniziale < MIN_PIOGGIA || pioggiaIniziale > MAX_PIOGGIA) throw new ValueNotInRangeException("Pioggia not in range");
 		
@@ -32,8 +37,8 @@ public class Meteo implements MeteoInterface {
 			this.pioggiaFinale = pioggiaIniziale;
 		}
 		
-		variazioneTemperatura = new FunzioneLineare<>(temperaturaIniziale, temperaturaFinale, nGiri);
-		variazionePioggia = new FunzioneLineare<>(pioggiaIniziale, pioggiaFinale, nGiri);
+		variazioneTemperatura = new FunzioneLineare(temperaturaIniziale, temperaturaFinale, nGiri);
+		variazionePioggia = new FunzioneLineare(pioggiaIniziale, pioggiaFinale, nGiri);
 		
 	}
 

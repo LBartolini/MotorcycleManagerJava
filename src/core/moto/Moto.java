@@ -19,6 +19,10 @@ public final class Moto implements MotoModifiableInterface {
 	
 	private static int progressivo = 0;
 	
+	public static Moto createMoto(ScuderiaInterface scuderia, Difficolta difficolta) {
+		return new Moto(scuderia, difficolta);
+	}
+
 	private int id;
 	private ScuderiaInterface scuderia;
 	private PilotaInterface pilota;
@@ -29,7 +33,7 @@ public final class Moto implements MotoModifiableInterface {
 	private Gomma gommaScelta;
 	private boolean guasto, incidentata;
 	
-	public Moto(ScuderiaInterface scuderia, Difficolta difficolta) {
+	private Moto(ScuderiaInterface scuderia, Difficolta difficolta) {
 		this.id = ++progressivo;
 		
 		this.scuderia = scuderia;

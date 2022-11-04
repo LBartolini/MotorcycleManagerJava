@@ -30,8 +30,8 @@ public class Componente implements ComponenteModifiableInterface {
 	
 	private void initComponente(String nome, int gradoComponente, int livelloResistenza, int minProbGuasto, int maxProbGuasto) {
 		this.nome = nome;
-		this.gradoComponente = new Campo(gradoComponente, MIN_CAMPO, MAX_CAMPO);
-		this.resistenzaComponente = new Campo(livelloResistenza, MIN_CAMPO, MAX_CAMPO);
+		this.gradoComponente = Campo.createCampo(gradoComponente, MIN_CAMPO, MAX_CAMPO);
+		this.resistenzaComponente = Campo.createCampo(livelloResistenza, MIN_CAMPO, MAX_CAMPO);
 		this.MIN_PROB_GUASTO = minProbGuasto;
 		this.MAX_PROB_GUASTO = maxProbGuasto;
 	}
@@ -39,7 +39,7 @@ public class Componente implements ComponenteModifiableInterface {
 	
 	@Override
 	public int getProbabilitaGuasto() {
-		Funzione<Integer> f = new FunzioneLineare<>(MAX_PROB_GUASTO, MIN_PROB_GUASTO, resistenzaComponente.getMax());
+		Funzione f = new FunzioneLineare(MAX_PROB_GUASTO, MIN_PROB_GUASTO, resistenzaComponente.getMax());
 		
 		return f.getValue(resistenzaComponente.get()).intValue();
 	}

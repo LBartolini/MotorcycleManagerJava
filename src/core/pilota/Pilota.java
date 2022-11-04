@@ -21,10 +21,10 @@ public class Pilota implements PilotaModifiableInterface {
 	public Pilota(String nome, String cognome, MotoInterface moto, Difficolta difficolta) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = new Campo(difficolta.getAggressivitaIniziale(), MIN_CAMPO, MAX_CAMPO);
-		this.forzaFisica = new Campo(difficolta.getForzaFisicaIniziale(), MIN_CAMPO, MAX_CAMPO);
-		this.feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
-		this.agilita = new Campo(difficolta.getAgilitaIniziale(), MIN_CAMPO, MAX_CAMPO);
+		this.aggressivita = Campo.createCampo(difficolta.getAggressivitaIniziale(), MIN_CAMPO, MAX_CAMPO);
+		this.forzaFisica = Campo.createCampo(difficolta.getForzaFisicaIniziale(), MIN_CAMPO, MAX_CAMPO);
+		this.feelingMoto = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
+		this.agilita = Campo.createCampo(difficolta.getAgilitaIniziale(), MIN_CAMPO, MAX_CAMPO);
 		this.moto = moto;
 		stileScelto = StileNormale.createStile();
 	}
@@ -32,10 +32,10 @@ public class Pilota implements PilotaModifiableInterface {
 	public Pilota(String nome, String cognome, MotoInterface moto, int aggressivita, int forzaFisica, int agilita) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = new Campo(aggressivita, MIN_CAMPO, MAX_CAMPO);
-		this.forzaFisica = new Campo(forzaFisica, MIN_CAMPO, MAX_CAMPO);
-		this.feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
-		this.agilita = new Campo(agilita, MIN_CAMPO, MAX_CAMPO);
+		this.aggressivita = Campo.createCampo(aggressivita, MIN_CAMPO, MAX_CAMPO);
+		this.forzaFisica = Campo.createCampo(forzaFisica, MIN_CAMPO, MAX_CAMPO);
+		this.feelingMoto = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
+		this.agilita = Campo.createCampo(agilita, MIN_CAMPO, MAX_CAMPO);
 		this.moto = moto;
 		stileScelto = StileNormale.createStile();
 	}
@@ -73,7 +73,7 @@ public class Pilota implements PilotaModifiableInterface {
 	@Override
 	public final void cambioMoto(MotoInterface nuovaMoto) {
 		moto = nuovaMoto;
-		feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
+		feelingMoto = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
 	}
 
 	@Override

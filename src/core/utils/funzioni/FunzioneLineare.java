@@ -1,17 +1,14 @@
 package core.utils.funzioni;
 
-public class FunzioneLineare<T extends Number> implements Funzione<T>{
+public class FunzioneLineare implements Funzione{
 	
 	private double valoreIniziale, valoreFinale, xIniziale, xFinale;
 	
-	public FunzioneLineare(T valoreIniziale, T valoreFinale, T xFinale) {
-		this.valoreIniziale = valoreIniziale.doubleValue();
-		this.valoreFinale = valoreFinale.doubleValue();
-		this.xIniziale = 1;
-		this.xFinale = xFinale.doubleValue();
+	public FunzioneLineare(Number valoreIniziale, Number valoreFinale, Number xFinale) {
+		this(valoreIniziale, valoreFinale, 1, xFinale);
 	}
 	
-	public FunzioneLineare(T valoreIniziale, T valoreFinale, T xIniziale, T xFinale) {
+	public FunzioneLineare(Number valoreIniziale, Number valoreFinale, Number xIniziale, Number xFinale) {
 		this.valoreIniziale = valoreIniziale.doubleValue();
 		this.valoreFinale = valoreFinale.doubleValue();
 		this.xIniziale = xIniziale.doubleValue();
@@ -19,7 +16,7 @@ public class FunzioneLineare<T extends Number> implements Funzione<T>{
 	}
 	
 	@Override
-	public Number getValue(T x) {
+	public Number getValue(Number x) {
 		double m = (valoreFinale-valoreIniziale)/(xFinale-xIniziale);
 		
 		Number valore = m*(x.doubleValue()-xIniziale)+valoreIniziale;

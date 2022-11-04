@@ -14,8 +14,8 @@ public class ScuderiaTest {
 
 	@Test
 	public void testAggiuntaMoto() {
-		ScuderiaInterface s = new Scuderia("test", new Facile());
-		MotoInterface m1 = new Moto(s, new Facile());
+		ScuderiaInterface s = Scuderia.create("test", new Facile());
+		MotoInterface m1 = Moto.createMoto(s, new Facile());
 		MotoInterface m2 = s.getMoto(1);
 		
 		assertFalse(s.isMotoIn(m1));

@@ -17,8 +17,8 @@ public class GommaMedia extends Gomma{
 	
 	private MeteoInterface meteo;
 	
-	private Funzione<Integer> funzAderenza;
-	private Funzione<Integer> funzTemperaturaAsfalto;
+	private Funzione funzAderenza;
+	private Funzione funzTemperaturaAsfalto;
 	
 	public GommaMedia() {
 		super(3);
@@ -37,12 +37,8 @@ public class GommaMedia extends Gomma{
 
 	@Override
 	public void preGara(int giriTotali, MeteoInterface meteo) {
-		funzAderenza = new FunzioneCostante<>(ADERENZA, giriTotali);
-		funzTemperaturaAsfalto = new FunzioneParabola<Integer>(
-				(Meteo.MAX_TEMPERATURA+Meteo.MIN_TEMPERATURA)/2, 
-				100, 
-				Meteo.MAX_TEMPERATURA, 
-				RIDUZIONE_ADERENZA_TEMPERATURA);
+		funzAderenza = new FunzioneCostante(ADERENZA, giriTotali);
+		funzTemperaturaAsfalto = FunzioneParabola.createFunzioneFromVertexAndPoint((Meteo.MAX_TEMPERATURA+Meteo.MIN_TEMPERATURA)/2, 100, Meteo.MAX_TEMPERATURA, RIDUZIONE_ADERENZA_TEMPERATURA);
 		
 		this.meteo = meteo;
 	}
