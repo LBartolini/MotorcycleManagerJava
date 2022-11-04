@@ -26,7 +26,7 @@ public class Pilota implements PilotaModifiableInterface {
 		this.feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
 		this.agilita = new Campo(difficolta.getAgilitaIniziale(), MIN_CAMPO, MAX_CAMPO);
 		this.moto = moto;
-		stileScelto = new StileNormale();
+		stileScelto = StileNormale.createStile();
 	}
 	
 	public Pilota(String nome, String cognome, MotoInterface moto, int aggressivita, int forzaFisica, int agilita) {
@@ -37,7 +37,7 @@ public class Pilota implements PilotaModifiableInterface {
 		this.feelingMoto = new Campo(MIN_CAMPO, MAX_CAMPO);
 		this.agilita = new Campo(agilita, MIN_CAMPO, MAX_CAMPO);
 		this.moto = moto;
-		stileScelto = new StileNormale();
+		stileScelto = StileNormale.createStile();
 	}
 	
 	@Override

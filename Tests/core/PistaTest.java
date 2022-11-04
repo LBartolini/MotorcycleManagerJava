@@ -49,7 +49,7 @@ public class PistaTest {
 		}
 		
 		pista.preGara(meteo);
-		pilota.preGara(new StileNormale());
+		pilota.preGara(StileNormale.createStile());
 		try {
 			moto.preGara(new GommaMedia(), meteo, nGiri);
 		} catch (Exception e) {
@@ -99,8 +99,8 @@ public class PistaTest {
 		}
 		
 		pista.preGara(meteo);
-		pilota1.preGara(new StileNormale());
-		pilota2.preGara(new StileAggressivo());
+		pilota1.preGara(StileNormale.createStile());
+		pilota2.preGara(StileAggressivo.createStile());
 		try {
 			moto1.preGara(new GommaBagnatoLeggero(), meteo, nGiri);
 			moto2.preGara(new GommaMedia(), meteo, nGiri);
