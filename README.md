@@ -10,6 +10,8 @@ TODO **<u>CORE</u>**:
 
 - [ ] Sistema Economico: guadagno base, guadagno in base alla posizione, spettatori, sponsor (obiettivi minimi)
 
+- [ ] (forse) Refactor: trasformare le interfacce modifiable in classi per evitare che, tramite un cast, si possa modificare i valori.
+
 - [ ] Guasti durante la gara, in base alla resistenza dei componenti
 
 - [ ] Probabilità di caduta influenzata anche da caratteristiche del Pilota (aggressività, agilità, etc)
