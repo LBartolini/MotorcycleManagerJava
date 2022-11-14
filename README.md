@@ -39,3 +39,5 @@ TODO **<u>CORE</u>**:
 - [ ]  Soldi e miglioramenti esclusivi per le Scuderie, comandati completamente da IA (staff che rende più economici i miglioramenti, etc)
 
 - [ ] Aggiungere vestiario al pilota che migliora il feeling o altre caratteristiche (guanti, casco, stivali, etc)
+
+- [ ] Sostituire (o estendere) la mia classe Funzione con Function di java.utils
