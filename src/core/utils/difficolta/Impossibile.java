@@ -1,5 +1,7 @@
 package core.utils.difficolta;
 
+import java.util.Objects;
+
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Metzler;
 
@@ -16,6 +18,23 @@ public class Impossibile implements Difficolta{
 	private static final int MAX_PROB_GUASTO = 25;
 	
 	private static final Double MOLTIPLICATORE_CADUTA = 1.5;
+	
+	private static final double MIN_FUNZ_COEFF_PISTA = 0.75;
+	private static final double MAX_FUNZ_COEFF_PISTA = 1.4;
+	
+	private static Impossibile obj = null;
+	
+	public static Impossibile create() {
+		if(Objects.isNull(obj)) {
+			obj = new Impossibile();
+		}
+		
+		return obj;
+	}
+
+	private Impossibile() {
+		
+	}
 	
 	@Override
 	public MarcaGomme getMarcaGomme() {
@@ -60,6 +79,16 @@ public class Impossibile implements Difficolta{
 	@Override
 	public int getAgilitaIniziale() {
 		return AGILITA_INIZIALE;
+	}
+
+	@Override
+	public double getMinFunzioneCoefficientiPista() {
+		return MIN_FUNZ_COEFF_PISTA;
+	}
+
+	@Override
+	public double getMaxFunzioneCoefficientiPista() {
+		return MAX_FUNZ_COEFF_PISTA;
 	}
 	
 }

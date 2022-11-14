@@ -31,12 +31,12 @@ public class PistaTest {
 		
 		PistaModifiableInterface pista = null;
 		try {
-			pista = Pista.createPista("Test", 5, 5, 5, 5, nGiri, 100, Tempo.createTempo(1, 30, 0), new Facile());
+			pista = Pista.createPista("Test", 5, 5, 5, 5, nGiri, 100, Tempo.createTempo(1, 30, 0), Facile.create());
 		} catch (ValueNotInRangeException e2) {
 			fail("Errore init Pista");
 		}
 		
-		ScuderiaInterface s = Scuderia.create("Scuderia", new Facile());
+		ScuderiaInterface s = Scuderia.create("Scuderia", Facile.create());
 		Moto moto = s.getMoto(0);
 		Pilota pilota = new Pilota("Lorenzo", "Bartolini", moto, 5, 5, 5);
 		moto.setPilota(pilota);
@@ -74,13 +74,13 @@ public class PistaTest {
 		
 		PistaModifiableInterface pista = null;
 		try {
-			pista = Pista.createPista("Test", 5, 5, 5, 5, nGiri, 100, Tempo.createTempo(1, 30, 0), new Facile());
+			pista = Pista.createPista("Test", 5, 5, 5, 5, nGiri, 100, Tempo.createTempo(1, 30, 0), Facile.create());
 		} catch (ValueNotInRangeException e2) {
 			fail("Errore init Pista");
 		}
 		
-		ScuderiaInterface scuderiaDifficile = Scuderia.create("Pippo Scuderia", new Difficile());
-		ScuderiaInterface scuderiaFacile = Scuderia.create("Pluto Scuderia", new Facile());
+		ScuderiaInterface scuderiaDifficile = Scuderia.create("Pippo Scuderia", Difficile.create());
+		ScuderiaInterface scuderiaFacile = Scuderia.create("Pluto Scuderia", Facile.create());
 		
 		Moto moto1 = scuderiaDifficile.getMoto(0);
 		Pilota pilota1 = new Pilota("Lorenzo", "Bartolini", moto1, 5, 5, 5);

@@ -21,5 +21,9 @@ public interface Difficolta {
 	public double getMoltiplicatoreCaduta();
 	
 	public MarcaGomme getMarcaGomme();
+
+	public double getMinFunzioneCoefficientiPista();
+
+	public double getMaxFunzioneCoefficientiPista();
 	
 }

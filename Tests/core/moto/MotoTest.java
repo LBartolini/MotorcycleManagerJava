@@ -19,7 +19,7 @@ public class MotoTest {
 
 	@Test
 	public void testPreGara() {
-		ScuderiaInterface s = Scuderia.create("Pippo", new Facile());
+		ScuderiaInterface s = Scuderia.create("Pippo", Facile.create());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
@@ -37,7 +37,7 @@ public class MotoTest {
 	
 	@Test
 	public void testPreGaraBadPath() {
-		ScuderiaInterface s = Scuderia.create("Pippo", new Impossibile());
+		ScuderiaInterface s = Scuderia.create("Pippo", Impossibile.create());
 		Moto m = s.getMoto(0);
 		m.setPilota(new Pilota("Lorenzo", "Bartolini", m, 5, 5, 5));
 		
@@ -54,7 +54,7 @@ public class MotoTest {
 	
 	@Test
 	public void testEquals() {
-		ScuderiaInterface s = Scuderia.create("Pippo", new Impossibile());
+		ScuderiaInterface s = Scuderia.create("Pippo", Impossibile.create());
 		MotoInterface m1 = null, m2 = null;
 		m1 = s.getMoto(0);
 		m2 = s.getMoto(1);

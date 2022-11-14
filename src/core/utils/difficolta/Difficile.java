@@ -1,5 +1,7 @@
 package core.utils.difficolta;
 
+import java.util.Objects;
+
 import core.moto.gomma.MarcaGomme;
 import core.moto.gomma.marche.Dunlop;
 
@@ -16,6 +18,23 @@ public class Difficile implements Difficolta{
 	private static final int MAX_PROB_GUASTO = 15;
 	
 	private static final Double MOLTIPLICATORE_CADUTA = 1.25;
+	
+	private static final double MIN_FUNZ_COEFF_PISTA = 0.75;
+	private static final double MAX_FUNZ_COEFF_PISTA = 1.5;
+	
+	private static Difficile obj = null;
+	
+	public static Difficile create() {
+		if(Objects.isNull(obj)) {
+			obj = new Difficile();
+		}
+		
+		return obj;
+	}
+
+	private Difficile() {
+		
+	}
 	
 	@Override
 	public MarcaGomme getMarcaGomme() {
@@ -60,6 +79,16 @@ public class Difficile implements Difficolta{
 	@Override
 	public int getAgilitaIniziale() {
 		return AGILITA_INIZIALE;
+	}
+
+	@Override
+	public double getMinFunzioneCoefficientiPista() {
+		return MIN_FUNZ_COEFF_PISTA;
+	}
+
+	@Override
+	public double getMaxFunzioneCoefficientiPista() {
+		return MAX_FUNZ_COEFF_PISTA;
 	}
 
 }

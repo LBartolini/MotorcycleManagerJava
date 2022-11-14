@@ -14,7 +14,7 @@ public class ComponenteTest {
 
 	@Test
 	public void testMinimaResistenzaFacile() {
-		Difficolta diff = new Facile();
+		Difficolta diff = Facile.create();
 		ComponenteInterface componente = new Componente("Test", 1, 1, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -23,7 +23,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaFacile() {
-		Difficolta diff = new Facile();
+		Difficolta diff = Facile.create();
 		ComponenteInterface componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -32,7 +32,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMinimaResistenzaIntermedia() {
-		Difficolta diff = new Intermedia();
+		Difficolta diff = Intermedia.create();
 		ComponenteInterface componente = new Componente("Test", 1, 1, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -41,7 +41,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaIntermedia() {
-		Difficolta diff = new Intermedia();
+		Difficolta diff = Intermedia.create();
 		ComponenteInterface componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -50,7 +50,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMinimaResistenzaDifficile() {
-		Difficolta diff = new Difficile();
+		Difficolta diff = Difficile.create();
 		ComponenteInterface componente = new Componente("Test", 1, 1, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -59,7 +59,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaDifficile() {
-		Difficolta diff = new Difficile();
+		Difficolta diff = Difficile.create();
 		ComponenteInterface componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -68,7 +68,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMinimaResistenzaImpossibile() {
-		Difficolta diff = new Impossibile();
+		Difficolta diff = Impossibile.create();
 		ComponenteInterface componente = new Componente("Test", 1, 1, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
@@ -77,7 +77,7 @@ public class ComponenteTest {
 	
 	@Test
 	public void testMassimaResistenzaImpossibile() {
-		Difficolta diff = new Impossibile();
+		Difficolta diff = Impossibile.create();
 		ComponenteInterface componente = new Componente("Test", 1, Componente.MAX_CAMPO, 
 				diff.getMinProbabilitaGuasto(), diff.getMaxProbabilitaGuasto());
 		
