@@ -7,6 +7,7 @@ import core.moto.gomma.marche.Dunlop;
 
 public class Difficile implements Difficolta{
 	
+	private static final int COEFF_LUCIDITA_CADUTA = 7;
 	private static final int GRADO_COMPONENTE_INIZIALE = 2;
 	private static final int RESISTENZA_INIZIALE = 5;
 	
@@ -67,7 +68,7 @@ public class Difficile implements Difficolta{
 	}
 	
 	@Override
-	public int getAggressivitaIniziale() {
+	public int getLuciditaIniziale() {
 		return AGGRESSIVITA_INIZIALE;
 	}
 
@@ -89,6 +90,11 @@ public class Difficile implements Difficolta{
 	@Override
 	public double getMaxFunzioneCoefficientiPista() {
 		return MAX_FUNZ_COEFF_PISTA;
+	}
+
+	@Override
+	public int getCoeffParametriPilotaCaduta() {
+		return COEFF_LUCIDITA_CADUTA;
 	}
 
 }

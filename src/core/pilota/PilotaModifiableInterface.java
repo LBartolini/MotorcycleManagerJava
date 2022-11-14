@@ -7,7 +7,7 @@ public interface PilotaModifiableInterface extends PilotaInterface{
 
 	void preGara(StileGuida stileScelto);
 
-	void incrementaAggressivita();
+	void incrementaLucidita();
 
 	void incrementaForzaFisica();
 
@@ -16,5 +16,9 @@ public interface PilotaModifiableInterface extends PilotaInterface{
 	void incrementaAgilita();
 
 	void cambioMoto(MotoInterface nuovaMoto);
+
+	void incrementaFama();
+
+	void decrementaFama();
 
 }

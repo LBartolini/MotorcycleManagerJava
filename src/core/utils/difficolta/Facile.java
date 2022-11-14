@@ -22,6 +22,8 @@ public class Facile implements Difficolta {
 	private static final double MIN_FUNZ_COEFF_PISTA = 0.85;
 	private static final double MAX_FUNZ_COEFF_PISTA = 1.65;
 	
+	private static final int COEFF_LUCIDITA_CADUTA = 3;
+	
 	private static Facile obj = null;
 	
 	public static Facile create() {
@@ -66,7 +68,7 @@ public class Facile implements Difficolta {
 	}
 
 	@Override
-	public int getAggressivitaIniziale() {
+	public int getLuciditaIniziale() {
 		return AGGRESSIVITA_INIZIALE;
 	}
 
@@ -88,5 +90,10 @@ public class Facile implements Difficolta {
 	@Override
 	public double getMaxFunzioneCoefficientiPista() {
 		return MAX_FUNZ_COEFF_PISTA;
+	}
+
+	@Override
+	public int getCoeffParametriPilotaCaduta() {
+		return COEFF_LUCIDITA_CADUTA;
 	}
 }

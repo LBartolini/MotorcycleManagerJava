@@ -104,7 +104,7 @@ public class Pista implements PistaModifiableInterface {
 		double punteggio = 1; 
 		
 		CampoInterface feelingMoto = pilota.getFeelingMoto();
-		CampoInterface aggressivita = pilota.getAggressivita();
+		CampoInterface aggressivita = pilota.getLucidita();
 		CampoInterface forzaFisica = pilota.getForzaFisica();
 		CampoInterface agilita = pilota.getAgilita();
 		
@@ -119,38 +119,38 @@ public class Pista implements PistaModifiableInterface {
 		// RETTILINEI
 		punteggio += getCoeffRettilinei() * funzioneLineare
 				.getValue(DoubleStream.of(
-						motore.getInPercentuale(), 
-						aerodinamica.getInPercentuale()).average().orElse(0)).doubleValue(); 
+						motore.getPercentuale(), 
+						aerodinamica.getPercentuale()).average().orElse(0)).doubleValue(); 
 		
 		// TRATTI GUIDATI
 		punteggio += getCoeffTrattiGuidati() * funzioneLineare
 				.getValue(DoubleStream.of(
-						agilita.getInPercentuale(), 
-						aerodinamica.getInPercentuale(), 
-						ciclistica.getInPercentuale(), 
-						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
+						agilita.getPercentuale(), 
+						aerodinamica.getPercentuale(), 
+						ciclistica.getPercentuale(), 
+						forzaFisica.getPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE LENTE
 		punteggio += getCoeffCurveLente() * funzioneLineare
 				.getValue(DoubleStream.of(
-						agilita.getInPercentuale(), 
-						freni.getInPercentuale(), 
-						aggressivita.getInPercentuale(), 
-						forzaFisica.getInPercentuale()).average().orElse(0)).doubleValue();
+						agilita.getPercentuale(), 
+						freni.getPercentuale(), 
+						aggressivita.getPercentuale(), 
+						forzaFisica.getPercentuale()).average().orElse(0)).doubleValue();
 		
 		// CURVE VELOCI
 		punteggio += getCoeffCurveVeloci() * funzioneLineare
 				.getValue(DoubleStream.of(
-						aerodinamica.getInPercentuale(), 
-						ciclistica.getInPercentuale(), 
-						motore.getInPercentuale()).average().orElse(0)).doubleValue();
+						aerodinamica.getPercentuale(), 
+						ciclistica.getPercentuale(), 
+						motore.getPercentuale()).average().orElse(0)).doubleValue();
 		
 		// STILE DI GUIDA
 		punteggio *= pilota.getStileGuida().getMoltiplicatorePrestazione();
 		
 		// FEELING MOTO
 		punteggio *= funzioneLineare
-				.getValue(feelingMoto.getInPercentuale()).doubleValue(); 
+				.getValue(feelingMoto.getPercentuale()).doubleValue(); 
 		
 		// ADERENZA GOMME
 		punteggio *= moto.getGommaScelta().getAderenzaAttuale(giro);
@@ -192,10 +192,18 @@ public class Pista implements PistaModifiableInterface {
 		// STILE GUIDA
 		soglia *= pilota.getStileGuida().getMoltiplicatoreCaduta();
 		
+		//LUCIDITA
+		soglia += (pilota.getLucidita().getPercentualeInversa()-0.5)
+					*difficolta.getCoeffParametriPilotaCaduta();
+		
+		//LUCIDITA
+		soglia += (pilota.getAgilita().getPercentualeInversa()-0.5)
+					*difficolta.getCoeffParametriPilotaCaduta();
+		
 		// DIFFICOLTA
 		soglia *= difficolta.getMoltiplicatoreCaduta();
 		
-		return new Random().nextInt(100) < Math.min((int) soglia, MAX_PROB_CADUTA);
+		return new Random().nextInt(100) < Math.min(Math.max(MIN_PROB_CADUTA, (int) soglia), MAX_PROB_CADUTA);
 	}
 
 	@Override

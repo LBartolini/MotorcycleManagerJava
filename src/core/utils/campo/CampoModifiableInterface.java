@@ -5,5 +5,7 @@ public interface CampoModifiableInterface extends CampoInterface {
 	public void set(int newValue);
 	
 	public void increment();
+
+	public void decrement();
 	
 }

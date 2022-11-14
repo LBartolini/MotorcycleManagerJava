@@ -12,7 +12,7 @@ public interface PilotaInterface {
 
 	String getCognome();
 
-	CampoInterface getAggressivita();
+	CampoInterface getLucidita();
 
 	CampoInterface getForzaFisica();
 
@@ -21,5 +21,7 @@ public interface PilotaInterface {
 	CampoInterface getAgilita();
 
 	MotoInterface getMoto();
+
+	CampoInterface getFama();
 
 }

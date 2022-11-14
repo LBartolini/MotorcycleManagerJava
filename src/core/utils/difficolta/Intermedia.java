@@ -7,6 +7,7 @@ import core.moto.gomma.marche.Michelin;
 
 public class Intermedia implements Difficolta{
 	
+	private static final int COEFF_LUCIDITA_CADUTA = 5;
 	private static final int GRADO_COMPONENTE_INIZIALE = 5;
 	private static final int RESISTENZA_INIZIALE = 10;
 	
@@ -66,7 +67,7 @@ public class Intermedia implements Difficolta{
 	}
 	
 	@Override
-	public int getAggressivitaIniziale() {
+	public int getLuciditaIniziale() {
 		return AGGRESSIVITA_INIZIALE;
 	}
 
@@ -90,6 +91,11 @@ public class Intermedia implements Difficolta{
 	public double getMaxFunzioneCoefficientiPista() {
 		// TODO Auto-generated method stub
 		return MAX_FUNZ_COEFF_PISTA;
+	}
+
+	@Override
+	public int getCoeffParametriPilotaCaduta() {
+		return COEFF_LUCIDITA_CADUTA;
 	}
 	
 }

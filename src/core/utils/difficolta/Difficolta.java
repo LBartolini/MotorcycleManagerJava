@@ -8,7 +8,7 @@ public interface Difficolta {
 	
 	public int getResistenzaComponenteIniziale();
 	
-	public int getAggressivitaIniziale();
+	public int getLuciditaIniziale();
 	
 	public int getForzaFisicaIniziale();
 	
@@ -25,5 +25,7 @@ public interface Difficolta {
 	public double getMinFunzioneCoefficientiPista();
 
 	public double getMaxFunzioneCoefficientiPista();
+
+	public int getCoeffParametriPilotaCaduta();
 	
 }

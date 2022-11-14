@@ -13,7 +13,8 @@ public class Pilota implements PilotaModifiableInterface {
 	private static int MIN_CAMPO=1, MAX_CAMPO=30;
 	
 	private String nome, cognome;
-	private CampoModifiableInterface aggressivita, forzaFisica, agilita, feelingMoto;
+	private CampoModifiableInterface lucidita, forzaFisica, agilita, feelingMoto;
+	private CampoModifiableInterface fama;
 	
 	private MotoInterface moto;
 	private StileGuida stileScelto;
@@ -21,18 +22,20 @@ public class Pilota implements PilotaModifiableInterface {
 	public Pilota(String nome, String cognome, MotoInterface moto, Difficolta difficolta) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = Campo.createCampo(difficolta.getAggressivitaIniziale(), MIN_CAMPO, MAX_CAMPO);
+		this.lucidita = Campo.createCampo(difficolta.getLuciditaIniziale(), MIN_CAMPO, MAX_CAMPO);
 		this.forzaFisica = Campo.createCampo(difficolta.getForzaFisicaIniziale(), MIN_CAMPO, MAX_CAMPO);
 		this.feelingMoto = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
 		this.agilita = Campo.createCampo(difficolta.getAgilitaIniziale(), MIN_CAMPO, MAX_CAMPO);
+		this.fama = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
+		
 		this.moto = moto;
 		stileScelto = StileNormale.createStile();
 	}
 	
-	public Pilota(String nome, String cognome, MotoInterface moto, int aggressivita, int forzaFisica, int agilita) {
+	public Pilota(String nome, String cognome, MotoInterface moto, int lucidita, int forzaFisica, int agilita) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.aggressivita = Campo.createCampo(aggressivita, MIN_CAMPO, MAX_CAMPO);
+		this.lucidita = Campo.createCampo(lucidita, MIN_CAMPO, MAX_CAMPO);
 		this.forzaFisica = Campo.createCampo(forzaFisica, MIN_CAMPO, MAX_CAMPO);
 		this.feelingMoto = Campo.createCampoMinDefault(MIN_CAMPO, MAX_CAMPO);
 		this.agilita = Campo.createCampo(agilita, MIN_CAMPO, MAX_CAMPO);
@@ -51,8 +54,8 @@ public class Pilota implements PilotaModifiableInterface {
 	}
 	
 	@Override
-	public final void incrementaAggressivita() {
-		aggressivita.increment();
+	public final void incrementaLucidita() {
+		lucidita.increment();
 	}
 	
 	@Override
@@ -68,6 +71,16 @@ public class Pilota implements PilotaModifiableInterface {
 	@Override
 	public final void incrementaAgilita() {
 		agilita.increment();
+	}
+	
+	@Override
+	public final void incrementaFama() {
+		fama.increment();
+	}
+	
+	@Override
+	public final void decrementaFama() {
+		fama.decrement();
 	}
 	
 	@Override
@@ -87,8 +100,8 @@ public class Pilota implements PilotaModifiableInterface {
 	}
 
 	@Override
-	public final CampoInterface getAggressivita() {
-		return aggressivita;
+	public final CampoInterface getLucidita() {
+		return lucidita;
 	}
 	
 	@Override
@@ -104,6 +117,11 @@ public class Pilota implements PilotaModifiableInterface {
 	@Override
 	public final CampoInterface getAgilita() {
 		return agilita;
+	}
+	
+	@Override
+	public final CampoInterface getFama() {
+		return fama;
 	}
 
 	@Override

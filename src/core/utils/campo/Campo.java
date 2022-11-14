@@ -3,7 +3,7 @@ package core.utils.campo;
 public class Campo implements CampoModifiableInterface {
 	
 	public static Campo createCampoMinDefault(int MIN, int MAX) {
-		return new Campo(MIN, MAX);
+		return new Campo(MIN, MIN, MAX);
 	}
 
 	public static Campo createCampo(int value, int MIN, int MAX) {
@@ -12,12 +12,6 @@ public class Campo implements CampoModifiableInterface {
 
 	private int value;
 	private final int MIN, MAX;
-	
-	private Campo(int MIN, int MAX) {
-		this.MIN = MIN;
-		this.MAX = MAX;
-		set(MIN);
-	}
 	
 	private Campo(int value, int MIN, int MAX) {
 		this.MIN = MIN;
@@ -31,7 +25,7 @@ public class Campo implements CampoModifiableInterface {
 	}
 	
 	@Override
-	public final double getInPercentuale() {
+	public final double getPercentuale() {
 		return (double) value / getMax();
 	}
 	
@@ -51,6 +45,11 @@ public class Campo implements CampoModifiableInterface {
 	@Override
 	public final void increment() {
 		set(value+1);
+	}
+	
+	@Override
+	public final void decrement() {
+		set(value-1);
 	}
 	
 	@Override

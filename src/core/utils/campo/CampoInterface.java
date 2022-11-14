@@ -6,7 +6,11 @@ public interface CampoInterface {
 
 	int get();
 
-	double getInPercentuale();
+	double getPercentuale();
+	
+	default double getPercentualeInversa() {
+		return 1 - getPercentuale();
+	}
 
 	boolean isMax();
 
