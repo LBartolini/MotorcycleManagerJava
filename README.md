@@ -10,11 +10,11 @@ TODO **<u>CORE</u>**:
 
 - [ ] Sistema Economico: guadagno base, guadagno in base alla posizione, spettatori, sponsor (obiettivi minimi)
 
-- [?] Refactor: trasformare le interfacce modifiable in classi per evitare che, tramite un cast, si possa modificare i valori.
+- [ ] (?) Refactor: trasformare le interfacce modifiable in classi per evitare che, tramite un cast, si possa modificare i valori.
 
 - [ ] Guasti durante la gara, in base alla resistenza dei componenti
 
-- [*] Probabilità di caduta influenzata anche da caratteristiche del Pilota (lucidità, agilità, etc)
+- [x] Probabilità di caduta influenzata anche da caratteristiche del Pilota (lucidità, agilità, etc)
 
 - [ ] Setup: sospensioni, altezza sella, apertura manubrio. Ogni caratteristica è intrinseca nella moto.
 
@@ -28,7 +28,7 @@ TODO **<u>CORE</u>**:
 
 - [ ] Modifica stile di guida giro per giro (implica che la probabilità di caduta deve essere calcolata ad ogni giro)
 
-- [*] Fama pilota: influenza cambio di scuderia, sponsor e guadagni. 
+- [x] Fama pilota: influenza cambio di scuderia, sponsor e guadagni. 
 
 - [ ] Creare degli eventi fuori dalla pista, in cui il giocatore sceglie cosa fare, per aumentare, o eventualmente diminuire, la fama. Possibili eventi casuali.
 
